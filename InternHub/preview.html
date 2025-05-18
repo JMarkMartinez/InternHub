@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Posting Preview</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4f46e5',secondary:'#6366f1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Return Button -->
+    <div class="fixed top-6 left-6 z-50">
+        <a href="/InternHub/review.html" 
+        class="flex items-center px-4 py-2 bg-white shadow-md rounded-button text-gray-700 hover:text-primary transition-colors">
+            <div class="w-5 h-5 flex items-center justify-center mr-2">
+                <i class="ri-arrow-left-line"></i>
+            </div>
+            <span class="font-medium">Return to Edit</span>
+        </a>
+    </div>
+
+    <!-- Company Header -->
+    <header class="bg-white shadow-sm pt-20 md:pt-24">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Marketing Intern</h1>
+                        <div class="flex items-center mt-1">
+                            <span class="text-gray-700">ABC Corporation.</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <div class="flex items-center text-gray-700">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                Sogod, Southern Leyte
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="px-6 py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap hover:bg-primary/90 transition-colors">Apply Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Stats Bar -->
+    <div class="bg-gray-50 border-y border-gray-200">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex flex-wrap justify-between">
+                <div class="flex items-center mr-6 mb-2 md:mb-0">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <div class="w-5 h-5 flex items-center justify-center text-primary">
+                            <i class="ri-calendar-line"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Duration</p>
+                        <p class="font-medium text-gray-900">3 months</p>
+                    </div>
+                </div>
+                <div class="flex items-center mr-6 mb-2 md:mb-0">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <div class="w-5 h-5 flex items-center justify-center text-primary">
+                            <i class="ri-time-line"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Schedule</p>
+                        <p class="font-medium text-gray-900">Full-time</p>
+                    </div>
+                </div>
+                <div class="flex items-center mr-6 mb-2 md:mb-0">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <div class="w-5 h-5 flex items-center justify-center text-primary">
+                            <i class="ri-money-dollar-circle-line"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Compensation</p>
+                        <p class="font-medium text-gray-900">₱25/hour</p>
+                    </div>
+                </div>
+                <div class="flex items-center mb-2 md:mb-0">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <div class="w-5 h-5 flex items-center justify-center text-primary">
+                            <i class="ri-timer-line"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Application Deadline</p>
+                        <p class="font-medium text-gray-900">May 31, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Apply Button (Sticky on Mobile) -->
+            <div class="md:hidden sticky top-0 z-40 bg-white shadow-md p-4 mb-6 -mx-4">
+                <button class="w-full py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap hover:bg-primary/90 transition-colors">Apply Now</button>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Main Content Column -->
+                <div class="md:col-span-2">
+                    <!-- Company Overview -->
+                    <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Company Overview</h2>
+                        <p class="text-gray-700 mb-4">
+                            ABC Corporation is a leading marketing and advertising agency based in Manila, specializing in innovative digital campaigns that help brands connect with their target audiences. With a dynamic team and a client-focused approach, we strive to deliver measurable results and creative solutions.
+                        </p>
+                    </section>
+
+                    <!-- Role Description -->
+                    <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Role Description</h2>
+                        <p class="text-gray-700 mb-4">
+                           As a Marketing Intern at ABC Corporation, you will support the marketing team in executing campaigns, conducting market research, and creating engaging content across various platforms. 
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            This role is ideal for students eager to gain practical experience and develop their skills in a real-world marketing environment.
+                        </p>
+                        <h3 class="text-lg font-semibold text-gray-900 mt-5 mb-3">Key Responsibilities:</h3>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Assist in the development and execution of marketing campaigns</li>
+                            <li>Create content for social media and promotional materials</li>
+                            <li>Conduct market research and analyze competitor activities</li>
+                            <li>Prepare performance reports and presentations</li>
+                            <li>Collaborate with cross-functional teams on marketing initiatives</li>
+                        </ul>
+                    </section>
+                    <!-- Requirements -->
+                    <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Requirements</h2>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Currently pursuing a Bachelor’s degree in Marketing, Business Administration, or related field</li>
+                            <li>Good communication and interpersonal skills</li>
+                            <li>Proficient in Microsoft Office Suite (Excel, PowerPoint, Word)</li>
+                            <li>Basic knowledge of social media platforms</li>
+                            <li>Strong organizational skills and attention to detail</li>
+                            <li>Ability to work well both independently and as part of a team</li>
+                            <li>Available for at least 3 months of internship</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold text-gray-900 mt-5 mb-3">Nice to Have:</h3>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Experience with graphic design tools like Canva or Adobe Photoshop</li>
+                            <li>Familiarity with digital marketing analytics tools (e.g., Google Analytics)</li>
+                            <li>Prior exposure to content creation or social media management</li>
+                            <li>Basic understanding of SEO and online advertising</li>
+                        </ul>
+                    </section>
+                    <!-- Benefits -->
+                    <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Benefits</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary">
+                                        <i class="ri-money-dollar-circle-line"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Competitive Pay</h3>
+                                    <p class="text-gray-700 text-sm">₱25/hour plus transportation allowance</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary">
+                                        <i class="ri-home-office-line"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Flexible Work</h3>
+                                    <p class="text-gray-700 text-sm">3 days in office, 2 days remote</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary">
+                                        <i class="ri-user-star-line"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Mentorship</h3>
+                                    <p class="text-gray-700 text-sm">Direct guidance from senior designers</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary">
+                                        <i class="ri-graduation-cap-line"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Learning Opportunities</h3>
+                                    <p class="text-gray-700 text-sm">Professional development workshops</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <div class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mr-2 mt-0.5">
+                                    <i class="ri-lightbulb-line"></i>
+                                </div>
+                                <p class="text-gray-700 text-sm">
+                                    Outstanding performers may be considered for full-time employment opportunities after the internship period.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Application Process -->
+                    <section class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Application Process</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">1</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Submit Application</h3>
+                                    <p class="text-gray-700 text-sm">Complete the online application form and upload required documents</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">2</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Initial Review</h3>
+                                    <p class="text-gray-700 text-sm">Our HR team will review your application and portfolio</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">3</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Design Exercise</h3>
+                                    <p class="text-gray-700 text-sm">Selected candidates will complete a small design challenge</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">4</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Interview</h3>
+                                    <p class="text-gray-700 text-sm">Virtual interview with the design team</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">5</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Final Decision</h3>
+                                    <p class="text-gray-700 text-sm">Offer extended to selected candidate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="md:col-span-1">
+                    <!-- Apply Card (Desktop) -->
+                    <div class="hidden md:block sticky top-6">
+                        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                            <h2 class="text-lg font-bold text-gray-900 mb-4">Ready to Apply?</h2>
+                            <button class="w-full py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap hover:bg-primary/90 transition-colors mb-4">Apply Now</button>
+                            <p class="text-sm text-gray-600 mb-4">Application deadline: <span class="font-medium text-gray-900">May 31, 2025</span></p>
+                            
+                            <div class="border-t border-gray-200 pt-4 mt-4">
+                                <h3 class="font-medium text-gray-900 mb-2">Required Documents</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center text-sm text-gray-700">
+                                        <div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+                                            <i class="ri-file-text-line"></i>
+                                        </div>
+                                        Resume/CV
+                                    </li>
+                                    <li class="flex items-center text-sm text-gray-700">
+                                        <div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+                                            <i class="ri-mail-line"></i>
+                                        </div>
+                                        Cover Letter
+                                    </li>
+                                    <li class="flex items-center text-sm text-gray-700">
+                                        <div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+                                            <i class="ri-gallery-line"></i>
+                                        </div>
+                                        Portfolio Link
+                                    </li>
+                                    <li class="flex items-center text-sm text-gray-700">
+                                        <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-2">
+                                            <i class="ri-file-list-3-line"></i>
+                                        </div>
+                                        Academic Transcript (optional)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Skills & Technologies -->
+                        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                            <h2 class="text-lg font-bold text-gray-900 mb-4">Skills & Technologies</h2>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Excel</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Word</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Social Media</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Canva</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Photoshop</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Google Analytics</span>
+                                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">Adobe Creative Suite</span>
+                            </div>
+                        </div>
+
+                        <!-- Share -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <h2 class="text-lg font-bold text-gray-900 mb-4">Share This Opportunity</h2>
+                            <div class="flex space-x-3">
+                                <a href="#" class="w-10 h-10 rounded-full bg-[#1877F2]/10 flex items-center justify-center text-[#1877F2]">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-facebook-fill"></i>
+                                    </div>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-[#1DA1F2]/10 flex items-center justify-center text-[#1DA1F2]">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-twitter-x-fill"></i>
+                                    </div>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-[#0A66C2]/10 flex items-center justify-center text-[#0A66C2]">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-linkedin-fill"></i>
+                                    </div>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600">
+                                    <div class="w-5 h-5 flex items-center justify-center">
+                                        <i class="ri-mail-line"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Similar Opportunities -->
+            <section class="mt-12">
+                <h2 class="text-xl font-bold text-gray-900 mb-6">Similar Opportunities</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <div class="p-5">
+                            <h3 class="font-semibold text-gray-900 mb-1">Product Design Intern</h3>
+                            <p class="text-gray-600 text-sm mb-3">InnovateCo • Remote</p>
+                            <div class="flex items-center text-sm text-gray-700 mb-2">
+                                <div class="w-4 h-4 flex items-center justify-center text-gray-500 mr-2">
+                                    <i class="ri-calendar-line"></i>
+                                </div>
+                                <span>3 months</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-700">
+                                <div class="w-4 h-4 flex items-center justify-center text-gray-500 mr-2">
+                                    <i class="ri-money-dollar-circle-line"></i>
+                                </div>
+                                <span>₱22/hour</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 border-t border-gray-100">
+                            <a href="#" class="text-primary font-medium text-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <div class="p-5">
+                            <h3 class="font-semibold text-gray-900 mb-1">UI/UX Design Intern</h3>
+                            <p class="text-gray-600 text-sm mb-3">DesignHub • New York, NY</p>
+                            <div class="flex items-center text-sm text-gray-700 mb-2">
+                                <div class="w-4 h-4 flex items-center justify-center text-gray-500 mr-2">
+                                    <i class="ri-calendar-line"></i>
+                                </div>
+                                <span>4 months</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-700">
+                                <div class="w-4 h-4 flex items-center justify-center text-gray-500 mr-2">
+                                    <i class="ri-money-dollar-circle-line"></i>
+                                </div>
+                                <span>₱24/hour</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 border-t border-gray-100">
+                            <a href="#" class="text-primary font-medium text-sm">View Details</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <div class="p-5">
+                            <h3 class="font-semibold text-gray-900 mb-1">Interaction Design Intern</h3>
+                            <p class="text-gray-600 text-sm mb-3">CreativeTech • Austin, TX</p>
+                            <div class="flex items-center text-sm text-gray-700 mb-2">
+                                <div class="w-4 h-4 flex items-center justify-center text-gray-500 mr-2">
+                                    <i class="ri-calendar-line"></i>
+                                </div>
+                                <span>6 months</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-700">
+                                <div class="w-4 h-4 flex items-center justify-center text-gray-500 mr-2">
+                                    <i class="ri-money-dollar-circle-line"></i>
+                                </div>
+                                <span>₱26/hour</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 border-t border-gray-100">
+                            <a href="#" class="text-primary font-medium text-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-gray-600 text-sm">Posted on May 17, 2025 • TechVision Inc.</p>
+                <p class="text-gray-500 text-sm mt-2">This is a preview of how your internship posting will appear to applicants.</p>
+                <a href="/InternHub/review.html"
+                class="inline-flex items-center text-primary font-medium mt-4">
+                    <div class="w-5 h-5 flex items-center justify-center mr-1">
+                        <i class="ri-arrow-left-line"></i>
+                    </div>
+                    Return to Edit
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!-- Fixed Apply Button (Mobile) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 z-40">
+        <button class="w-full py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap hover:bg-primary/90 transition-colors">Apply Now</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const applyButtons = document.querySelectorAll('button');
+            applyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    window.location.href = "#";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

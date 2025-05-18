@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4f46e5',secondary:'#6366f1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #4f46e5;
+            transition: width 0.3s ease;
+        }
+        .custom-file-upload {
+            border: 2px dashed #d1d5db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .custom-file-upload:hover {
+            border-color: #4f46e5;
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .custom-checkbox {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .custom-checkbox:checked {
+            background-color: #4f46e5;
+            border-color: #4f46e5;
+        }
+        .custom-checkbox:checked::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 5px;
+            height: 10px;
+            border-bottom: 2px solid white;
+            border-right: 2px solid white;
+        }
+        .custom-radio {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .custom-radio:checked {
+            border-color: #4f46e5;
+        }
+        .custom-radio:checked::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background-color: #4f46e5;
+            border-radius: 50%;
+        }
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e5e7eb;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4f46e5;
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        .skill-tag {
+            display: inline-flex;
+            align-items: center;
+            background-color: #f3f4f6;
+            border-radius: 16px;
+            padding: 6px 12px;
+            margin: 4px;
+            font-size: 14px;
+        }
+        .skill-tag button {
+            margin-left: 6px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .range-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e5e7eb;
+            outline: none;
+        }
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #4f46e5;
+            cursor: pointer;
+        }
+        .range-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #4f46e5;
+            cursor: pointer;
+            border: none;
+        }
+        .strength-meter {
+            width: 120px;
+            height: 120px;
+            position: relative;
+        }
+        .strength-meter-circle {
+            transform: rotate(-90deg);
+            transform-origin: center;
+        }
+        .strength-meter-circle circle {
+            fill: none;
+            stroke-width: 8;
+        }
+        .strength-meter-background {
+            stroke: #e5e7eb;
+        }
+        .strength-meter-fill {
+            stroke: #4f46e5;
+            stroke-dasharray: 283;
+            stroke-dashoffset: calc(283 - (283 * var(--percentage) / 100));
+            transition: stroke-dashoffset 0.3s ease;
+        }
+        .strength-meter-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .custom-select {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .select-selected {
+            background-color: white;
+            border: 1px solid #d1d5db;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .select-items {
+            position: absolute;
+            background-color: white;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 99;
+            border: 1px solid #d1d5db;
+            border-radius: 0 0 8px 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .select-item {
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+        .select-item:hover {
+            background-color: #f3f4f6;
+        }
+        .select-hide {
+            display: none;
+        }
+        .select-show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="text-2xl font-['Pacifico'] text-primary">InternHub</h1>
+                <nav class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-8">
+                    <ul class="flex space-x-8">
+                        <li><a href="/InternHub/index.html" class="text-gray-600 hover:text-primary font-medium">Home</a></li>
+                        <li><a href="/InternHub/profile.html" class="text-primary font-medium border-b-2 border-primary pb-1">Profile</a></li>
+                        <li><a href="/InternHub/browse_internships.html" class="text-gray-600 hover:text-primary font-medium">Browse Internships</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center">
+                <div class="w-full mr-4">
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <span class="text-sm font-medium text-gray-700 whitespace-nowrap">60% Complete</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 flex flex-col md:flex-row">
+        <div class="w-full md:w-8/12 md:pr-8">
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">Complete Your Profile</h1>
+                <p class="text-gray-600 mt-2">A complete profile increases your chances of finding the perfect opportunity by 70%</p>
+            </div>
+
+            <div class="bg-white shadow rounded-lg mb-8">
+                <div class="border-b">
+                    <ul class="flex overflow-x-auto" id="profile-tabs">
+                        <li class="mr-1">
+                            <button class="tab-button active px-6 py-4 text-primary font-medium border-b-2 border-primary" data-tab="personal">Personal Information</button>
+                        </li>
+                        <li class="mr-1">
+                            <button class="tab-button px-6 py-4 text-gray-500 hover:text-gray-700 font-medium" data-tab="education">Education</button>
+                        </li>
+                        <li class="mr-1">
+                            <button class="tab-button px-6 py-4 text-gray-500 hover:text-gray-700 font-medium" data-tab="skills">Skills & Interests</button>
+                        </li>
+                        <li class="mr-1">
+                            <button class="tab-button px-6 py-4 text-gray-500 hover:text-gray-700 font-medium" data-tab="experience">Experience</button>
+                        </li>
+                        <li class="mr-1">
+                            <button class="tab-button px-6 py-4 text-gray-500 hover:text-gray-700 font-medium" data-tab="documents">Documents</button>
+                        </li>
+                        <li>
+                            <button class="tab-button px-6 py-4 text-gray-500 hover:text-gray-700 font-medium" data-tab="preferences">Preferences</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="p-6">
+                    <!-- Personal Information Tab -->
+                    <div id="personal" class="tab-content active">
+                        <div class="mb-8">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Profile Photo</h2>
+                            <div class="flex flex-col md:flex-row items-start">
+                                <div class="w-32 h-32 bg-gray-100 rounded-full mb-4 md:mb-0 md:mr-6 flex items-center justify-center text-gray-400">
+                                    <i class="ri-user-line ri-3x"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <label class="custom-file-upload flex flex-col items-center justify-center p-6">
+                                        <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full mb-3 text-gray-500">
+                                            <i class="ri-upload-cloud-line ri-xl"></i>
+                                        </div>
+                                        <p class="text-gray-700 font-medium">Drag and drop your photo here</p>
+                                        <p class="text-gray-500 text-sm mt-1">or <span class="text-primary">browse files</span></p>
+                                        <p class="text-gray-400 text-xs mt-2">Supports JPG, PNG (Max 5MB)</p>
+                                        <input type="file" class="hidden" accept="image/*">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div>
+                                <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name*</label>
+                                <input type="text" id="firstName" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter your first name" value="Michael">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name*</label>
+                                <input type="text" id="lastName" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter your last name" value="Anderson">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address*</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter your email" value="michael.anderson@example.com">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter your phone number" value="+1 (+63) 123-4567">
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location*</label>
+                            <div class="relative">
+                                <input type="text" id="location" class="w-full px-4 py-3 pl-10 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter your city, state, country" value="Sogod, Southern Leyte">
+                                <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Professional Bio</label>
+                            <textarea id="bio" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Write a brief introduction about yourself...">Recent Business Administration graduate with a strong foundation in marketing, management, and strategic planning. Passionate about applying business principles to real-world challenges and contributing to organizational success. Seeking opportunities in a dynamic environment where I can grow professionally, support business goals, and bring value through creativity, analysis, and collaboration.</textarea>
+                            <p class="text-sm text-gray-500 mt-1">0/300 characters</p>
+                        </div>
+                    </div>
+
+                    <!-- Education Tab -->
+                    <div id="education" class="tab-content">
+                        <div class="mb-8 p-6 border border-gray-200 rounded-lg">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Education #1</h3>
+                                <button class="text-gray-400 hover:text-gray-600">
+                                    <div class="w-8 h-8 flex items-center justify-center">
+                                        <i class="ri-delete-bin-line"></i>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="school" class="block text-sm font-medium text-gray-700 mb-1">School/University*</label>
+                                    <div class="relative">
+                                        <input type="text" id="school" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter school name" value="Southern Leyte State University">
+                                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-search-line"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="degree" class="block text-sm font-medium text-gray-700 mb-1">Degree/Program*</label>
+                                    <div class="custom-select">
+                                        <div class="select-selected" id="degree-select">
+                                            <span>Bachelor of Science</span>
+                                            <div class="w-4 h-4 flex items-center justify-center">
+                                                <i class="ri-arrow-down-s-line"></i>
+                                            </div>
+                                        </div>
+                                        <div class="select-items">
+                                            <div class="select-item">Associate's Degree</div>
+                                            <div class="select-item">Bachelor of Arts</div>
+                                            <div class="select-item">Bachelor of Science</div>
+                                            <div class="select-item">Master of Arts</div>
+                                            <div class="select-item">Master of Science</div>
+                                            <div class="select-item">Doctor of Philosophy</div>
+                                            <div class="select-item">Certificate Program</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="major" class="block text-sm font-medium text-gray-700 mb-1">Major/Specialization*</label>
+                                    <input type="text" id="major" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter your major" value="Business Administration">
+                                </div>
+                                <div>
+                                    <label for="graduation" class="block text-sm font-medium text-gray-700 mb-1">Graduation Date*</label>
+                                    <input type="month" id="graduation" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="2024-05">
+                                </div>
+                                <div>
+                                    <label for="gpa" class="block text-sm font-medium text-gray-700 mb-1">GPA (Optional)</label>
+                                    <input type="text" id="gpa" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="e.g., 3.8/4.0" value="1.2/4.0">
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="coursework" class="block text-sm font-medium text-gray-700 mb-1">Relevant Coursework</label>
+                                <textarea id="coursework" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="List relevant courses you've taken...">Principles of Management, Principles of Marketing, Financial Accounting, Managerial Accounting, Business Finance, Business Ethics & Corporate Social Responsibility</textarea>
+                            </div>
+                        </div>
+
+                        <button class="flex items-center text-primary font-medium !rounded-button">
+                            <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                <i class="ri-add-line"></i>
+                            </div>
+                            Add Another Education
+                        </button>
+                    </div>
+
+                    <!-- Skills & Interests Tab -->
+                    <div id="skills" class="tab-content">
+                        <div class="mb-8">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Skills</h2>
+                            <div class="mb-4">
+                                <label for="skills-input" class="block text-sm font-medium text-gray-700 mb-1">Add Skills*</label>
+                                <div class="relative">
+                                    <input type="text" id="skills-input" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Type a skill and press Enter">
+                                    <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-500 mt-1">Press Enter after each skill</p>
+                            </div>
+
+                            <div id="skills-container" class="mb-6">
+                                <div class="skill-tag">
+                                    Leadership
+                                    <button class="remove-skill">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-close-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="skill-tag">
+                                    Communication
+                                    <button class="remove-skill">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-close-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="skill-tag">
+                                    Negotiation
+                                    <button class="remove-skill">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-close-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="skill-tag">
+                                    Analysis
+                                    <button class="remove-skill">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-close-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="skill-tag">
+                                    Planning
+                                    <button class="remove-skill">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-close-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="skill-tag">
+                                    Marketing
+                                    <button class="remove-skill">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-close-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mb-8">
+                                <h3 class="text-lg font-medium text-gray-900 mb-3">Proficiency Levels</h3>
+                                <div class="space-y-6">
+                                    <div>
+                                        <div class="flex justify-between mb-2">
+                                            <label class="text-sm font-medium text-gray-700">Leadership</label>
+                                            <span class="text-sm text-gray-500">Advanced</span>
+                                        </div>
+                                        <input type="range" class="range-slider" min="1" max="5" value="4">
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-2">
+                                            <label class="text-sm font-medium text-gray-700">Communication</label>
+                                            <span class="text-sm text-gray-500">Intermediate</span>
+                                        </div>
+                                        <input type="range" class="range-slider" min="1" max="5" value="3">
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between mb-2">
+                                            <label class="text-sm font-medium text-gray-700">Negotiation</label>
+                                            <span class="text-sm text-gray-500">Advanced</span>
+                                        </div>
+                                        <input type="range" class="range-slider" min="1" max="5" value="4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Industry Interests</h2>
+                            <p class="text-gray-600 mb-4">Select industries you're interested in (up to 5)</p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="tech" class="custom-checkbox" checked>
+                                    <label for="tech" class="ml-2 text-gray-700">Technology</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="finance" class="custom-checkbox" checked>
+                                    <label for="finance" class="ml-2 text-gray-700">Finance</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="healthcare" class="custom-checkbox">
+                                    <label for="healthcare" class="ml-2 text-gray-700">Healthcare</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="education" class="custom-checkbox" checked>
+                                    <label for="education" class="ml-2 text-gray-700">Education</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="ecommerce" class="custom-checkbox">
+                                    <label for="ecommerce" class="ml-2 text-gray-700">E-commerce</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="media" class="custom-checkbox">
+                                    <label for="media" class="ml-2 text-gray-700">Media & Entertainment</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="consulting" class="custom-checkbox">
+                                    <label for="consulting" class="ml-2 text-gray-700">Consulting</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="nonprofit" class="custom-checkbox">
+                                    <label for="nonprofit" class="ml-2 text-gray-700">Non-profit</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="career-goals" class="block text-sm font-medium text-gray-700 mb-1">Career Goals</label>
+                            <textarea id="career-goals" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Describe your short and long-term career goals...">In the short term, I aim to secure a software development role where I can apply my technical skills while learning from experienced professionals. Long term, I aspire to grow into a technical leadership position where I can mentor others and contribute to innovative projects that make a positive impact.</textarea>
+                        </div>
+                    </div>
+
+                    <!-- Experience Tab -->
+                    <div id="experience" class="tab-content">
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-xl font-semibold text-gray-900">Experience (Optional)</h2>
+                                <p class="text-sm text-gray-500">Add any relevant work experience</p>
+                            </div>
+
+                            <div class="mb-8 p-6 border border-gray-200 rounded-lg">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-900">Experience #1</h3>
+                                    <button class="text-gray-400 hover:text-gray-600">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-delete-bin-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company/Organization*</label>
+                                        <input type="text" id="company" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter company name" value="ABC Company">
+                                    </div>
+                                    <div>
+                                        <label for="position" class="block text-sm font-medium text-gray-700 mb-1">Position/Title*</label>
+                                        <input type="text" id="position" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter your position" value="Marketing Intern">
+                                    </div>
+                                    <div>
+                                        <label for="start-date" class="block text-sm font-medium text-gray-700 mb-1">Start Date*</label>
+                                        <input type="month" id="start-date" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="2023-06">
+                                    </div>
+                                    <div>
+                                        <label for="end-date" class="block text-sm font-medium text-gray-700 mb-1">End Date*</label>
+                                        <input type="month" id="end-date" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="2023-08">
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label for="exp-location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                                        <input type="text" id="exp-location" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="City, State, Country" value="Sogod, Southern Leyte">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description*</label>
+                                    <textarea id="description" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Describe your responsibilities and achievements...">• Assisted the marketing team in developing social media campaigns to increase brand awareness.
+• Conducted market research and competitor analysis to identify new opportunities.
+• Coordinated with vendors and partners for promotional events.
+• Prepared reports on campaign performance and presented findings to supervisors.</textarea>
+                                </div>
+                            </div>
+
+                            <div class="mb-8 p-6 border border-gray-200 rounded-lg">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-900">Project #1</h3>
+                                    <button class="text-gray-400 hover:text-gray-600">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-delete-bin-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label for="project-name" class="block text-sm font-medium text-gray-700 mb-1">Project Name*</label>
+                                        <input type="text" id="project-name" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter project name" value=" Customer Satisfaction Survey and Analysis">
+                                    </div>
+                                    <div>
+                                        <label for="project-role" class="block text-sm font-medium text-gray-700 mb-1">Your Role*</label>
+                                        <input type="text" id="project-role" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter your role" value="Project Leader">
+                                    </div>
+                                    <div class="md:col-span-2">
+                                        <label for="project-url" class="block text-sm font-medium text-gray-700 mb-1">Project URL (Optional)</label>
+                                        <input type="url" id="project-url" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="https://..." value="https:">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="project-description" class="block text-sm font-medium text-gray-700 mb-1">Description*</label>
+                                    <textarea id="project-description" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Describe the project and your contributions...">• Led a team of 5 members to design and conduct a customer satisfaction survey for a local retail business.
+• Developed the survey questionnaire based on key service quality indicators.
+• Collected and analyzed data using statistical tools (Excel and SPSS).
+• Presented actionable insights and recommendations to improve customer service and retention.
+• Achieved a 20% increase in customer satisfaction after implementing suggested improvements.</textarea>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <button class="flex items-center text-primary font-medium !rounded-button">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Add Work Experience
+                                </button>
+                                <button class="flex items-center text-primary font-medium !rounded-button">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                        <i class="ri-add-line"></i>
+                                    </div>
+                                    Add Project
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents Tab -->
+                    <div id="documents" class="tab-content">
+                        <div class="mb-8">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Resume/CV</h2>
+                            <label class="custom-file-upload flex flex-col items-center justify-center p-6 mb-4">
+                                <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full mb-3 text-gray-500">
+                                    <i class="ri-file-upload-line ri-xl"></i>
+                                </div>
+                                <p class="text-gray-700 font-medium">Drag and drop your resume here</p>
+                                <p class="text-gray-500 text-sm mt-1">or <span class="text-primary">browse files</span></p>
+                                <p class="text-gray-400 text-xs mt-2">Supports PDF, DOCX (Max 10MB)</p>
+                                <input type="file" class="hidden" accept=".pdf,.docx">
+                            </label>
+                            <div class="p-4 bg-gray-50 rounded-lg flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded text-primary mr-3">
+                                        <i class="ri-file-pdf-line"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-gray-900 font-medium">Michael_Anderson_Resume.pdf</p>
+                                        <p class="text-gray-500 text-sm">1.2 MB • Uploaded on May 15, 2025</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <button class="text-gray-500 hover:text-gray-700 mr-2">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-download-line"></i>
+                                        </div>
+                                    </button>
+                                    <button class="text-gray-500 hover:text-gray-700">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-delete-bin-line"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Portfolio Links</h2>
+                            <div class="space-y-4 mb-4">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full mr-3 text-gray-500">
+                                        <i class="ri-github-fill"></i>
+                                    </div>
+                                    <input type="url" placeholder="GitHub URL" class="flex-1 px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="https://github.com/michaelanderson">
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full mr-3 text-gray-500">
+                                        <i class="ri-global-line"></i>
+                                    </div>
+                                    <input type="url" placeholder="Personal Website URL" class="flex-1 px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="https://michaelanderson.dev">
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full mr-3 text-gray-500">
+                                        <i class="ri-linkedin-fill"></i>
+                                    </div>
+                                    <input type="url" placeholder="LinkedIn URL" class="flex-1 px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="https://linkedin.com/in/michael-anderson">
+                                </div>
+                            </div>
+                            <button class="flex items-center text-primary font-medium !rounded-button">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                    <i class="ri-add-line"></i>
+                                </div>
+                                Add Another Link
+                            </button>
+                        </div>
+
+                        <div class="mb-4">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Additional Documents</h2>
+                            <label class="custom-file-upload flex flex-col items-center justify-center p-6">
+                                <div class="w-12 h-12 flex items-center justify-center bg-gray-100 rounded-full mb-3 text-gray-500">
+                                    <i class="ri-file-upload-line ri-xl"></i>
+                                </div>
+                                <p class="text-gray-700 font-medium">Upload additional documents</p>
+                                <p class="text-gray-500 text-sm mt-1">Cover letters, certificates, etc.</p>
+                                <p class="text-gray-400 text-xs mt-2">Supports PDF, DOCX, JPG, PNG (Max 10MB each)</p>
+                                <input type="file" class="hidden" multiple accept=".pdf,.docx,.jpg,.jpeg,.png">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preferences Tab -->
+                    <div id="Preferences" class="tab-content">
+                        <div class="mb-8">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Location Preferences</h2>
+                            <div class="mb-6">
+                                <label for="desired-locations" class="block text-sm font-medium text-gray-700 mb-1">Desired Locations</label>
+                                <div class="relative mb-2">
+                                    <input type="text" id="desired-locations" class="w-full px-4 py-3 pl-10 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Add cities, states, or countries">
+                                    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4 flex items-center justify-center">
+                                        <i class="ri-map-pin-line"></i>
+                                    </div>
+                                </div>
+                                <div class="flex flex-wrap">
+                                    <div class="skill-tag">
+                                        Maasin City, Southern Leyte
+                                        <button class="remove-location">
+                                            <div class="w-4 h-4 flex items-center justify-center">
+                                                <i class="ri-close-line"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="skill-tag">
+                                        Sogod, Southern Leyte
+                                        <button class="remove-location">
+                                            <div class="w-4 h-4 flex items-center justify-center">
+                                                <i class="ri-close-line"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+                                    <div class="skill-tag">
+                                        Liloan, Southern Leyte
+                                        <button class="remove-location">
+                                            <div class="w-4 h-4 flex items-center justify-center">
+                                                <i class="ri-close-line"></i>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-3">Relocation Willingness</label>
+                                <div class="space-y-3">
+                                    <div class="flex items-center">
+                                        <input type="radio" id="relocate-yes" name="relocate" class="custom-radio" checked>
+                                        <label for="relocate-yes" class="ml-2 text-gray-700">Willing to relocate</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="radio" id="relocate-maybe" name="relocate" class="custom-radio">
+                                        <label for="relocate-maybe" class="ml-2 text-gray-700">Open to relocation for the right opportunity</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="radio" id="relocate-no" name="relocate" class="custom-radio">
+                                        <label for="relocate-no" class="ml-2 text-gray-700">Not willing to relocate</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Internship Preferences</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-3">Internship Types</label>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="type-summer" class="custom-checkbox" checked>
+                                            <label for="type-summer" class="ml-2 text-gray-700">Summer Internship</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="type-coop" class="custom-checkbox" checked>
+                                            <label for="type-coop" class="ml-2 text-gray-700">Co-op</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="type-part-time" class="custom-checkbox">
+                                            <label for="type-part-time" class="ml-2 text-gray-700">Part-time Internship</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="type-virtual" class="custom-checkbox">
+                                            <label for="type-virtual" class="ml-2 text-gray-700">Virtual Experience</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-3">Duration Preferences</label>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="duration-3" class="custom-checkbox" checked>
+                                            <label for="duration-3" class="ml-2 text-gray-700">3 months</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="duration-6" class="custom-checkbox" checked>
+                                            <label for="duration-6" class="ml-2 text-gray-700">6 months</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="duration-12" class="custom-checkbox">
+                                            <label for="duration-12" class="ml-2 text-gray-700">12 months</label>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <input type="checkbox" id="duration-flexible" class="custom-checkbox">
+                                            <label for="duration-flexible" class="ml-2 text-gray-700">Flexible</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-3">Work Environment</label>
+                                <div class="flex items-center space-x-6">
+                                    <div class="flex items-center">
+                                        <input type="radio" id="work-onsite" name="work-environment" class="custom-radio">
+                                        <label for="work-onsite" class="ml-2 text-gray-700">On-site</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="radio" id="work-remote" name="work-environment" class="custom-radio">
+                                        <label for="work-remote" class="ml-2 text-gray-700">Remote</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="radio" id="work-hybrid" name="work-environment" class="custom-radio" checked>
+                                        <label for="work-hybrid" class="ml-2 text-gray-700">Hybrid</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="radio" id="work-flexible" name="work-environment" class="custom-radio">
+                                        <label for="work-flexible" class="ml-2 text-gray-700">Flexible</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-4">Notification Settings</h2>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-gray-900 font-medium">Email Notifications</h3>
+                                        <p class="text-gray-500 text-sm">Receive updates about new opportunities</p>
+                                    </div>
+                                    <label class="custom-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-gray-900 font-medium">Application Updates</h3>
+                                        <p class="text-gray-500 text-sm">Get notified about your application status</p>
+                                    </div>
+                                    <label class="custom-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-gray-900 font-medium">Recommended Opportunities</h3>
+                                        <p class="text-gray-500 text-sm">Personalized internship recommendations</p>
+                                    </div>
+                                    <label class="custom-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h3 class="text-gray-900 font-medium">Profile Tips</h3>
+                                        <p class="text-gray-500 text-sm">Suggestions to improve your profile</p>
+                                    </div>
+                                    <label class="custom-switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full md:w-4/12 md:pl-8">
+            <div class="bg-white shadow rounded-lg p-6 sticky top-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6">Profile Strength</h2>
+                
+                <div class="flex justify-center mb-6">
+                    <div class="strength-meter" style="--percentage: 60">
+                        <svg class="strength-meter-circle" width="120" height="120" viewBox="0 0 120 120">
+                            <circle class="strength-meter-background" cx="60" cy="60" r="54" />
+                            <circle class="strength-meter-fill" cx="60" cy="60" r="54" />
+                        </svg>
+                        <div class="strength-meter-text">
+                            <span class="block text-3xl font-bold text-primary">60%</span>
+                            <span class="text-sm text-gray-500">Beginner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-start">
+                        <div class="w-6 h-6 flex items-center justify-center bg-green-100 rounded-full text-green-600 mt-0.5 mr-3">
+                            <i class="ri-check-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-900 font-medium">Personal Information</h3>
+                            <p class="text-gray-500 text-sm">Basic details completed</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-6 h-6 flex items-center justify-center bg-red-100 rounded-full text-red-600 mt-0.5 mr-3">
+                            <i class="ri-close-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-900 font-medium">Profile Photo</h3>
+                            <p class="text-gray-500 text-sm">Add a professional photo to make your profile stand out</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-6 h-6 flex items-center justify-center bg-yellow-100 rounded-full text-yellow-600 mt-0.5 mr-3">
+                            <i class="ri-error-warning-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-900 font-medium">Skills</h3>
+                            <p class="text-gray-500 text-sm">Add 3 more skills to improve your matches</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="w-6 h-6 flex items-center justify-center bg-red-100 rounded-full text-red-600 mt-0.5 mr-3">
+                            <i class="ri-close-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-gray-900 font-medium">Resume</h3>
+                            <p class="text-gray-500 text-sm">Upload your resume to apply for opportunities faster</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h3 class="text-lg font-medium text-gray-900 mb-3">Profile Tips</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+                                <i class="ri-lightbulb-line"></i>
+                            </div>
+                            <span class="text-sm">Add specific details about your coursework relevant to your desired internships.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+                                <i class="ri-lightbulb-line"></i>
+                            </div>
+                            <span class="text-sm">Quantify your achievements in your experience descriptions (e.g., "Increased efficiency by 20%").</span>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="w-5 h-5 flex items-center justify-center text-primary mt-0.5 mr-2">
+                                <i class="ri-lightbulb-line"></i>
+                            </div>
+                            <span class="text-sm">Include links to projects or portfolios that showcase your skills.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex mb-4 md:mb-0">
+                    <button 
+                    type="button"
+                    onclick="window.location.href='/InternHub/profile.html';"
+                    class="bg-primary text-white px-6 py-3 rounded-button font-medium mr-4 whitespace-nowrap">Save Progress</button>
+                    <button 
+                    type="button"
+                    onclick="window.location.href='/InternHub/index.html';"
+                    class="bg-gray-100 text-gray-700 px-6 py-3 rounded-button font-medium whitespace-nowrap">Complete Profile</button>
+                </div>
+                <p class="text-gray-500 text-sm">Last saved: Today at 2:45 PM</p>
+            </div>
+        </div>
+    <!-- Footer -->
+<footer class="bg-gray-900 text-white pt-12 pb-8 mt-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+<div class="lg:col-span-2">
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">InternHub</a>
+<p class="text-gray-400 mb-6 max-w-md">Connecting talented students with meaningful internship opportunities across Southern Leyte and beyond. Start your career journey with us today.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-facebook-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-linkedin-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-instagram-fill ri-lg"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/browse_internships.html" class="text-gray-400 hover:text-white transition-colors">Browse Internships</a></li>
+<li><a href="/InternHub/profile.html" class="text-gray-400 hover:text-white transition-colors">Create Profile</a></li>
+<li><a href="/InternHub/track_application.html" class="text-gray-400 hover:text-white transition-colors">Application Status</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Resources</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/post_internships.html" class="text-gray-400 hover:text-white transition-colors">Post Internships</a></li>
+<li><a href="/InternHub/manage_applicant.html" class="text-gray-400 hover:text-white transition-colors">Browse Candidates</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing Plans</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Recruitment Tools</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Company</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/index.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Internship Platform. All rights reserved.</p>
+<div class="flex flex-wrap gap-4 text-sm text-gray-400">
+<a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+<a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+<a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+<a href="#" class="hover:text-white transition-colors">Accessibility</a>
+</div>
+</div>
+</div>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab Navigation
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+                    
+                    // Deactivate all tabs
+                    tabs.forEach(t => t.classList.remove('active', 'text-primary', 'border-b-2', 'border-primary'));
+                    tabs.forEach(t => t.classList.add('text-gray-500'));
+                    
+                    // Activate clicked tab
+                    tab.classList.add('active', 'text-primary', 'border-b-2', 'border-primary');
+                    tab.classList.remove('text-gray-500');
+                    
+                    // Hide all tab contents
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Show target tab content
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Skills Input
+            const skillsInput = document.getElementById('skills-input');
+            const skillsContainer = document.getElementById('skills-container');
+            
+            if (skillsInput && skillsContainer) {
+                skillsInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && this.value.trim() !== '') {
+                        e.preventDefault();
+                        
+                        const skillTag = document.createElement('div');
+                        skillTag.className = 'skill-tag';
+                        skillTag.innerHTML = `
+                            ₱{this.value.trim()}
+                            <button class="remove-skill">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-close-line"></i>
+                                </div>
+                            </button>
+                        `;
+                        
+                        skillsContainer.appendChild(skillTag);
+                        this.value = '';
+                        
+                        // Add event listener to the remove button
+                        const removeBtn = skillTag.querySelector('.remove-skill');
+                        removeBtn.addEventListener('click', function() {
+                            skillTag.remove();
+                        });
+                    }
+                });
+            }
+            
+            // Add event listeners to existing remove skill buttons
+            const removeSkillButtons = document.querySelectorAll('.remove-skill');
+            removeSkillButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.closest('.skill-tag').remove();
+                });
+            });
+            
+            // Add event listeners to existing remove location buttons
+            const removeLocationButtons = document.querySelectorAll('.remove-location');
+            removeLocationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.closest('.skill-tag').remove();
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Custom Select
+            const customSelects = document.querySelectorAll('.select-selected');
+            
+            customSelects.forEach(select => {
+                select.addEventListener('click', function() {
+                    const items = this.nextElementSibling;
+                    items.classList.toggle('select-show');
+                    
+                    // Close other dropdowns
+                    customSelects.forEach(otherSelect => {
+                        if (otherSelect !== select) {
+                            otherSelect.nextElementSibling.classList.remove('select-show');
+                        }
+                    });
+                });
+                
+                const items = select.nextElementSibling.querySelectorAll('.select-item');
+                items.forEach(item => {
+                    item.addEventListener('click', function() {
+                        select.querySelector('span').textContent = this.textContent;
+                        select.nextElementSibling.classList.remove('select-show');
+                    });
+                });
+            });
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.custom-select')) {
+                    document.querySelectorAll('.select-items').forEach(items => {
+                        items.classList.remove('select-show');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

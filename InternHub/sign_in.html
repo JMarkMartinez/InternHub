@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InternHub - Sign In</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#818CF8'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: #f9fafb;
+}
+input[type="checkbox"] {
+appearance: none;
+-webkit-appearance: none;
+width: 18px;
+height: 18px;
+border: 1px solid #d1d5db;
+border-radius: 4px;
+outline: none;
+cursor: pointer;
+position: relative;
+}
+input[type="checkbox"]:checked {
+background-color: #4F46E5;
+border-color: #4F46E5;
+}
+input[type="checkbox"]:checked::before {
+content: "";
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 10px;
+height: 10px;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white' stroke-width='3'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M5 13l4 4L19 7' /%3E%3C/svg%3E");
+background-size: contain;
+background-repeat: no-repeat;
+}
+input:focus {
+outline: none;
+box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+.password-toggle {
+cursor: pointer;
+}
+</style>
+</head>
+<body>
+<body class="min-h-screen flex items-center justify-center bg-gray-100">
+<div class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+  <h1 class="text-2xl font-semibold text-center text-gray-800 mb-8">Sign In to Your Account</h1>
+  <form>
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email / Username</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+          <i class="ri-mail-line text-gray-400"></i>
+        </div>
+        <input type="email" id="email" class="w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded text-gray-900 focus:border-primary" placeholder="Enter your email or username">
+      </div>
+    </div>
+    <div class="mb-6">
+      <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-10 h-10">
+          <i class="ri-lock-line text-gray-400"></i>
+        </div>
+        <input type="password" id="password" class="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded text-gray-900 focus:border-primary" placeholder="Enter your password">
+        <div class="absolute inset-y-0 right-0 flex items-center pr-3 w-10 h-10">
+          <i class="ri-eye-line text-gray-400 password-toggle"></i>
+        </div>
+      </div>
+    </div>
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center">
+        <input type="checkbox" id="remember" class="mr-2">
+        <label for="remember" class="text-sm text-gray-600">Remember me</label>
+      </div>
+      <a href="#" class="text-sm text-primary hover:text-primary/80 transition-colors">Forgot password?</a>
+    </div>
+    <button
+      type="button"
+      onclick="window.location.href='/InternHub/index.html';"
+      class="w-full bg-primary text-white py-2.5 px-4 !rounded-button whitespace-nowrap hover:bg-primary/90 transition-colors font-medium"
+    >
+      Sign In
+    </button>
+
+  </form>
+  <div class="flex items-center my-6">
+    <div class="flex-grow h-px bg-gray-200"></div>
+    <span class="px-3 text-sm text-gray-500">or</span>
+    <div class="flex-grow h-px bg-gray-200"></div>
+  </div>
+  <div class="space-y-3">
+    <button class="w-full flex items-center justify-center py-2.5 px-4 border border-gray-300 !rounded-button whitespace-nowrap hover:bg-gray-50 transition-colors">
+      <div class="w-5 h-5 flex items-center justify-center mr-3">
+        <i class="ri-google-fill text-[#4285F4]"></i>
+      </div>
+      <span class="text-gray-700">Continue with Google</span>
+    </button>
+    <button class="w-full flex items-center justify-center py-2.5 px-4 border border-gray-300 !rounded-button whitespace-nowrap hover:bg-gray-50 transition-colors">
+      <div class="w-5 h-5 flex items-center justify-center mr-3">
+        <i class="ri-facebook-fill text-[#1877F2]"></i>
+      </div>
+      <span class="text-gray-700">Continue with Facebook</span>
+    </button>
+  </div>
+  <p class="text-center mt-6 text-gray-600">
+    Don't have an account? <a href="sign_up.html" class="text-primary hover:text-primary/80 transition-colors">Sign Up</a>
+  </p>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const togglePassword = document.querySelector('.password-toggle');
+  const passwordInput = document.getElementById('password');
+  
+  togglePassword.addEventListener('click', function() {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      this.classList.remove('ri-eye-line');
+      this.classList.add('ri-eye-off-line');
+    } else {
+      passwordInput.type = 'password';
+      this.classList.remove('ri-eye-off-line');
+      this.classList.add('ri-eye-line');
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Internships - Internship Platform</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4f46e5',secondary:'#8b5cf6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+.range-slider::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: #4f46e5;
+cursor: pointer;
+}
+.range-slider::-moz-range-thumb {
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background: #4f46e5;
+cursor: pointer;
+border: none;
+}
+.custom-checkbox {
+position: relative;
+padding-left: 28px;
+cursor: pointer;
+user-select: none;
+}
+.custom-checkbox input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+position: absolute;
+top: 0;
+left: 0;
+height: 20px;
+width: 20px;
+background-color: #fff;
+border: 2px solid #e5e7eb;
+border-radius: 4px;
+}
+.custom-checkbox:hover input ~ .checkmark {
+border-color: #4f46e5;
+}
+.custom-checkbox input:checked ~ .checkmark {
+background-color: #4f46e5;
+border-color: #4f46e5;
+}
+.checkmark:after {
+content: "";
+position: absolute;
+display: none;
+}
+.custom-checkbox input:checked ~ .checkmark:after {
+display: block;
+}
+.custom-checkbox .checkmark:after {
+left: 6px;
+top: 2px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.toggle-btn {
+position: relative;
+display: inline-block;
+width: 50px;
+height: 24px;
+}
+.toggle-btn input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.toggle-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #e5e7eb;
+transition: .4s;
+border-radius: 34px;
+}
+.toggle-slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .toggle-slider {
+background-color: #4f46e5;
+}
+input:checked + .toggle-slider:before {
+transform: translateX(26px);
+}
+.dropdown {
+position: relative;
+}
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: white;
+min-width: 200px;
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+z-index: 10;
+border-radius: 8px;
+max-height: 300px;
+overflow-y: auto;
+}
+.dropdown-content.show {
+display: block;
+}
+.multi-select-dropdown {
+position: relative;
+}
+.multi-select-content {
+display: none;
+position: absolute;
+background-color: white;
+min-width: 250px;
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+z-index: 10;
+border-radius: 8px;
+max-height: 300px;
+overflow-y: auto;
+}
+.multi-select-content.show {
+display: block;
+}
+.selected-options {
+display: flex;
+flex-wrap: wrap;
+gap: 4px;
+}
+.selected-option {
+display: inline-flex;
+align-items: center;
+background-color: #f3f4f6;
+padding: 2px 8px;
+border-radius: 4px;
+font-size: 12px;
+}
+.selected-option span {
+margin-right: 4px;
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<!-- Navigation Bar -->
+   <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+  <div class="relative container mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex items-center z-10">
+      <a href="#" class="text-2xl font-['Pacifico'] text-primary">
+        InternHub
+      </a>
+    </div>
+
+    <!-- Centered Navigation -->
+    <nav class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-8">
+      <a href="/InternHub/index.html" class="text-gray-900 font-medium hover:text-primary transition-colors">
+        Home
+      </a>
+      <a href="/InternHub/find_internships.html" class="text-primary font-medium border-b-2 border-primary pb-1">
+        Find Internships
+      </a>
+      <a href="/InternHub/track_application.html" class="text-gray-600 hover:text-primary transition-colors">
+        Applications
+      </a>
+      <a href="/InternHub/feedback.html" class="text-gray-600 hover:text-primary transition-colors">
+        Feedbacks
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="container mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+<!-- Search and Results Column -->
+<div class="lg:col-span-3">
+<!-- Hero Section -->
+<section class="bg-white rounded-lg shadow-sm p-8 mb-8">
+<h1 class="text-3xl font-bold text-gray-900 mb-2">Find Your Perfect Internship</h1>
+<p class="text-gray-600 mb-6">Discover opportunities that match your skills and career goals. Filter by location, industry, and more.</p>
+<!-- Search Bar -->
+<div class="relative mb-6">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<div class="w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+<input type="text" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Search by keyword or title">
+</div>
+<!-- Filters -->
+<div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-medium text-gray-900">Advanced Filters</h3>
+<button class="text-primary hover:text-primary/80 text-sm font-medium !rounded-button whitespace-nowrap">Clear All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Location Dropdown -->
+<div class="dropdown">
+<button class="w-full flex items-center justify-between px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-left text-gray-700 !rounded-button whitespace-nowrap" id="locationDropdown">
+<span>Southern Leyte</span>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="dropdown-content left-0 right-0 mt-2 py-2" id="locationMenu">
+<div class="px-4 py-2 border-b border-gray-200">
+<input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Search locations...">
+</div>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Southern Leyte</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Maasin City</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sogod</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Liloan</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Saint Bernard</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Hinunangan</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Silago</a>
+</div>
+</div>
+<!-- Industry/Field Multi-select -->
+<div class="multi-select-dropdown">
+<button class="w-full flex items-center justify-between px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-left text-gray-700 !rounded-button whitespace-nowrap" id="industryDropdown">
+<span id="industryPlaceholder">Select Industries</span>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="selected-options mt-2 hidden" id="selectedIndustries"></div>
+<div class="multi-select-content left-0 right-0 mt-2 py-2" id="industryMenu">
+<div class="px-4 py-2 border-b border-gray-200">
+<input type="text" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm" placeholder="Search industries...">
+</div>
+<label class="custom-checkbox block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+Technology
+<input type="checkbox" name="industry" value="Technology">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+Finance
+<input type="checkbox" name="industry" value="Finance">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+Marketing
+<input type="checkbox" name="industry" value="Marketing">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+Healthcare
+<input type="checkbox" name="industry" value="Healthcare">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+Education
+<input type="checkbox" name="industry" value="Education">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+Engineering
+<input type="checkbox" name="industry" value="Engineering">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+Design
+<input type="checkbox" name="industry" value="Design">
+<span class="checkmark"></span>
+</label>
+</div>
+</div>
+<!-- Duration Slider -->
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Duration (months)</label>
+<div class="flex items-center space-x-4">
+<span id="durationValue" class="text-sm font-medium text-gray-900">6 months</span>
+<input type="range" min="1" max="12" value="6" class="range-slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer" id="durationSlider">
+</div>
+<div class="flex justify-between text-xs text-gray-500 mt-1">
+<span>1</span>
+<span>12</span>
+</div>
+</div>
+<!-- Compensation Type -->
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Compensation</label>
+<div class="flex flex-wrap gap-3">
+<label class="custom-checkbox text-sm text-gray-700">
+Paid
+<input type="checkbox" name="compensation" value="paid">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox text-sm text-gray-700">
+Unpaid
+<input type="checkbox" name="compensation" value="unpaid">
+<span class="checkmark"></span>
+</label>
+<label class="custom-checkbox text-sm text-gray-700">
+Stipend
+<input type="checkbox" name="compensation" value="stipend">
+<span class="checkmark"></span>
+</label>
+</div>
+</div>
+<!-- Work Mode Toggle -->
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-2">Work Mode</label>
+<div class="flex bg-gray-200 p-1 rounded-full">
+<button class="flex-1 py-1.5 px-3 rounded-full bg-primary text-white text-sm font-medium transition-all !rounded-button whitespace-nowrap" id="remoteBtn">Remote</button>
+<button class="flex-1 py-1.5 px-3 rounded-full text-gray-700 text-sm font-medium transition-all hover:bg-gray-100 !rounded-button whitespace-nowrap" id="onsiteBtn">On-site</button>
+<button class="flex-1 py-1.5 px-3 rounded-full text-gray-700 text-sm font-medium transition-all hover:bg-gray-100 !rounded-button whitespace-nowrap" id="hybridBtn">Hybrid</button>
+</div>
+</div>
+<!-- Apply Filters Button -->
+<div class="md:col-span-2 lg:col-span-3 mt-2">
+<button 
+type="button"
+onclick="window.location.href='/InternHub/find_internships.html';"
+class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-medium transition-colors !rounded-button whitespace-nowrap">
+Apply Filters
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Results Section -->
+<section class="bg-white rounded-lg shadow-sm p-6 mb-8">
+<div class="flex flex-wrap items-center justify-between mb-6">
+<h2 class="text-xl font-semibold text-gray-900">
+<span class="text-primary">248</span> Internships Found
+</h2>
+<div class="flex items-center space-x-4 mt-2 sm:mt-0">
+<div class="dropdown">
+<button class="flex items-center space-x-2 text-gray-700 !rounded-button whitespace-nowrap" id="sortDropdown">
+<span class="text-sm">Sort by: </span>
+<span class="text-sm font-medium">Newest</span>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+<div class="dropdown-content right-0 mt-2 py-2 w-40" id="sortMenu">
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Newest</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Relevance</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Deadline</a>
+<a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Company A-Z</a>
+</div>
+</div>
+<div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+</div>
+</div>
+</div>
+<!-- Internship Cards -->
+<div class="space-y-6" id="internshipList">
+<!-- Internship Card 1 -->
+<div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+<div class="flex flex-col md:flex-row md:items-start gap-4">
+<div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=education%20company%20logo%2C%20academic%2C%20blue%20and%20red%2C%20professional%2C%20learning&width=100&height=100&seq=comp7&orientation=squarish" alt="EduSphere" class="w-12 h-12 object-contain">
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap justify-between items-start gap-2">
+<h3 class="text-lg font-semibold text-gray-900">Business Administration Intern</h3>
+<div class="flex items-center space-x-2">
+<button class="text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-bookmark-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-share-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="flex flex-wrap items-center text-sm text-gray-600 mt-1 gap-x-4 gap-y-1">
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-building-line"></i>
+</div>
+EduSphere Academy.
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-map-pin-line"></i>
+</div>
+Maasin City, Southern Leyte
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-computer-line"></i>
+</div>
+Remote
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-money-dollar-circle-line"></i>
+</div>
+Paid
+</span>
+</div>
+<p class="text-gray-600 mt-3 line-clamp-2">This internship offers hands-on experience in managing real-world projects that support our mission of delivering accessible, high-quality education through digital platforms.</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="inline-block bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full">Communication & Interpersonal Skills</span>
+<span class="inline-block bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full">Project Coordination</span>
+<span class="inline-block bg-blue-50 text-blue-700 text-xs px-2.5 py-1 rounded-full">Business Writing & Reporting</span>
+</div>
+<div class="flex flex-wrap justify-between items-center mt-4 pt-4 border-t border-gray-100">
+<span class="text-sm text-gray-500">Posted 2 days ago</span>
+<a href="/InternHub/apply.html" 
+class="inline-block bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors !rounded-button whitespace-nowrap">Apply Now</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Internship Card 2 -->
+<div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+<div class="flex flex-col md:flex-row md:items-start gap-4">
+<div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=modern%20minimalist%20finance%20company%20logo%20on%20white%20background%2C%20professional%2C%20clean%20design%2C%20green%20and%20blue%20color%20scheme&width=64&height=64&seq=2&orientation=squarish" alt="FinEdge Logo" class="w-12 h-12 object-contain">
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap justify-between items-start gap-2">
+<h3 class="text-lg font-semibold text-gray-900">Financial Analysis Intern</h3>
+<div class="flex items-center space-x-2">
+<button class="text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-bookmark-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-share-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="flex flex-wrap items-center text-sm text-gray-600 mt-1 gap-x-4 gap-y-1">
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-building-line"></i>
+</div>
+FinEdge Capital
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-map-pin-line"></i>
+</div>
+Sogod, Southern Leyte
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-building-4-line"></i>
+</div>
+On-site
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-money-dollar-circle-line"></i>
+</div>
+Stipend
+</span>
+</div>
+<p class="text-gray-600 mt-3 line-clamp-2">Work alongside our financial analysts to evaluate investment opportunities, conduct market research, and prepare financial reports. This internship offers a comprehensive introduction to financial analysis in a fast-paced environment.</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="inline-block bg-green-50 text-green-700 text-xs px-2.5 py-1 rounded-full">Excel</span>
+<span class="inline-block bg-green-50 text-green-700 text-xs px-2.5 py-1 rounded-full">Financial Modeling</span>
+<span class="inline-block bg-green-50 text-green-700 text-xs px-2.5 py-1 rounded-full">Data Analysis</span>
+</div>
+<div class="flex flex-wrap justify-between items-center mt-4 pt-4 border-t border-gray-100">
+<span class="text-sm text-gray-500">Posted 3 days ago</span>
+<a href="/InternHub/apply_2.html" 
+class="inline-block bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors !rounded-button whitespace-nowrap">Apply Now</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Internship Card 3 -->
+<div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+<div class="flex flex-col md:flex-row md:items-start gap-4">
+<div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=modern%20minimalist%20marketing%20agency%20logo%20on%20white%20background%2C%20professional%2C%20clean%20design%2C%20purple%20and%20orange%20color%20scheme&width=64&height=64&seq=3&orientation=squarish" alt="Pulse Marketing Logo" class="w-12 h-12 object-contain">
+</div>
+<div class="flex-grow">
+<div class="flex flex-wrap justify-between items-start gap-2">
+<h3 class="text-lg font-semibold text-gray-900">Digital Marketing Intern</h3>
+<div class="flex items-center space-x-2">
+<button class="text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-bookmark-line"></i>
+</div>
+</button>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-share-line"></i>
+</div>
+</button>
+</div>
+</div>
+<div class="flex flex-wrap items-center text-sm text-gray-600 mt-1 gap-x-4 gap-y-1">
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-building-line"></i>
+</div>
+Pulse Marketing Agency
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-map-pin-line"></i>
+</div>
+Liloan, Southern Leyte
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-home-office-line"></i>
+</div>
+Hybrid
+</span>
+<span class="flex items-center">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-money-dollar-circle-line"></i>
+</div>
+Paid
+</span>
+</div>
+<p class="text-gray-600 mt-3 line-clamp-2">Assist our marketing team in creating and implementing digital campaigns across various platforms. You'll learn about social media management, content creation, SEO, and analytics while working with real clients in diverse industries.</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="inline-block bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">Social Media</span>
+<span class="inline-block bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">Content Creation</span>
+<span class="inline-block bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">SEO</span>
+<span class="inline-block bg-purple-50 text-purple-700 text-xs px-2.5 py-1 rounded-full">Analytics</span>
+</div>
+<div class="flex flex-wrap justify-between items-center mt-4 pt-4 border-t border-gray-100">
+<span class="text-sm text-gray-500">Posted 5 days ago</span>
+<a href="/InternHub/apply_3.html" 
+class="inline-block bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors !rounded-button whitespace-nowrap">Apply Now</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center mt-8">
+<nav class="flex items-center">
+<button class="p-2 rounded-l-lg border border-gray-300 text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-arrow-left-s-line"></i>
+</div>
+</button>
+<button class="px-4 py-2 border-t border-b border-gray-300 bg-primary text-white font-medium">1</button>
+<button class="px-4 py-2 border-t border-b border-gray-300 text-gray-700 hover:bg-gray-50">2</button>
+<button class="px-4 py-2 border-t border-b border-gray-300 text-gray-700 hover:bg-gray-50">3</button>
+<button class="px-4 py-2 border-t border-b border-gray-300 text-gray-700 hover:bg-gray-50">4</button>
+<button class="px-4 py-2 border-t border-b border-gray-300 text-gray-700 hover:bg-gray-50">5</button>
+<button class="p-2 rounded-r-lg border border-gray-300 text-gray-700 hover:bg-gray-50">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-arrow-right-s-line"></i>
+</div>
+</button>
+</nav>
+</div>
+</section>
+</div>
+<!-- Sidebar -->
+<div class="lg:col-span-1 space-y-6">
+<!-- AI Recommendations -->
+<div class="bg-white rounded-lg shadow-sm p-6">
+<h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+<i class="ri-ai-generate"></i>
+</div>
+AI Recommended for You
+</h3>
+<div class="space-y-4">
+<div class="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=modern%20minimalist%20design%20company%20logo%20on%20white%20background%2C%20professional%2C%20clean%20design&width=40&height=40&seq=6&orientation=squarish" alt="DesignHub Logo" class="w-8 h-8 object-contain">
+</div>
+<div>
+<h4 class="font-medium text-gray-900">UI/UX Design Intern</h4>
+<p class="text-sm text-gray-600">DesignHub Creative</p>
+<div class="flex items-center mt-1 text-xs text-gray-500">
+<div class="w-3 h-3 flex items-center justify-center mr-1">
+<i class="ri-map-pin-line"></i>
+</div>
+Remote • Paid
+</div>
+</div>
+</div>
+</div>
+<div class="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=modern%20minimalist%20data%20company%20logo%20on%20white%20background%2C%20professional%2C%20clean%20design&width=40&height=40&seq=7&orientation=squarish" alt="DataSense Logo" class="w-8 h-8 object-contain">
+</div>
+<div>
+<h4 class="font-medium text-gray-900">Data Analysis Intern</h4>
+<p class="text-sm text-gray-600">DataSense Analytics</p>
+<div class="flex items-center mt-1 text-xs text-gray-500">
+<div class="w-3 h-3 flex items-center justify-center mr-1">
+<i class="ri-map-pin-line"></i>
+</div>
+Maasin City • Stipend
+</div>
+</div>
+</div>
+</div>
+<div class="border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=modern%20minimalist%20environmental%20company%20logo%20on%20white%20background%2C%20professional%2C%20clean%20design&width=40&height=40&seq=8&orientation=squarish" alt="EcoSolutions Logo" class="w-8 h-8 object-contain">
+</div>
+<div>
+<h4 class="font-medium text-gray-900">Environmental Research Intern</h4>
+<p class="text-sm text-gray-600">EcoSolutions</p>
+<div class="flex items-center mt-1 text-xs text-gray-500">
+<div class="w-3 h-3 flex items-center justify-center mr-1">
+<i class="ri-map-pin-line"></i>
+</div>
+Silago • Paid
+</div>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-4 text-primary hover:text-primary/80 text-sm font-medium flex items-center justify-center !rounded-button whitespace-nowrap">
+View All Recommendations
+<div class="w-4 h-4 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</button>
+</div>
+<!-- Recently Viewed -->
+<div class="bg-white rounded-lg shadow-sm p-6">
+<h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+<div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+<i class="ri-history-line"></i>
+</div>
+Recently Viewed
+</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=modern%20minimalist%20marketing%20company%20logo%20on%20white%20background%2C%20professional%2C%20clean%20design&width=40&height=40&seq=9&orientation=squarish" alt="BrandBoost Logo" class="w-8 h-8 object-contain">
+</div>
+<div>
+<h4 class="font-medium text-gray-900">Content Marketing Intern</h4>
+<p class="text-sm text-gray-600">BrandBoost Media</p>
+<div class="flex items-center mt-1 text-xs text-gray-500">
+<div class="w-3 h-3 flex items-center justify-center mr-1">
+<i class="ri-time-line"></i>
+</div>
+Viewed 2 hours ago
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
+<img src="https://readdy.ai/api/search-image?query=modern%20minimalist%20tech%20company%20logo%20on%20white%20background%2C%20professional%2C%20clean%20design&width=40&height=40&seq=10&orientation=squarish" alt="CloudNine Logo" class="w-8 h-8 object-contain">
+</div>
+<div>
+<h4 class="font-medium text-gray-900">Cloud Engineering Intern</h4>
+<p class="text-sm text-gray-600">CloudNine Technologies</p>
+<div class="flex items-center mt-1 text-xs text-gray-500">
+<div class="w-3 h-3 flex items-center justify-center mr-1">
+<i class="ri-time-line"></i>
+</div>
+Viewed yesterday
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-200 mt-4 pt-4">
+<button class="text-gray-500 hover:text-primary text-sm flex items-center transition-colors">
+<div class="w-4 h-4 flex items-center justify-center mr-1">
+<i class="ri-delete-bin-line"></i>
+</div>
+Clear history
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-12 pb-8 mt-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+<div class="lg:col-span-2">
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">InternHub</a>
+<p class="text-gray-400 mb-6 max-w-md">Connecting talented students with meaningful internship opportunities across Southern Leyte and beyond. Start your career journey with us today.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-facebook-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-linkedin-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-instagram-fill ri-lg"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Students</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/browse_internships.html" class="text-gray-400 hover:text-white transition-colors">Browse Internships</a></li>
+<li><a href="/InternHub/profile.html" class="text-gray-400 hover:text-white transition-colors">Create Profile</a></li>
+<li><a href="/InternHub/track_application.html" class="text-gray-400 hover:text-white transition-colors">Application Status</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Resources</a></li>
+<li><a href="/InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/post_internships.html" class="text-gray-400 hover:text-white transition-colors">Post Internships</a></li>
+<li><a href="/InternHub/manage_applicant.html" class="text-gray-400 hover:text-white transition-colors">Browse Candidates</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing Plans</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Recruitment Tools</a></li>
+<li><a href="/InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Company</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
+<li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+<li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+<li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Internship Platform. All rights reserved.</p>
+<div class="flex flex-wrap gap-4 text-sm text-gray-400">
+<a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+<a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+<a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+<a href="#" class="hover:text-white transition-colors">Accessibility</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Profile Dropdown
+const profileDropdown = document.getElementById('profileDropdown');
+const profileMenu = document.getElementById('profileMenu');
+profileDropdown.addEventListener('click', function() {
+profileMenu.classList.toggle('show');
+});
+// Location Dropdown
+const locationDropdown = document.getElementById('locationDropdown');
+const locationMenu = document.getElementById('locationMenu');
+locationDropdown.addEventListener('click', function() {
+locationMenu.classList.toggle('show');
+});
+// Industry Multi-select Dropdown
+const industryDropdown = document.getElementById('industryDropdown');
+const industryMenu = document.getElementById('industryMenu');
+const selectedIndustries = document.getElementById('selectedIndustries');
+const industryPlaceholder = document.getElementById('industryPlaceholder');
+industryDropdown.addEventListener('click', function() {
+industryMenu.classList.toggle('show');
+});
+const industryCheckboxes = document.querySelectorAll('input[name="industry"]');
+industryCheckboxes.forEach(checkbox => {
+checkbox.addEventListener('change', function() {
+updateSelectedIndustries();
+});
+});
+function updateSelectedIndustries() {
+const selected = Array.from(industryCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+selectedIndustries.innerHTML = '';
+if (selected.length > 0) {
+selectedIndustries.classList.remove('hidden');
+industryPlaceholder.textContent = `₱{selected.length} selected`;
+selected.forEach(industry => {
+const tag = document.createElement('div');
+tag.className = 'selected-option';
+tag.innerHTML = `
+<span>₱{industry}</span>
+<button class="text-gray-500 hover:text-gray-700" data-value="₱{industry}">
+<i class="ri-close-line ri-xs"></i>
+</button>
+`;
+selectedIndustries.appendChild(tag);
+tag.querySelector('button').addEventListener('click', function(e) {
+e.stopPropagation();
+const value = this.getAttribute('data-value');
+const checkbox = Array.from(industryCheckboxes).find(cb => cb.value === value);
+if (checkbox) {
+checkbox.checked = false;
+updateSelectedIndustries();
+}
+});
+});
+} else {
+selectedIndustries.classList.add('hidden');
+industryPlaceholder.textContent = 'Select Industries';
+}
+}
+// Sort Dropdown
+const sortDropdown = document.getElementById('sortDropdown');
+const sortMenu = document.getElementById('sortMenu');
+sortDropdown.addEventListener('click', function() {
+sortMenu.classList.toggle('show');
+});
+// Duration Slider
+const durationSlider = document.getElementById('durationSlider');
+const durationValue = document.getElementById('durationValue');
+durationSlider.addEventListener('input', function() {
+durationValue.textContent = `₱{this.value} months`;
+});
+// Work Mode Toggle
+const remoteBtn = document.getElementById('remoteBtn');
+const onsiteBtn = document.getElementById('onsiteBtn');
+const hybridBtn = document.getElementById('hybridBtn');
+remoteBtn.addEventListener('click', function() {
+setActiveWorkMode(remoteBtn);
+});
+onsiteBtn.addEventListener('click', function() {
+setActiveWorkMode(onsiteBtn);
+});
+hybridBtn.addEventListener('click', function() {
+setActiveWorkMode(hybridBtn);
+});
+function setActiveWorkMode(button) {
+[remoteBtn, onsiteBtn, hybridBtn].forEach(btn => {
+btn.classList.remove('bg-primary', 'text-white');
+btn.classList.add('text-gray-700', 'hover:bg-gray-100');
+});
+button.classList.remove('text-gray-700', 'hover:bg-gray-100');
+button.classList.add('bg-primary', 'text-white');
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+if (!profileDropdown.contains(event.target) && !profileMenu.contains(event.target)) {
+profileMenu.classList.remove('show');
+}
+if (!locationDropdown.contains(event.target) && !locationMenu.contains(event.target)) {
+locationMenu.classList.remove('show');
+}
+if (!industryDropdown.contains(event.target) && !industryMenu.contains(event.target) && !selectedIndustries.contains(event.target)) {
+industryMenu.classList.remove('show');
+}
+if (!sortDropdown.contains(event.target) && !sortMenu.contains(event.target)) {
+sortMenu.classList.remove('show');
+}
+});
+});
+</script>
+</body>
+</html>

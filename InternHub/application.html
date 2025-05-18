@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a New Internship Opportunity - Application</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#6366F1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .step-connector {
+            height: 2px;
+            background-color: #e5e7eb;
+            flex: 1;
+            margin: 0 8px;
+        }
+        .step-connector.active {
+            background-color: #4F46E5;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .custom-checkbox {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .custom-checkbox:checked {
+            background-color: #4F46E5;
+            border-color: #4F46E5;
+        }
+        .custom-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-radio {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .custom-radio:checked {
+            border-color: #4F46E5;
+        }
+        .custom-radio:checked::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #4F46E5;
+        }
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e5e7eb;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4F46E5;
+        }
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+        .question-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            background-color: white;
+        }
+        .question-card.dragging {
+            opacity: 0.5;
+            border: 2px dashed #4F46E5;
+        }
+        .drag-handle {
+            cursor: grab;
+        }
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+   <!-- Header -->
+<header class="bg-white shadow-sm">
+<div class="container mx-auto px-6 py-4 flex items-center justify-between">
+<div class="flex items-center space-x-10">
+<a href="#" class="text-2xl font-['Pacifico'] text-primary">InternHub</a>
+<nav class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-8">
+<a href="/InternHub/index.html" class="text-gray-900 font-medium hover:text-primary transition-colors">Home</a>
+<a href="/InternHub/post_internships.html" class="text-primary font-medium border-b-2 border-primary pb-1">Post Internships</a>
+<a href="#" class="text-gray-900 font-medium hover:text-primary transition-colors">Applicants</a>
+<a href="#" class="text-gray-900 font-medium hover:text-primary transition-colors">Feedback</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="container mx-auto px-6 py-8 flex flex-col lg:flex-row gap-8">
+        <!-- Main Form Section -->
+        <div class="w-full lg:w-3/4">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">Post a New Internship Opportunity</h1>
+            
+            <!-- Progress Steps -->
+            <div class="flex items-center mb-10">
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-semibold">
+                        <i class="ri-check-line"></i>
+                    </div>
+                    <span class="text-sm font-medium text-green-600 mt-2">Basic Info</span>
+                </div>
+                <div class="step-connector active"></div>
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-semibold">
+                        <i class="ri-check-line"></i>
+                    </div>
+                    <span class="text-sm font-medium text-green-600 mt-2">Details</span>
+                </div>
+                <div class="step-connector active"></div>
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-semibold">3</div>
+                    <span class="text-sm font-medium text-primary mt-2">Application</span>
+                </div>
+                <div class="step-connector"></div>
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-semibold">4</div>
+                    <span class="text-sm font-medium text-gray-600 mt-2">Review</span>
+                </div>
+            </div>
+            
+            <!-- Form Sections -->
+            <div class="bg-white shadow rounded-lg p-8 mb-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6">Application Form Settings</h2>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-base font-medium text-gray-900">Allow Direct Applications</h3>
+                            <p class="text-sm text-gray-500 mt-1">Enable candidates to apply directly through our platform</p>
+                        </div>
+                        <label class="custom-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-base font-medium text-gray-900">Enable Quick Apply</h3>
+                            <p class="text-sm text-gray-500 mt-1">Allow candidates to apply with their saved profile</p>
+                        </div>
+                        <label class="custom-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-base font-medium text-gray-900">Require Cover Letter</h3>
+                            <p class="text-sm text-gray-500 mt-1">Make cover letter mandatory for all applications</p>
+                        </div>
+                        <label class="custom-switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-base font-medium text-gray-900">Allow Portfolio Submission</h3>
+                            <p class="text-sm text-gray-500 mt-1">Enable candidates to submit portfolio links or files</p>
+                        </div>
+                        <label class="custom-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="max-applications" class="block text-sm font-medium text-gray-700 mb-1">Maximum Applications Limit</label>
+                            <div class="flex items-center">
+                                <input type="number" id="max-applications" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="100">
+                                <span class="bg-gray-100 border border-gray-300 border-l-0 rounded-r px-4 py-3 text-gray-600">applications</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Leave blank for unlimited applications</p>
+                        </div>
+                        
+                        <div>
+                            <label for="deadline" class="block text-sm font-medium text-gray-700 mb-1">Application Deadline*</label>
+                            <input type="date" id="deadline" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="2025-07-15">
+                            <p class="text-xs text-gray-500 mt-1">Applications will automatically close on this date</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white shadow rounded-lg p-8 mb-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6">Required Documents</h2>
+                
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox" checked disabled>
+                                <div>
+                                    <span class="text-gray-800 font-medium">Resume/CV</span>
+                                    <span class="text-xs text-primary ml-2">(Required)</span>
+                                </div>
+                            </label>
+                            
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox">
+                                <div>
+                                    <span class="text-gray-800 font-medium">Cover Letter</span>
+                                    <span class="text-xs text-gray-500 ml-2">(Optional)</span>
+                                </div>
+                            </label>
+                            
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox" checked>
+                                <div>
+                                    <span class="text-gray-800 font-medium">Portfolio</span>
+                                    <span class="text-xs text-gray-500 ml-2">(Optional)</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox">
+                                <div>
+                                    <span class="text-gray-800 font-medium">Transcript</span>
+                                    <span class="text-xs text-gray-500 ml-2">(Optional)</span>
+                                </div>
+                            </label>
+                            
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox">
+                                <div>
+                                    <span class="text-gray-800 font-medium">References</span>
+                                    <span class="text-xs text-gray-500 ml-2">(Optional)</span>
+                                </div>
+                            </label>
+                            
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox">
+                                <div>
+                                    <span class="text-gray-800 font-medium">Other Document</span>
+                                    <span class="text-xs text-gray-500 ml-2">(Optional)</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 pt-6">
+                        <h3 class="text-base font-medium text-gray-900 mb-4">File Requirements</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="file-types" class="block text-sm font-medium text-gray-700 mb-1">Accepted File Types</label>
+                                <div class="relative">
+                                    <select id="file-types" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none pr-8">
+                                        <option value="pdf-doc">PDF, DOC, DOCX only</option>
+                                        <option value="pdf-only">PDF only</option>
+                                        <option value="all" selected>All common document formats</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i class="ri-arrow-down-s-line text-gray-500"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="file-size" class="block text-sm font-medium text-gray-700 mb-1">Maximum File Size</label>
+                                <div class="relative">
+                                    <select id="file-size" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none pr-8">
+                                        <option value="5">5 MB</option>
+                                        <option value="10" selected>10 MB</option>
+                                        <option value="20">20 MB</option>
+                                        <option value="50">50 MB</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i class="ri-arrow-down-s-line text-gray-500"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white shadow rounded-lg p-8 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold text-gray-900">Screening Questions</h2>
+                    <button id="add-question-btn" class="px-4 py-2 bg-primary text-white rounded font-medium hover:bg-primary/90 flex items-center space-x-2 !rounded-button whitespace-nowrap">
+                        <i class="ri-add-line"></i>
+                        <span>Add Question</span>
+                    </button>
+                </div>
+                
+                <div id="questions-container" class="space-y-4">
+                    <!-- Question 1 -->
+                    <div class="question-card">
+                        <div class="flex items-start">
+                            <div class="drag-handle w-6 h-6 flex items-center justify-center mr-2 text-gray-400 cursor-grab">
+                                <i class="ri-drag-move-line"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 class="text-base font-medium text-gray-900">What marketing tools or platforms have you used before?</h3>
+                                        <div class="flex items-center mt-1">
+                                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">Yes/No</span>
+                                            <span class="text-xs text-primary ml-3">Required</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded">
+                                            <i class="ri-pencil-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-gray-100 rounded">
+                                            <i class="ri-delete-bin-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="question-card">
+                        <div class="flex items-start">
+                            <div class="drag-handle w-6 h-6 flex items-center justify-center mr-2 text-gray-400 cursor-grab">
+                                <i class="ri-drag-move-line"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 class="text-base font-medium text-gray-900">Can you describe a time when you worked in a team to complete a project?</h3>
+                                        <div class="flex items-center mt-1">
+                                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full">Multiple Choice</span>
+                                            <span class="text-xs text-primary ml-3">Required</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded">
+                                            <i class="ri-pencil-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-gray-100 rounded">
+                                            <i class="ri-delete-bin-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="pl-4 text-sm text-gray-600">
+                                    <div>• No experience, but eager to learn</div>
+                                    <div>• Less than 1 year</div>
+                                    <div>• 1-2 years</div>
+                                    <div>• 3+ years</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 3 -->
+                    <div class="question-card">
+                        <div class="flex items-start">
+                            <div class="drag-handle w-6 h-6 flex items-center justify-center mr-2 text-gray-400 cursor-grab">
+                                <i class="ri-drag-move-line"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 class="text-base font-medium text-gray-900">How do you stay updated with current marketing trends?</h3>
+                                        <div class="flex items-center mt-1">
+                                            <span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">Text Answer</span>
+                                            <span class="text-xs text-gray-500 ml-3">Optional</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded">
+                                            <i class="ri-pencil-line"></i>
+                                        </button>
+                                        <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-gray-100 rounded">
+                                            <i class="ri-delete-bin-line"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 border-t border-gray-200 pt-6">
+                    <h3 class="text-base font-medium text-gray-900 mb-4">Question Templates</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <button class="text-left p-4 border border-gray-300 rounded hover:border-primary hover:bg-blue-50 transition-colors">
+                            <h4 class="font-medium text-gray-900">Availability Questions</h4>
+                            <p class="text-sm text-gray-600 mt-1">Start date, work hours, remote/onsite preferences</p>
+                        </button>
+                        <button class="text-left p-4 border border-gray-300 rounded hover:border-primary hover:bg-blue-50 transition-colors">
+                            <h4 class="font-medium text-gray-900">Technical Skills Assessment</h4>
+                            <p class="text-sm text-gray-600 mt-1">Tool proficiency, coding experience, software knowledge</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white shadow rounded-lg p-8 mb-8">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6">Application Review Process</h2>
+                
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Review Team Members</label>
+                        <div class="flex flex-wrap gap-3 mb-3">
+                            <div class="flex items-center bg-gray-100 rounded-full pl-1 pr-2 py-1">
+                                <div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs mr-2">JD</div>
+                                <span class="text-sm text-gray-800">Jessica Davis (You)</span>
+                            </div>
+                            <div class="flex items-center bg-gray-100 rounded-full pl-1 pr-2 py-1">
+                                <div class="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs mr-2">RW</div>
+                                <span class="text-sm text-gray-800">Robert Wilson</span>
+                                <button class="ml-2 text-gray-400 hover:text-gray-600">
+                                    <i class="ri-close-line"></i>
+                                </button>
+                            </div>
+                            <div class="flex items-center bg-gray-100 rounded-full pl-1 pr-2 py-1">
+                                <div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center text-white text-xs mr-2">AM</div>
+                                <span class="text-sm text-gray-800">Alexandra Martinez</span>
+                                <button class="ml-2 text-gray-400 hover:text-gray-600">
+                                    <i class="ri-close-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="text-sm text-primary font-medium hover:underline flex items-center">
+                            <i class="ri-add-line mr-1"></i> Add team member
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="review-stages" class="block text-sm font-medium text-gray-700 mb-1">Review Stages</label>
+                            <div class="relative">
+                                <select id="review-stages" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none pr-8">
+                                    <option value="standard" selected>Standard (Initial → Interview → Decision)</option>
+                                    <option value="simple">Simple (Review → Decision)</option>
+                                    <option value="advanced">Advanced (5-stage review process)</option>
+                                    <option value="custom">Custom stages</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <i class="ri-arrow-down-s-line text-gray-500"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="notification" class="block text-sm font-medium text-gray-700 mb-1">Notification Preferences</label>
+                            <div class="relative">
+                                <select id="notification" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none pr-8">
+                                    <option value="all" selected>All applications</option>
+                                    <option value="daily">Daily summary</option>
+                                    <option value="qualified">Qualified candidates only</option>
+                                    <option value="none">No notifications</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <i class="ri-arrow-down-s-line text-gray-500"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Evaluation Criteria</label>
+                        <div class="space-y-3">
+                            <label class="flex items-start space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox mt-0.5" checked>
+                                <span class="text-gray-800">Technical skills match</span>
+                            </label>
+                            <label class="flex items-start space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox mt-0.5" checked>
+                                <span class="text-gray-800">Portfolio quality</span>
+                            </label>
+                            <label class="flex items-start space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox mt-0.5" checked>
+                                <span class="text-gray-800">Communication skills</span>
+                            </label>
+                            <label class="flex items-start space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox mt-0.5">
+                                <span class="text-gray-800">Cultural fit</span>
+                            </label>
+                            <label class="flex items-start space-x-2 cursor-pointer">
+                                <input type="checkbox" class="custom-checkbox mt-0.5">
+                                <span class="text-gray-800">Problem-solving ability</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="auto-reject" class="block text-sm font-medium text-gray-700 mb-1">Auto-Rejection Rules (Optional)</label>
+                        <textarea id="auto-reject" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="e.g. Automatically reject candidates without required skills or experience"></textarea>
+                        <p class="text-xs text-gray-500 mt-1">Specify conditions for automatic rejection of applications</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between">
+                <a href="details.html" 
+                class="px-6 py-2.5 border border-gray-300 rounded text-gray-700 font-medium hover:bg-gray-50 !rounded-button whitespace-nowrap">
+                    Back to Details
+                </a>
+                <button
+                type="button"
+                onclick="window.location.href='/InternHub/review.html';" 
+                class="px-6 py-2.5 bg-primary text-white rounded font-medium hover:bg-primary/90 !rounded-button whitespace-nowrap">
+                    Next: Review
+                </button>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="w-full lg:w-1/4 space-y-6">
+            <div class="bg-white shadow rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Application Tips</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start space-x-2">
+                        <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="ri-lightbulb-line text-blue-600 ri-sm"></i>
+                        </div>
+                        <span class="text-sm text-gray-700">Keep screening questions focused and relevant to the role</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="ri-lightbulb-line text-blue-600 ri-sm"></i>
+                        </div>
+                        <span class="text-sm text-gray-700">Limit required documents to reduce application friction</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="ri-lightbulb-line text-blue-600 ri-sm"></i>
+                        </div>
+                        <span class="text-sm text-gray-700">Include at least one open-ended question to assess communication</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <i class="ri-lightbulb-line text-blue-600 ri-sm"></i>
+                        </div>
+                        <span class="text-sm text-gray-700">Set up auto-rejection rules to save time on unqualified candidates</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-white shadow rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Need Help?</h3>
+                <div class="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                        <i class="ri-customer-service-2-line text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-gray-900">Application Support</h4>
+                        <p class="text-sm text-gray-600 mt-1">Our team is available to help with your application setup.</p>
+                        <button class="mt-2 text-sm text-primary font-medium hover:underline">Contact Support</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+   <!-- Footer -->
+<footer class="bg-gray-900 text-white pt-12 pb-8 mt-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+<div class="lg:col-span-2">
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">InternHub</a>
+<p class="text-gray-400 mb-6 max-w-md">Connecting talented students with meaningful internship opportunities across Southern Leyte and beyond. Start your career journey with us today.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-facebook-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-linkedin-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-instagram-fill ri-lg"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/browse_internships.html" class="text-gray-400 hover:text-white transition-colors">Browse Internships</a></li>
+<li><a href="/InternHub/profile.html" class="text-gray-400 hover:text-white transition-colors">Create Profile</a></li>
+<li><a href="/InternHub/track_application.html" class="text-gray-400 hover:text-white transition-colors">Application Status</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Resources</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/post_internships.html" class="text-gray-400 hover:text-white transition-colors">Post Internships</a></li>
+<li><a href="/InternHub/manage_applicant.html" class="text-gray-400 hover:text-white transition-colors">Browse Candidates</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing Plans</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Recruitment Tools</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Company</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/index.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Internship Platform. All rights reserved.</p>
+<div class="flex flex-wrap gap-4 text-sm text-gray-400">
+<a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+<a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+<a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+<a href="#" class="hover:text-white transition-colors">Accessibility</a>
+</div>
+</div>
+</div>
+</footer>
+
+    <!-- Add Question Modal (Hidden by default) -->
+    <div id="add-question-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg w-full max-w-lg p-6 mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-gray-900">Add Screening Question</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                    <i class="ri-close-line text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label for="question-text" class="block text-sm font-medium text-gray-700 mb-1">Question*</label>
+                    <textarea id="question-text" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Enter your question here"></textarea>
+                </div>
+                
+                <div>
+                    <label for="question-type" class="block text-sm font-medium text-gray-700 mb-1">Question Type*</label>
+                    <div class="relative">
+                        <select id="question-type" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none pr-8">
+                            <option value="text">Text Answer</option>
+                            <option value="yes-no">Yes/No</option>
+                            <option value="multiple">Multiple Choice</option>
+                            <option value="dropdown">Dropdown Selection</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                            <i class="ri-arrow-down-s-line text-gray-500"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="multiple-choice-options" class="hidden">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Answer Options*</label>
+                    <div class="space-y-2" id="options-container">
+                        <div class="flex items-center">
+                            <input type="text" class="flex-1 px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Option 1">
+                            <button class="ml-2 text-gray-400 hover:text-red-500">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="text" class="flex-1 px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Option 2">
+                            <button class="ml-2 text-gray-400 hover:text-red-500">
+                                <i class="ri-delete-bin-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="mt-2 text-sm text-primary font-medium hover:underline flex items-center">
+                        <i class="ri-add-line mr-1"></i> Add another option
+                    </button>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h4 class="text-sm font-medium text-gray-900">Required Question</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Candidates must answer this question</p>
+                    </div>
+                    <label class="custom-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end space-x-3">
+                <button id="cancel-question" class="px-4 py-2 border border-gray-300 rounded text-gray-700 font-medium hover:bg-gray-50 !rounded-button whitespace-nowrap">
+                    Cancel
+                </button>
+                <button id="save-question" class="px-4 py-2 bg-primary text-white rounded font-medium hover:bg-primary/90 !rounded-button whitespace-nowrap">
+                    Add Question
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize select styling
+            const selects = document.querySelectorAll('select');
+            selects.forEach(select => {
+                select.addEventListener('focus', function() {
+                    this.parentElement.classList.add('ring-2', 'ring-primary');
+                });
+                select.addEventListener('blur', function() {
+                    this.parentElement.classList.remove('ring-2', 'ring-primary');
+                });
+            });
+            
+            // Modal functionality
+            const addQuestionBtn = document.getElementById('add-question-btn');
+            const addQuestionModal = document.getElementById('add-question-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const cancelQuestionBtn = document.getElementById('cancel-question');
+            const saveQuestionBtn = document.getElementById('save-question');
+            const questionTypeSelect = document.getElementById('question-type');
+            const multipleChoiceOptions = document.getElementById('multiple-choice-options');
+            
+            addQuestionBtn.addEventListener('click', function() {
+                addQuestionModal.classList.remove('hidden');
+            });
+            
+            closeModalBtn.addEventListener('click', function() {
+                addQuestionModal.classList.add('hidden');
+            });
+            
+            cancelQuestionBtn.addEventListener('click', function() {
+                addQuestionModal.classList.add('hidden');
+            });
+            
+            saveQuestionBtn.addEventListener('click', function() {
+                // Here you would normally save the question data
+                addQuestionModal.classList.add('hidden');
+                
+                // For demo purposes, let's add a new question card
+                const questionsContainer = document.getElementById('questions-container');
+                const newQuestion = document.createElement('div');
+                newQuestion.className = 'question-card';
+                newQuestion.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="drag-handle w-6 h-6 flex items-center justify-center mr-2 text-gray-400 cursor-grab">
+                            <i class="ri-drag-move-line"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-base font-medium text-gray-900">₱{document.getElementById('question-text').value || 'New Question'}</h3>
+                                    <div class="flex items-center mt-1">
+                                        <span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">Text Answer</span>
+                                        <span class="text-xs text-primary ml-3">Required</span>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded">
+                                        <i class="ri-pencil-line"></i>
+                                    </button>
+                                    <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-gray-100 rounded">
+                                        <i class="ri-delete-bin-line"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                questionsContainer.prepend(newQuestion);
+                
+                // Reset form
+                document.getElementById('question-text').value = '';
+            });
+            
+            questionTypeSelect.addEventListener('change', function() {
+                if (this.value === 'multiple' || this.value === 'dropdown') {
+                    multipleChoiceOptions.classList.remove('hidden');
+                } else {
+                    multipleChoiceOptions.classList.add('hidden');
+                }
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === addQuestionModal) {
+                    addQuestionModal.classList.add('hidden');
+                }
+            });
+            
+            // Question drag and drop functionality
+            let draggedItem = null;
+            
+            document.addEventListener('mousedown', function(e) {
+                if (e.target.classList.contains('drag-handle') || e.target.parentElement.classList.contains('drag-handle')) {
+                    const handle = e.target.classList.contains('drag-handle') ? e.target : e.target.parentElement;
+                    draggedItem = handle.closest('.question-card');
+                    draggedItem.classList.add('dragging');
+                    
+                    // Create event listeners for mousemove and mouseup
+                    document.addEventListener('mousemove', onMouseMove);
+                    document.addEventListener('mouseup', onMouseUp);
+                    
+                    // Prevent default to avoid text selection during drag
+                    e.preventDefault();
+                }
+            });
+            
+            function onMouseMove(e) {
+                if (!draggedItem) return;
+                
+                const questionsContainer = document.getElementById('questions-container');
+                const questionCards = Array.from(questionsContainer.querySelectorAll('.question-card:not(.dragging)'));
+                
+                // Find the card we're hovering over
+                let nextCard = null;
+                for (const card of questionCards) {
+                    const box = card.getBoundingClientRect();
+                    const cardMiddleY = box.top + box.height / 2;
+                    
+                    if (e.clientY < cardMiddleY) {
+                        nextCard = card;
+                        break;
+                    }
+                }
+                
+                // Insert the dragged item before the found card, or at the end if no card found
+                if (nextCard) {
+                    questionsContainer.insertBefore(draggedItem, nextCard);
+                } else {
+                    questionsContainer.appendChild(draggedItem);
+                }
+            }
+            
+            function onMouseUp() {
+                if (draggedItem) {
+                    draggedItem.classList.remove('dragging');
+                    draggedItem = null;
+                }
+                
+                // Remove event listeners
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+        });
+    </script>
+</body>
+</html>

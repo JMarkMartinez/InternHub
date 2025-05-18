@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review & Publish Internship</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4f46e5',secondary:'#6366f1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .custom-checkbox {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .custom-checkbox.checked {
+            background-color: #4f46e5;
+            border-color: #4f46e5;
+        }
+        .custom-checkbox.checked::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            width: 5px;
+            height: 10px;
+            border-bottom: 2px solid white;
+            border-right: 2px solid white;
+        }
+        .progress-bar {
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            position: relative;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #4f46e5;
+            border-radius: 2px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .progress-step {
+            position: relative;
+        }
+        .progress-step::before {
+            content: "";
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: white;
+            border: 2px solid #e5e7eb;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        .progress-step.completed::before {
+            background-color: #4f46e5;
+            border-color: #4f46e5;
+        }
+        .progress-step.completed::after {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 6px;
+            height: 10px;
+            border-bottom: 2px solid white;
+            border-right: 2px solid white;
+            z-index: 2;
+        }
+        .progress-step.active::before {
+            background-color: white;
+            border: 2px solid #4f46e5;
+        }
+        .progress-step.active::after {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #4f46e5;
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .section-toggle {
+            transition: transform 0.3s ease;
+        }
+        .section-toggle.open {
+            transform: rotate(180deg);
+        }
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .section-content.open {
+            max-height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+<header class="bg-white shadow-sm">
+<div class="container mx-auto px-6 py-4 flex items-center justify-between">
+<div class="flex items-center space-x-10">
+<a href="#" class="text-2xl font-['Pacifico'] text-primary">InternHub</a>
+<nav class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-8">
+<a href="/InternHub/index.html" class="text-gray-900 font-medium hover:text-primary transition-colors">Home</a>
+<a href="/InternHub/post_internships.html" class="text-primary font-medium border-b-2 border-primary pb-1">Post Internships</a>
+<a href="#" class="text-gray-900 font-medium hover:text-primary transition-colors">Applicants</a>
+<a href="#" class="text-gray-900 font-medium hover:text-primary transition-colors">Feedback</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</header>
+    <!-- Progress Bar -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="progress-bar mb-8">
+                <div class="progress-bar-fill" style="width: 75%"></div>
+                <div class="flex justify-between relative">
+                    <div class="progress-step completed text-center" style="width: 25%">
+                        <span class="block mt-6 text-sm text-gray-600">Basic Info</span>
+                    </div>
+                    <div class="progress-step completed text-center" style="width: 25%">
+                        <span class="block mt-6 text-sm text-gray-600">Details</span>
+                    </div>
+                    <div class="progress-step completed text-center" style="width: 25%">
+                        <span class="block mt-6 text-sm text-gray-600">Application</span>
+                    </div>
+                    <div class="progress-step active text-center" style="width: 25%">
+                        <span class="block mt-6 text-sm font-medium text-primary">Review</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 pb-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Main Review Content -->
+                <div class="w-full lg:w-3/4">
+                    <h1 class="text-2xl font-bold mb-6">Review Your Internship Posting</h1>
+                    <p class="text-gray-600 mb-8">Please review all information carefully before publishing. You can edit any section by clicking the "Edit" button.</p>
+                    
+                    <!-- Basic Information Section -->
+                    <div class="bg-white rounded shadow-sm mb-6 overflow-hidden">
+                        <div class="p-6 border-b border-gray-100">
+                            <div class="flex justify-between items-center">
+                                <h2 class="text-lg font-semibold">Basic Information</h2>
+                                <div class="flex items-center">
+                                    <a href="#" class="text-primary text-sm font-medium flex items-center mr-4">
+                                        <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                            <i class="ri-edit-line"></i>
+                                        </div>
+                                        Edit
+                                    </a>
+                                    <button class="section-toggle w-6 h-6 flex items-center justify-center text-gray-500 open">
+                                        <i class="ri-arrow-down-s-line ri-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-content open">
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 mb-2">Position Title</h3>
+                                        <p class="text-gray-900">Marketing Intern</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 mb-2">Department</h3>
+                                        <p class="text-gray-900">Marketing & Advertising</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 mb-2">Location</h3>
+                                        <p class="text-gray-900">Sogod, Southern Leyte</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 mb-2">Company</h3>
+                                        <p class="text-gray-900">ABC Corporation</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 mb-2">Duration</h3>
+                                        <p class="text-gray-900">3 months (June 1 - August 31, 2025)</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 mb-2">Schedule</h3>
+                                        <p class="text-gray-900">Full-time, 40 hours/week</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 mb-2">Compensation</h3>
+                                        <p class="text-gray-900">₱25/hour + Transportation Allowance</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-medium text-gray-500 mb-2">Application Deadline</h3>
+                                        <p class="text-gray-900">May 31, 2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Internship Details Section -->
+                    <div class="bg-white rounded shadow-sm mb-6 overflow-hidden">
+                        <div class="p-6 border-b border-gray-100">
+                            <div class="flex justify-between items-center">
+                                <h2 class="text-lg font-semibold">Internship Details</h2>
+                                <div class="flex items-center">
+                                    <a href="#" class="text-primary text-sm font-medium flex items-center mr-4">
+                                        <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                            <i class="ri-edit-line"></i>
+                                        </div>
+                                        Edit
+                                    </a>
+                                    <button class="section-toggle w-6 h-6 flex items-center justify-center text-gray-500 open">
+                                        <i class="ri-arrow-down-s-line ri-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-content open">
+                            <div class="p-6">
+                                <div class="mb-6">
+                                    <h3 class="text-sm font-medium text-gray-500 mb-2">Role Description</h3>
+                                    <p class="text-gray-900 mb-3">
+                                        Join our dynamic marketing team as a Marketing Intern where you will assist in the development and execution of marketing campaigns, conduct market research, and help analyze campaign performance. This internship offers hands-on experience in a fast-paced marketing environment.
+                                    </p>
+                                    <p class="text-gray-900">
+                                        This internship offers hands-on experience in a fast-paced tech environment, providing valuable industry exposure and mentorship from experienced designers.
+                                    </p>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <h3 class="text-sm font-medium text-gray-500 mb-2">Requirements</h3>
+                                    <ul class="list-disc pl-5 text-gray-900">
+                                        <li class="mb-1">Currently enrolled in a Bachelor’s degree program in Business Administration, Marketing, or related field</li>
+                                        <li class="mb-1">Strong written and verbal communication skills</li>
+                                        <li class="mb-1">Proficient in Microsoft Office (especially Excel and PowerPoint)</li>
+                                        <li class="mb-1">Basic understanding of social media platforms and digital marketing</li>
+                                        <li>Preferred: Experience with marketing tools like Canva, Google Analytics, or similar (not mandatory)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <h3 class="text-sm font-medium text-gray-500 mb-2">Benefits</h3>
+                                    <ul class="list-disc pl-5 text-gray-900">
+                                        <li class="mb-1">Competitive hourly pay (₱25/hour)</li>
+                                        <li class="mb-1">Transportation allowance</li>
+                                        <li class="mb-1">Flexible work arrangement (3 days in office, 2 days remote)</li>
+                                        <li class="mb-1">Networking opportunities with industry professionals</li>
+                                        <li class="mb-1">Professional development workshops</li>
+                                        <li>Possibility of full-time employment for outstanding performers</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 mb-2">Skills & Qualifications</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm">Basic knowledge of marketing principles</span>
+                                        <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm">Social media management</span>
+                                        <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm">Data analysis (Excel)</span>
+                                        <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm">Communication and teamwork</span>
+                                        <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm">Creativity and problem-solving</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Application Settings Section -->
+                    <div class="bg-white rounded shadow-sm mb-6 overflow-hidden">
+                        <div class="p-6 border-b border-gray-100">
+                            <div class="flex justify-between items-center">
+                                <h2 class="text-lg font-semibold">Application Settings</h2>
+                                <div class="flex items-center">
+                                    <a href="#" class="text-primary text-sm font-medium flex items-center mr-4">
+                                        <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                            <i class="ri-edit-line"></i>
+                                        </div>
+                                        Edit
+                                    </a>
+                                    <button class="section-toggle w-6 h-6 flex items-center justify-center text-gray-500 open">
+                                        <i class="ri-arrow-down-s-line ri-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section-content open">
+                            <div class="p-6">
+                                <div class="mb-6">
+                                    <h3 class="text-sm font-medium text-gray-500 mb-2">Required Documents</h3>
+                                    <ul class="list-disc pl-5 text-gray-900">
+                                        <li class="mb-1">Resume/CV</li>
+                                        <li class="mb-1">Cover Letter</li>
+                                        <li class="mb-1">Portfolio Link</li>
+                                        <li>Academic Transcript (optional)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="mb-6">
+                                    <h3 class="text-sm font-medium text-gray-500 mb-2">Screening Questions (5)</h3>
+                                    <ol class="list-decimal pl-5 text-gray-900">
+                                        <li class="mb-1">Are you legally authorized to work in the United States?</li>
+                                        <li class="mb-1">Are you available to work full-time (40 hours/week) from June 1 to August 31, 2025?</li>
+                                        <li class="mb-1">Do you have experience with Figma or similar design tools?</li>
+                                        <li class="mb-1">Describe a UX problem you've solved in a previous project.</li>
+                                        <li>What interests you most about this internship opportunity?</li>
+                                    </ol>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-sm font-medium text-gray-500 mb-2">Review Process Settings</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="text-gray-900 mb-1"><span class="font-medium">Initial Review:</span> HR Team</p>
+                                            <p class="text-gray-900 mb-1"><span class="font-medium">Technical Review:</span> Design Lead</p>
+                                            <p class="text-gray-900"><span class="font-medium">Final Decision:</span> Design Director</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-900 mb-1"><span class="font-medium">Auto-reject:</span> Enabled for missing required documents</p>
+                                            <p class="text-gray-900 mb-1"><span class="font-medium">Notification:</span> Email for all status changes</p>
+                                            <p class="text-gray-900"><span class="font-medium">Application Limit:</span> 200 applications</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Confirmation Section -->
+                    <div class="bg-white rounded shadow-sm p-6 mb-6">
+                        <h2 class="text-lg font-semibold mb-4">Final Confirmation</h2>
+                        <div class="mb-6">
+                            <div class="flex items-start mb-4">
+                                <div class="custom-checkbox mr-3 mt-1" id="accuracy-checkbox"></div>
+                                <label for="accuracy-checkbox" class="text-gray-700">
+                                    I confirm that all information provided is accurate and complete. I understand that inaccurate information may affect the quality of applicants.
+                                </label>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="custom-checkbox mr-3 mt-1" id="terms-checkbox"></div>
+                                <label for="terms-checkbox" class="text-gray-700">
+                                    I agree to the <a href="#" class="text-primary">Terms & Conditions</a> and <a href="#" class="text-primary">Internship Posting Guidelines</a>.
+                                </label>
+                            </div>
+                        </div>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded p-4 mb-4">
+                            <div class="flex">
+                                <div class="w-6 h-6 flex items-center justify-center text-yellow-500 mr-2">
+                                    <i class="ri-information-line ri-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-yellow-800 mb-1">Important Notice</h3>
+                                    <p class="text-yellow-700 text-sm">
+                                        Once published, your internship posting will be visible to all users and cannot be edited without temporarily unpublishing. Please ensure all information is correct before proceeding.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/InternHub/preview.html" class="inline-flex items-center text-primary font-medium">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-eye-line"></i>
+                            </div>
+                            Preview how your posting will appear to applicants
+                        </a>
+                    </div>
+                    
+                    <!-- Bottom Navigation Controls (Mobile Only) -->
+                    <div class="flex justify-between mt-8 lg:hidden">
+                        <a href="#" class="px-4 py-2 border border-gray-300 rounded-button text-gray-700 font-medium flex items-center whitespace-nowrap">
+                            <div class="w-5 h-5 flex items-center justify-center mr-1">
+                                <i class="ri-arrow-left-line"></i>
+                            </div>
+                            Back
+                        </a>
+                        <div class="flex gap-3">
+                            <button class="px-4 py-2 border border-gray-300 rounded-button text-gray-700 font-medium whitespace-nowrap">Save as Draft</button>
+                            <button class="px-4 py-2 bg-primary text-white rounded-button font-medium whitespace-nowrap">Publish Internship</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Sidebar -->
+                <div class="w-full lg:w-1/4">
+                    <div class="lg:sticky lg:top-6">
+                        <!-- Preview Card -->
+                        <div class="bg-white rounded shadow-sm p-4 mb-6">
+                            <h3 class="font-medium text-gray-900 mb-3">Posting Preview</h3>
+                            <div class="border border-gray-200 rounded overflow-hidden">
+                                <div class="bg-gray-50 p-3 border-b border-gray-200">
+                                    <h4 class="font-medium text-gray-900">Marketing Intern</h4>
+                                    <p class="text-sm text-gray-600">ABC Corporation. • Sogod, Southern Leyte</p>
+                                </div>
+                                <div class="p-3">
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-4 h-4 flex items-center justify-center text-gray-500 mr-2">
+                                            <i class="ri-calendar-line"></i>
+                                        </div>
+                                        <span class="text-sm text-gray-700">3 months (Jun-Aug 2025)</span>
+                                    </div>
+                                    <div class="flex items-center mb-2">
+                                        <div class="w-4 h-4 flex items-center justify-center text-gray-500 mr-2">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        <span class="text-sm text-gray-700">Full-time, 40 hrs/week</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 flex items-center justify-center text-gray-500 mr-2">
+                                            <i class="ri-money-dollar-circle-line"></i>
+                                        </div>
+                                        <span class="text-sm text-gray-700">₱25/hour</span>
+                                    </div>
+                                </div>
+                                <div class="p-3 border-t border-gray-200 bg-gray-50">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-gray-500">Posted May 17, 2025</span>
+                                        <a href="/InternHub/preview.html" class="text-xs font-medium text-primary">View Full Details</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Publishing Checklist -->
+                        <div class="bg-white rounded shadow-sm p-4 mb-6">
+                            <h3 class="font-medium text-gray-900 mb-3">Publishing Checklist</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center text-green-500 mr-2">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Basic information complete</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center text-green-500 mr-2">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Internship details complete</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center text-green-500 mr-2">
+                                        <i class="ri-checkbox-circle-fill"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Application settings complete</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-5 h-5 flex items-center justify-center text-yellow-500 mr-2">
+                                        <i class="ri-error-warning-fill"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-700">Confirmation required</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="space-y-3">
+                            <button
+                            type="button"
+                            onclick="window.location.href='/InternHub/index.html';" 
+                            class="w-full py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap">Publish Internship</button>
+                            <button 
+                            type="button"
+                            onclick="window.location.href='/InternHub/index.html';"
+                            class="w-full py-3 border border-gray-300 text-gray-700 rounded-button font-medium whitespace-nowrap">Save as Draft</button>
+                            <a href="/InternHub/application.html" class="w-full py-3 text-center block text-gray-600 hover:text-primary text-sm">
+                                Back to Application Settings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Navigation Controls (Desktop Only) -->
+            <div class="hidden lg:flex justify-between mt-12 max-w-4xl">
+                <a href="/InternHub/application.html" class="px-6 py-3 border border-gray-300 rounded-button text-gray-700 font-medium flex items-center whitespace-nowrap">
+                    <div class="w-5 h-5 flex items-center justify-center mr-2">
+                        <i class="ri-arrow-left-line"></i>
+                    </div>
+                    Back to Application Settings
+                </a>
+                <div class="flex gap-4">
+                    <button
+                    type="button"
+                    onclick="window.location.href='/InternHub/index.html';" 
+                    class="px-6 py-3 border border-gray-300 rounded-button text-gray-700 font-medium whitespace-nowrap">Save as Draft</button>
+                    <button 
+                    type="button"
+                    onclick="window.location.href='/InternHub/index.html';"
+                    class="px-6 py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap">Publish Internship</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+<footer class="bg-gray-900 text-white pt-12 pb-8 mt-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+<div class="lg:col-span-2">
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">InternHub</a>
+<p class="text-gray-400 mb-6 max-w-md">Connecting talented students with meaningful internship opportunities across Southern Leyte and beyond. Start your career journey with us today.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-facebook-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-linkedin-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-instagram-fill ri-lg"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/browse_internships.html" class="text-gray-400 hover:text-white transition-colors">Browse Internships</a></li>
+<li><a href="/InternHub/profile.html" class="text-gray-400 hover:text-white transition-colors">Create Profile</a></li>
+<li><a href="/InternHub/track_application.html" class="text-gray-400 hover:text-white transition-colors">Application Status</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Resources</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/post_internships.html" class="text-gray-400 hover:text-white transition-colors">Post Internships</a></li>
+<li><a href="/InternHub/manage_applicant.html" class="text-gray-400 hover:text-white transition-colors">Browse Candidates</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing Plans</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Recruitment Tools</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Company</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/index.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Internship Platform. All rights reserved.</p>
+<div class="flex flex-wrap gap-4 text-sm text-gray-400">
+<a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+<a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+<a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+<a href="#" class="hover:text-white transition-colors">Accessibility</a>
+</div>
+</div>
+</div>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Section toggle functionality
+            const toggleButtons = document.querySelectorAll('.section-toggle');
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const sectionContent = this.closest('div').parentElement.nextElementSibling;
+                    this.classList.toggle('open');
+                    sectionContent.classList.toggle('open');
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Custom checkbox functionality
+            const checkboxes = document.querySelectorAll('.custom-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

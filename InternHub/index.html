@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InternHub - Find Your Perfect Internship in Southern Leyte</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#4F46E5", secondary: "#10B981" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Inter', sans-serif;
+      }
+      .hero-section {
+      background-image: url('https://readdy.ai/api/search-image?query=Professional%20modern%20office%20environment%20with%20soft%20natural%20light%20coming%20from%20large%20windows%2C%20empty%20workspace%20on%20the%20left%20side%20for%20text%2C%20and%20on%20the%20right%20side%20showing%20diverse%20young%20professionals%20collaborating%2C%20with%20a%20clean%20modern%20aesthetic%2C%20soft%20blue%20and%20white%20color%20palette%2C%20creating%20a%20professional%20yet%20welcoming%20atmosphere&width=1920&height=1080&seq=12345&orientation=landscape');
+      background-size: cover;
+      background-position: center;
+      }
+      .testimonial-card {
+      transition: all 0.3s ease;
+      }
+      .app-banner {
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      }
+      .app-banner.show {
+      transform: translateY(0);
+      }
+      input:focus {
+      outline: none;
+      }
+      .custom-checkbox {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 2px solid #d1d5db;
+      background-color: white;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      }
+      .custom-checkbox.checked {
+      background-color: #4F46E5;
+      border-color: #4F46E5;
+      }
+      .custom-checkbox.checked::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      }
+      html {
+            scroll-behavior: smooth;
+        }
+    </style>
+  </head>
+  <body class="bg-white">
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+      <div
+        class="container mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <div class="flex items-center">
+          <a href="#" class="text-2xl font-['Pacifico'] text-primary"
+            >InternHub</a
+          >
+        </div>
+        <nav class="hidden md:flex items-center space-x-8">
+          <a
+            href="#"
+            class="text-gray-900 font-medium hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a href="#section1" 
+          class="text-gray-600 hover:text-primary transition-colors"
+            >Success Stories</a
+          
+          >
+          <a href="#section2"  
+          class="text-gray-600 hover:text-primary transition-colors"
+            >Video Ads</a
+          
+          >
+          <a href="#section3"  
+          class="text-gray-600 hover:text-primary transition-colors"
+            >Career Journey</a
+          >
+          <a href="#section4"  
+          class="text-gray-600 hover:text-primary transition-colors"
+            >About Us</a
+          >
+        </nav>
+        <div class="flex items-center space-x-4">
+          <a
+            href="/InternHub/sign_in.html"
+            class="text-gray-700 font-medium hover:text-primary transition-colors whitespace-nowrap"
+          >
+            Sign In
+          </a>
+          <a
+            href="/InternHub/sign_up.html"
+            class="bg-primary text-white px-5 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-colors whitespace-nowrap"
+          >
+            Sign Up
+          </a>
+        </div>
+        <button
+          class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700"
+        >
+          <i class="ri-menu-line ri-lg"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero-section w-full min-h-screen pt-24 relative">
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"
+      ></div>
+      <div class="container mx-auto px-6 py-20 relative z-10">
+        <div class="w-full flex flex-col md:flex-row items-center">
+          <div class="w-full md:w-1/2 mb-12 md:mb-0">
+            <h1
+              class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6"
+            >
+              Find Your Perfect Internship in Southern Leyte
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 max-w-lg">
+              Connect with top companies through our AI-powered platform
+              designed specifically for fresh graduates and young professionals.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <button
+                type="button"
+                onclick="window.location.href='/InternHub/find_internships.html';"
+                class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-colors whitespace-nowrap"
+              >
+                Find Internships
+              </button>
+              <button
+                type="button"
+                onclick="window.location.href='/InternHub/post_internships.html';"
+                class="bg-white text-primary border border-primary px-8 py-3 !rounded-button font-medium hover:bg-gray-50 transition-colors whitespace-nowrap"
+              >
+                Post Internship
+              </button>
+            </div>
+            <div class="mt-10 flex items-center gap-6">
+              <div class="flex -space-x-2">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20Filipino%20woman%20with%20a%20friendly%20smile%2C%20business%20attire%2C%20neutral%20background%2C%20high%20quality%20portrait&width=100&height=100&seq=1001&orientation=squarish"
+                  alt="User"
+                  class="w-10 h-10 rounded-full border-2 border-white object-cover object-top"
+                />
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20Filipino%20man%20with%20glasses%2C%20business%20casual%20attire%2C%20neutral%20background%2C%20high%20quality%20portrait&width=100&height=100&seq=1002&orientation=squarish"
+                  alt="User"
+                  class="w-10 h-10 rounded-full border-2 border-white object-cover object-top"
+                />
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20Filipino%20woman%20with%20long%20hair%2C%20business%20professional%20attire%2C%20neutral%20background%2C%20high%20quality%20portrait&width=100&height=100&seq=1003&orientation=squarish"
+                  alt="User"
+                  class="w-10 h-10 rounded-full border-2 border-white object-cover object-top"
+                />
+              </div>
+              <p class="text-sm text-gray-600">
+                <span class="font-semibold">500+</span> graduates found
+                internships last month
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Why Choose InternHub
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Our platform is designed to make finding and securing internships in
+            Southern Leyte easier than ever before.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Feature 1 -->
+          <div
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
+            >
+              <i class="ri-ai-generate ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              AI-Powered Matching
+            </h3>
+            <p class="text-gray-600">
+              Our intelligent algorithm matches your skills and preferences with
+              the perfect internship opportunities in Southern Leyte.
+            </p>
+          </div>
+          <!-- Feature 2 -->
+          <div
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
+            >
+              <i class="ri-shield-check-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Verified Listings
+            </h3>
+            <p class="text-gray-600">
+              Every internship opportunity is verified by our team to ensure
+              legitimacy and quality, giving you peace of mind.
+            </p>
+          </div>
+          <!-- Feature 3 -->
+          <div
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
+            >
+              <i class="ri-global-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Centralized Platform
+            </h3>
+            <p class="text-gray-600">
+              Access all internship opportunities in Southern Leyte in one
+              place, saving you time and effort in your search.
+            </p>
+          </div>
+          <!-- Feature 4 -->
+          <div
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
+            >
+              <i class="ri-profile-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Detailed Profiles
+            </h3>
+            <p class="text-gray-600">
+              Create comprehensive profiles that showcase your skills,
+              education, and aspirations to potential employers.
+            </p>
+          </div>
+          <!-- Feature 5 -->
+          <div
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
+            >
+              <i class="ri-star-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Feedback System
+            </h3>
+            <p class="text-gray-600">
+              Get valuable feedback from employers and provide your own insights
+              about internship experiences.
+            </p>
+          </div>
+          <!-- Feature 6 -->
+          <div
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div
+              class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6"
+            >
+              <i class="ri-time-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-3">
+              Application Tracking
+            </h3>
+            <p class="text-gray-600">
+              Monitor all your applications in real-time and receive
+              notifications about their status.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- How It Works Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            How InternHub Works
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Four simple steps to find and secure your dream internship in
+            Southern Leyte.
+          </p>
+        </div>
+        <div class="relative">
+          <!-- Timeline line (desktop) -->
+          <div
+            class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -translate-y-1/2 z-0"
+          ></div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+            <!-- Step 1 -->
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-16 h-16 bg-white rounded-full border-2 border-primary flex items-center justify-center mb-6 shadow-sm"
+              >
+                <span class="text-xl font-bold text-primary">1</span>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-sm w-full">
+                <div
+                  class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="ri-user-add-line ri-lg text-primary"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                  Create Profile
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Sign up and build your comprehensive profile showcasing your
+                  skills and experience.
+                </p>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-16 h-16 bg-white rounded-full border-2 border-primary flex items-center justify-center mb-6 shadow-sm"
+              >
+                <span class="text-xl font-bold text-primary">2</span>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-sm w-full">
+                <div
+                  class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="ri-search-line ri-lg text-primary"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                  Discover Opportunities
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Browse verified internship listings or receive AI-matched
+                  recommendations.
+                </p>
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-16 h-16 bg-white rounded-full border-2 border-primary flex items-center justify-center mb-6 shadow-sm"
+              >
+                <span class="text-xl font-bold text-primary">3</span>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-sm w-full">
+                <div
+                  class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="ri-send-plane-line ri-lg text-primary"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                  Apply & Track
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Submit applications directly through our platform and track
+                  their status.
+                </p>
+              </div>
+            </div>
+            <!-- Step 4 -->
+            <div class="flex flex-col items-center text-center">
+              <div
+                class="w-16 h-16 bg-white rounded-full border-2 border-primary flex items-center justify-center mb-6 shadow-sm"
+              >
+                <span class="text-xl font-bold text-primary">4</span>
+              </div>
+              <div class="bg-white p-6 rounded-lg shadow-sm w-full">
+                <div
+                  class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <i class="ri-award-line ri-lg text-primary"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                  Start Your Internship
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  Secure your placement and begin your professional journey in
+                  Southern Leyte.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section id="section1"></section>
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Success Stories
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Hear from graduates who found their perfect internships through
+            InternHub.
+          </p>
+        </div>
+        <div class="testimonial-slider relative">
+          <div class="flex flex-col md:flex-row gap-8 overflow-hidden">
+            <!-- Testimonial 1 -->
+            <div
+              class="testimonial-card bg-white p-8 rounded-lg shadow-sm flex-shrink-0 w-full md:w-1/3"
+            >
+              <div class="flex items-center mb-6">
+                <div class="text-primary">
+                  <i class="ri-double-quotes-l ri-2x"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "InternHub completely transformed my job search. Within two
+                weeks of creating my profile, I secured an internship at one of
+                Southern Leyte's top tech companies. The AI matching was spot
+                on!"
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20Filipino%20woman%20with%20a%20confident%20smile%2C%20business%20casual%20attire%2C%20neutral%20background%2C%20high%20quality%20portrait&width=100&height=100&seq=2001&orientation=squarish"
+                  alt="Maria Santos"
+                  class="w-12 h-12 rounded-full mr-4 object-cover object-top"
+                />
+                <div>
+                  <h4 class="font-semibold text-gray-900">Maria Santos</h4>
+                  <p class="text-sm text-gray-500">
+                    Business Administration Intern at TechLeyte
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 2 -->
+            <div
+              class="testimonial-card bg-white p-8 rounded-lg shadow-sm flex-shrink-0 w-full md:w-1/3"
+            >
+              <div class="flex items-center mb-6">
+                <div class="text-primary">
+                  <i class="ri-double-quotes-l ri-2x"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "As a fresh graduate with limited connections, I was struggling
+                to find opportunities. InternHub's verified listings gave me
+                confidence, and their application tracking feature kept me
+                organized throughout my search."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20Filipino%20man%20with%20a%20friendly%20expression%2C%20business%20attire%2C%20neutral%20background%2C%20high%20quality%20portrait&width=100&height=100&seq=2002&orientation=squarish"
+                  alt="Carlo Mendoza"
+                  class="w-12 h-12 rounded-full mr-4 object-cover object-top"
+                />
+                <div>
+                  <h4 class="font-semibold text-gray-900">Carlo Mendoza</h4>
+                  <p class="text-sm text-gray-500">
+                    Marketing Intern at Southern Media Group
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- Testimonial 3 -->
+            <div
+              class="testimonial-card bg-white p-8 rounded-lg shadow-sm flex-shrink-0 w-full md:w-1/3"
+            >
+              <div class="flex items-center mb-6">
+                <div class="text-primary">
+                  <i class="ri-double-quotes-l ri-2x"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 mb-6">
+                "The detailed profiles on InternHub allowed me to showcase my
+                portfolio effectively. I received multiple internship offers
+                within a month and was able to choose the one that best aligned
+                with my career goals."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20young%20Filipino%20woman%20with%20glasses%2C%20business%20professional%20attire%2C%20neutral%20background%2C%20high%20quality%20portrait&width=100&height=100&seq=2003&orientation=squarish"
+                  alt="Jasmine Reyes"
+                  class="w-12 h-12 rounded-full mr-4 object-cover object-top"
+                />
+                <div>
+                  <h4 class="font-semibold text-gray-900">Jasmine Reyes</h4>
+                  <p class="text-sm text-gray-500">
+                    Finance Intern at Creative Solutions
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex justify-center mt-8">
+            <button class="w-3 h-3 rounded-full bg-primary mx-1"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-300 mx-1"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-300 mx-1"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Statistics Section -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <h3 class="text-4xl font-bold text-primary mb-2">500+</h3>
+            <p class="text-gray-600">Internships Available</p>
+          </div>
+          <div>
+            <h3 class="text-4xl font-bold text-primary mb-2">150+</h3>
+            <p class="text-gray-600">Partner Companies</p>
+          </div>
+          <div>
+            <h3 class="text-4xl font-bold text-primary mb-2">2,500+</h3>
+            <p class="text-gray-600">Successful Placements</p>
+          </div>
+          <div>
+            <h3 class="text-4xl font-bold text-primary mb-2">95%</h3>
+            <p class="text-gray-600">Satisfaction Rate</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Video Section -->
+    <section id="section2"></section>
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            See InternHub in Action
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Watch how our platform connects talented graduates with their dream
+            internships.
+          </p>
+        </div>
+        <div class="max-w-4xl mx-auto">
+          <div
+            class="relative aspect-video rounded-lg overflow-hidden shadow-lg"
+          >
+            <iframe
+              class="w-full h-full absolute inset-0"
+              src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+              title="InternHub Introduction"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 mx-auto"
+              >
+                <i class="ri-user-voice-line ri-lg text-primary"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">
+                Real Stories
+              </h3>
+              <p class="text-gray-600 text-center text-sm">
+                Hear from successful interns who found their path through
+                InternHub.
+              </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 mx-auto"
+              >
+                <i class="ri-guide-line ri-lg text-primary"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">
+                Platform Guide
+              </h3>
+              <p class="text-gray-600 text-center text-sm">
+                Learn how to make the most of InternHub's features and tools.
+              </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4 mx-auto"
+              >
+                <i class="ri-building-2-line ri-lg text-primary"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">
+                Partner Companies
+              </h3>
+              <p class="text-gray-600 text-center text-sm">
+                Discover the leading companies offering internships in Southern
+                Leyte.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Call to Action Section -->
+    <section id="section3"></section>
+    <section
+      class="py-20 bg-gradient-to-r from-primary to-secondary text-white"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+          Ready to Start Your Career Journey?
+        </h2>
+        <p class="text-xl mb-10 max-w-2xl mx-auto">
+          Join thousands of graduates who have found their perfect internship
+          opportunities in Southern Leyte.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <button
+          type="button"
+          onclick="window.location.href='/InternHub/profile.html';"
+            class="bg-white text-primary px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-colors whitespace-nowrap"
+          >
+            Create Your Profile
+          </button>
+          <button
+          type="button"
+          onclick="window.location.href='/InternHub/browse_internships.html';"
+            class="bg-transparent text-white border border-white px-8 py-3 !rounded-button font-medium hover:bg-white/10 transition-colors whitespace-nowrap"
+          >
+            Browse Internships
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            Stay Updated
+          </h2>
+          <p class="text-gray-600 mb-8">
+            Subscribe to our newsletter for the latest internship opportunities
+            and career tips.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <div class="relative flex-grow">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary"
+              />
+            </div>
+            <button
+              class="bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-colors whitespace-nowrap"
+            >
+              Subscribe
+            </button>
+          </div>
+          <div class="mt-4 flex items-center justify-center">
+            <div class="custom-checkbox" id="newsletter-checkbox"></div>
+            <label
+              for="newsletter-checkbox"
+              class="ml-2 text-sm text-gray-600 cursor-pointer"
+            >
+              I agree to receive email updates from InternHub
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Mobile App Banner -->
+    <div
+      class="app-banner fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 z-40"
+    >
+      <div class="container mx-auto flex items-center justify-between">
+        <div class="flex items-center">
+          <div
+            class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mr-4"
+          >
+            <i class="ri-smartphone-line ri-lg text-white"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-900">Get the InternHub App</h4>
+            <p class="text-sm text-gray-600">Apply for internships on the go</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button
+            class="bg-black text-white px-4 py-2 !rounded-button flex items-center"
+          >
+            <i class="ri-apple-fill mr-2"></i>
+            <span>iOS</span>
+          </button>
+          <button
+            class="bg-primary text-white px-4 py-2 !rounded-button flex items-center"
+          >
+            <i class="ri-android-fill mr-2"></i>
+            <span>Android</span>
+          </button>
+          <button
+            class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700"
+            id="close-app-banner"
+          >
+            <i class="ri-close-line ri-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <section id="section4"></section>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <!-- Company Info -->
+          <div>
+            <a
+              href="#"
+              class="text-2xl font-['Pacifico'] text-white mb-6 inline-block"
+              >InternHub</a
+            >
+            <p class="text-gray-400 mb-6">
+              Connecting talented graduates with quality internship
+              opportunities in Southern Leyte.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-facebook-fill text-white"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-twitter-x-fill text-white"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-instagram-fill text-white"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-linkedin-fill text-white"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Quick Links</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/InternHub/find_internships.html"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Find Internships</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/InternHub/post_internships.html"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Post Internship</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#section1" 
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Success Stories</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Resources -->
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Resources</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Resume Builder</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Interview Tips</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Career Advice</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Industry Insights</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >FAQ</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Contact -->
+          <div>
+            <h3 class="text-lg font-semibold mb-6">Contact Us</h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <div class="w-5 h-5 flex items-center justify-center mt-1 mr-3">
+                  <i class="ri-map-pin-line text-gray-400"></i>
+                </div>
+                <span class="text-gray-400"
+                  >San Isidro, Tomas Oppus, Southern Leyte,
+                  Philippines</span
+                >
+              </li>
+              <li class="flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                  <i class="ri-mail-line text-gray-400"></i>
+                </div>
+                <a
+                  href="mailto:info@internhub.ph"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >InternHub@gmail.com</a
+                >
+                <li class="flex items-center">
+                <div class="w-5 h-5 flex items-center justify-center mr-3">
+                  <i class="ri-phone-line text-gray-400"></i>
+                </div>
+                <a
+                  href="tel:+6391234567890"
+                  class="text-gray-400 hover:text-white transition-colors"
+                >
+                  +63 951 369 8850<br>
+                  +63 981 775 7041<br>
+                  +63 963 497 2171
+                </a>
+              </li>
+
+            </ul>
+          </div>
+        </div>
+        <hr class="border-gray-800 my-8" />
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-500 text-sm mb-4 md:mb-0">
+            &copy; 2025 InternHub. All rights reserved.
+          </p>
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-gray-500 text-sm hover:text-white transition-colors"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-gray-500 text-sm hover:text-white transition-colors"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-gray-500 text-sm hover:text-white transition-colors"
+              >Cookie Policy</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      
+      document.addEventListener("DOMContentLoaded", function () {
+        // Newsletter Checkbox
+        const checkbox = document.getElementById("newsletter-checkbox");
+        checkbox.addEventListener("click", function () {
+          this.classList.toggle("checked");
+        });
+      });
+    </script>
+  </body>
+</html>
