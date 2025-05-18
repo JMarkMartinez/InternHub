@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Internships | InternHub</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#10B981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .category-scroll::-webkit-scrollbar {
+            height: 4px;
+        }
+        .category-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .category-scroll::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        .carousel {
+            scroll-behavior: smooth;
+        }
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e5e7eb;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4F46E5;
+        }
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+        .custom-checkbox {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+        .custom-checkbox input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .checkbox-mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        .custom-checkbox input:checked ~ .checkbox-mark {
+            background-color: #4F46E5;
+            border-color: #4F46E5;
+        }
+        .checkbox-mark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .custom-checkbox input:checked ~ .checkbox-mark:after {
+            display: block;
+        }
+        .custom-checkbox .checkbox-mark:after {
+            left: 6px;
+            top: 2px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-radio {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+        .custom-radio input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .radio-mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+        .custom-radio input:checked ~ .radio-mark {
+            border-color: #4F46E5;
+        }
+        .radio-mark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .custom-radio input:checked ~ .radio-mark:after {
+            display: block;
+        }
+        .custom-radio .radio-mark:after {
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4F46E5;
+        }
+        .pagination-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            transition: all 0.3s ease;
+        }
+        .pagination-dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background-color: #4F46E5;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-['Pacifico'] text-primary">InternHub</a>
+            </div>
+            
+            <nav class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-8">
+                <a href="/InternHub/index.html" class="text-gray-600 hover:text-primary font-medium">Home</a>
+                <a href="/InternHub/profile.html" class="text-gray-600 hover:text-primary font-medium">Profile</a>
+                <a href="/InternHub/browse_internships.html" class="text-primary font-medium border-b-2 border-primary pb-1">Browse Internships</a>
+            </nav>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="border-t border-gray-100 py-3 px-4 bg-white">
+            <div class="container mx-auto">
+                <div class="relative max-w-3xl mx-auto">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-search-line text-gray-400"></i>
+                        </div>
+                    </div>
+                    <input type="text" placeholder="Search for internships, companies, or keywords..." class="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
+                    <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-white px-4 py-2 rounded-button text-sm font-medium whitespace-nowrap">Search</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-6">
+        <!-- Category Quick Filters -->
+        <section class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold text-gray-800">Browse by Category</h2>
+            </div>
+            
+            <div class="category-scroll overflow-x-auto pb-2">
+                <div class="flex space-x-4 min-w-max">
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 w-48 hover:shadow-md transition cursor-pointer">
+                        <div class="w-10 h-10 flex items-center justify-center bg-blue-50 text-primary rounded-full mb-3">
+                            <i class="ri-code-s-line ri-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-800">Technology</h3>
+                        <p class="text-sm text-gray-500 mt-1">248 internships</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 w-48 hover:shadow-md transition cursor-pointer">
+                        <div class="w-10 h-10 flex items-center justify-center bg-green-50 text-secondary rounded-full mb-3">
+                            <i class="ri-line-chart-line ri-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-800">Finance</h3>
+                        <p class="text-sm text-gray-500 mt-1">186 internships</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 w-48 hover:shadow-md transition cursor-pointer">
+                        <div class="w-10 h-10 flex items-center justify-center bg-purple-50 text-purple-500 rounded-full mb-3">
+                            <i class="ri-megaphone-line ri-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-800">Marketing</h3>
+                        <p class="text-sm text-gray-500 mt-1">173 internships</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 w-48 hover:shadow-md transition cursor-pointer">
+                        <div class="w-10 h-10 flex items-center justify-center bg-orange-50 text-orange-500 rounded-full mb-3">
+                            <i class="ri-pencil-ruler-2-line ri-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-800">Design</h3>
+                        <p class="text-sm text-gray-500 mt-1">142 internships</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 w-48 hover:shadow-md transition cursor-pointer">
+                        <div class="w-10 h-10 flex items-center justify-center bg-red-50 text-red-500 rounded-full mb-3">
+                            <i class="ri-heart-pulse-line ri-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-800">Healthcare</h3>
+                        <p class="text-sm text-gray-500 mt-1">128 internships</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 w-48 hover:shadow-md transition cursor-pointer">
+                        <div class="w-10 h-10 flex items-center justify-center bg-yellow-50 text-yellow-500 rounded-full mb-3">
+                            <i class="ri-government-line ri-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-800">Legal</h3>
+                        <p class="text-sm text-gray-500 mt-1">97 internships</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 w-48 hover:shadow-md transition cursor-pointer">
+                        <div class="w-10 h-10 flex items-center justify-center bg-indigo-50 text-indigo-500 rounded-full mb-3">
+                            <i class="ri-building-line ri-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-gray-800">Real Estate</h3>
+                        <p class="text-sm text-gray-500 mt-1">86 internships</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Internships Carousel -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-semibold text-gray-800">Featured Internships</h2>
+                <div class="flex space-x-2">
+                    <button id="prev-slide" class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50">
+                        <i class="ri-arrow-left-s-line"></i>
+                    </button>
+                    <button id="next-slide" class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <div id="carousel" class="carousel flex overflow-x-scroll gap-5 pb-2 hide-scrollbar">
+                    <!-- Carousel Item 1 -->
+                    <div class="min-w-[300px] bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden flex-shrink-0">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
+                                    <img src="https://readdy.ai/api/search-image?query=environmental%20company%20logo%2C%20sustainability%2C%20green%2C%20eco-friendly%2C%20leaf&width=100&height=100&seq=comp10&orientation=squarish" alt="EcoSolutions" class="w-12 h-12 object-contain">
+                                </div>
+                                <span class="bg-secondary bg-opacity-10 text-secondary text-xs font-medium px-2 py-1 rounded-full">Featured</span>
+                            </div>
+                            <h3 class="font-semibold text-gray-800 mb-1">Business Administration Intern</h3>
+                            <p class="text-sm text-gray-500 mb-3">EcoSolutions Group.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Full-time</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">3 months</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Remote</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                Maasin City, Southern Leyte
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Item 2 -->
+                    <div class="min-w-[300px] bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden flex-shrink-0">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
+                                    <img src="https://readdy.ai/api/search-image?query=finance%20company%20logo%2C%20professional%2C%20corporate%2C%20green%20and%20gray%20colors%2C%20minimalist&width=100&height=100&seq=logo2&orientation=squarish" alt="FinEdge" class="w-10 h-10 object-contain">
+                                </div>
+                                <span class="bg-secondary bg-opacity-10 text-secondary text-xs font-medium px-2 py-1 rounded-full">Featured</span>
+                            </div>
+                            <h3 class="font-semibold text-gray-800 mb-1">Financial Analyst Intern</h3>
+                            <p class="text-sm text-gray-500 mb-3">FinEdge Solutions</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Part-time</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">6 months</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">On-site</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                Sogod, Southern Leyte
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Item 3 -->
+                    <div class="min-w-[300px] bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden flex-shrink-0">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
+                                    <img src="https://readdy.ai/api/search-image?query=creative%20marketing%20agency%20logo%2C%20colorful%2C%20modern%2C%20purple%20and%20orange%2C%20brand%20identity&width=100&height=100&seq=logo3&orientation=squarish" alt="CreativeEdge" class="w-10 h-10 object-contain">
+                                </div>
+                                <span class="bg-secondary bg-opacity-10 text-secondary text-xs font-medium px-2 py-1 rounded-full">Featured</span>
+                            </div>
+                            <h3 class="font-semibold text-gray-800 mb-1">Digital Marketing Intern</h3>
+                            <p class="text-sm text-gray-500 mb-3">CreativeEdge Marketing</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Full-time</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">4 months</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Hybrid</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                Liloan, Southern Leyte
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Item 4 -->
+                    <div class="min-w-[300px] bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden flex-shrink-0">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
+                                    <img src="https://readdy.ai/api/search-image?query=healthcare%20company%20logo%2C%20medical%2C%20professional%2C%20blue%20and%20teal%2C%20clean%20design&width=100&height=100&seq=logo4&orientation=squarish" alt="MediCare" class="w-10 h-10 object-contain">
+                                </div>
+                                <span class="bg-secondary bg-opacity-10 text-secondary text-xs font-medium px-2 py-1 rounded-full">Featured</span>
+                            </div>
+                            <h3 class="font-semibold text-gray-800 mb-1">Healthcare Administration Intern</h3>
+                            <p class="text-sm text-gray-500 mb-3">MediCare Solutions</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Full-time</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">6 months</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">On-site</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                Hinunangan, Southern Leyte
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Item 5 -->
+                    <div class="min-w-[300px] bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden flex-shrink-0">
+                        <div class="p-5">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
+                                    <img src="https://readdy.ai/api/search-image?query=design%20studio%20logo%2C%20creative%2C%20artistic%2C%20orange%20and%20black%2C%20modern&width=100&height=100&seq=logo5&orientation=squarish" alt="DesignHub" class="w-10 h-10 object-contain">
+                                </div>
+                                <span class="bg-secondary bg-opacity-10 text-secondary text-xs font-medium px-2 py-1 rounded-full">Featured</span>
+                            </div>
+                            <h3 class="font-semibold text-gray-800 mb-1">UI/UX Design Intern</h3>
+                            <p class="text-sm text-gray-500 mb-3">DesignHub Studio</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Part-time</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">3 months</span>
+                                <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Remote</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                Saint Bernard, Southern Leyte
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination Dots -->
+                <div class="flex justify-center items-center space-x-2 mt-4">
+                    <div class="pagination-dot active" data-index="0"></div>
+                    <div class="pagination-dot" data-index="1"></div>
+                    <div class="pagination-dot" data-index="2"></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Browse by Company -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold text-gray-800">Browse by Company</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=modern%20tech%20company%20logo%2C%20minimalist%20design%2C%20blue%20and%20white%2C%20professional%2C%20corporate%20identity&width=100&height=100&seq=comp1&orientation=squarish" alt="TechVision" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">TechVision Inc.</h3>
+                    <p class="text-xs text-gray-500 mt-1">24 internships</p>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=finance%20company%20logo%2C%20professional%2C%20corporate%2C%20green%20and%20gray%20colors%2C%20minimalist&width=100&height=100&seq=comp2&orientation=squarish" alt="FinEdge" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">FinEdge Solutions</h3>
+                    <p class="text-xs text-gray-500 mt-1">18 internships</p>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=creative%20marketing%20agency%20logo%2C%20colorful%2C%20modern%2C%20purple%20and%20orange%2C%20brand%20identity&width=100&height=100&seq=comp3&orientation=squarish" alt="CreativeEdge" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">CreativeEdge Marketing</h3>
+                    <p class="text-xs text-gray-500 mt-1">15 internships</p>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=healthcare%20company%20logo%2C%20medical%2C%20professional%2C%20blue%20and%20teal%2C%20clean%20design&width=100&height=100&seq=comp4&orientation=squarish" alt="MediCare" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">MediCare Solutions</h3>
+                    <p class="text-xs text-gray-500 mt-1">12 internships</p>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=design%20studio%20logo%2C%20creative%2C%20artistic%2C%20orange%20and%20black%2C%20modern&width=100&height=100&seq=comp5&orientation=squarish" alt="DesignHub" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">DesignHub Studio</h3>
+                    <p class="text-xs text-gray-500 mt-1">9 internships</p>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=legal%20firm%20logo%2C%20professional%2C%20blue%20and%20gold%2C%20elegant%2C%20corporate&width=100&height=100&seq=comp6&orientation=squarish" alt="LexAdvise" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">LexAdvise Partners</h3>
+                    <p class="text-xs text-gray-500 mt-1">8 internships</p>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=education%20company%20logo%2C%20academic%2C%20blue%20and%20red%2C%20professional%2C%20learning&width=100&height=100&seq=comp7&orientation=squarish" alt="EduSphere" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">EduSphere Academy</h3>
+                    <p class="text-xs text-gray-500 mt-1">11 internships</p>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=real%20estate%20company%20logo%2C%20property%2C%20home%2C%20professional%2C%20blue%20and%20green&width=100&height=100&seq=comp8&orientation=squarish" alt="PropertyPlus" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">PropertyPlus Realty</h3>
+                    <p class="text-xs text-gray-500 mt-1">7 internships</p>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=hospitality%20company%20logo%2C%20hotel%2C%20travel%2C%20luxury%2C%20gold%20and%20black&width=100&height=100&seq=comp9&orientation=squarish" alt="LuxStay" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">LuxStay Hospitality</h3>
+                    <p class="text-xs text-gray-500 mt-1">6 internships</p>
+                </div>
+                
+                <div class="bg-white rounded-lg border border-gray-100 shadow-sm p-4 flex flex-col items-center justify-center hover:shadow-md transition cursor-pointer h-32">
+                    <div class="w-16 h-16 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mb-3">
+                        <img src="https://readdy.ai/api/search-image?query=environmental%20company%20logo%2C%20sustainability%2C%20green%2C%20eco-friendly%2C%20leaf&width=100&height=100&seq=comp10&orientation=squarish" alt="EcoSolutions" class="w-12 h-12 object-contain">
+                    </div>
+                    <h3 class="font-medium text-gray-800 text-center">EcoSolutions Group</h3>
+                    <p class="text-xs text-gray-500 mt-1">5 internships</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Browse by Location -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold text-gray-800">Browse by Location</h2>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Map -->
+                <div class="w-full md:w-1/2 h-80 bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden relative">
+                    <div class="absolute inset-0" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-position: center; background-size: cover;"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-white/80 to-transparent"></div>
+                    <div class="absolute top-4 left-4 right-4 bottom-4 flex flex-col justify-between">
+                        <h3 class="text-lg font-semibold text-gray-800">Southern Leyte</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="bg-white text-gray-700 text-sm px-3 py-1 rounded-full shadow-sm hover:bg-gray-50 whitespace-nowrap">Maasin City</button>
+                            <button class="bg-white text-gray-700 text-sm px-3 py-1 rounded-full shadow-sm hover:bg-gray-50 whitespace-nowrap">Sogod</button>
+                            <button class="bg-white text-gray-700 text-sm px-3 py-1 rounded-full shadow-sm hover:bg-gray-50 whitespace-nowrap">Liloan</button>
+                            <button class="bg-white text-gray-700 text-sm px-3 py-1 rounded-full shadow-sm hover:bg-gray-50 whitespace-nowrap">Saint Bernard</button>
+                            <button class="bg-white text-gray-700 text-sm px-3 py-1 rounded-full shadow-sm hover:bg-gray-50 whitespace-nowrap">Hinunangan</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Location Cards -->
+                <div class="w-full md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer">
+                        <div class="h-32 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=beautiful%20cityscape%20of%20Maasin%20City%2C%20Southern%20Leyte%2C%20Philippines%2C%20coastal%20town%2C%20mountains%20in%20background%2C%20sunny%20day%2C%20vibrant%20colors&width=400&height=200&seq=loc1&orientation=landscape" alt="Maasin City" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800">Maasin City</h3>
+                            <p class="text-sm text-gray-500 mt-1">86 internships available</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer">
+                        <div class="h-32 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=scenic%20view%20of%20Sogod%2C%20Southern%20Leyte%2C%20Philippines%2C%20bay%20area%2C%20mountains%2C%20tropical%20setting%2C%20clear%20blue%20sky&width=400&height=200&seq=loc2&orientation=landscape" alt="Sogod" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800">Sogod</h3>
+                            <p class="text-sm text-gray-500 mt-1">64 internships available</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer">
+                        <div class="h-32 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=beautiful%20coastal%20view%20of%20Liloan%2C%20Southern%20Leyte%2C%20Philippines%2C%20port%20area%2C%20boats%2C%20tropical%20scenery%2C%20sunny%20weather&width=400&height=200&seq=loc3&orientation=landscape" alt="Liloan" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800">Liloan</h3>
+                            <p class="text-sm text-gray-500 mt-1">42 internships available</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer">
+                        <div class="h-32 overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=scenic%20landscape%20of%20Saint%20Bernard%2C%20Southern%20Leyte%2C%20Philippines%2C%20mountains%2C%20greenery%2C%20rural%20town%2C%20tropical%20setting&width=400&height=200&seq=loc4&orientation=landscape" alt="Saint Bernard" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-gray-800">Saint Bernard</h3>
+                            <p class="text-sm text-gray-500 mt-1">38 internships available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- AI Recommendations -->
+        <section class="mb-12 rounded-xl overflow-hidden">
+            <div class="bg-gradient-to-r from-primary/90 to-primary p-6 md:p-8">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="w-full md:w-1/3">
+                        <h2 class="text-xl font-semibold text-white mb-3">Personalized Recommendations</h2>
+                        <p class="text-white/80 mb-4">Based on your profile, skills, and preferences, we've found these internships that might be perfect for you.</p>
+                        <div class="bg-white/10 rounded-lg p-4 mb-4">
+                            <h3 class="text-white font-medium mb-2">How it works</h3>
+                            <ul class="text-white/80 text-sm space-y-2">
+                                <li class="flex items-start">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-2 mt-0.5">
+                                        <i class="ri-check-line text-secondary"></i>
+                                    </div>
+                                    We analyze your skills and experience
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-2 mt-0.5">
+                                        <i class="ri-check-line text-secondary"></i>
+                                    </div>
+                                    Match with relevant internships
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="w-5 h-5 flex items-center justify-center mr-2 mt-0.5">
+                                        <i class="ri-check-line text-secondary"></i>
+                                    </div>
+                                    Personalized match score for each opportunity
+                                </li>
+                            </ul>
+                        </div>
+                        <button
+                        type="button"
+                        onclick="window.location.href='/InternHub/profile.html';"
+                        class="bg-white text-primary font-medium py-2 px-4 rounded-button hover:bg-gray-100 transition whitespace-nowrap">Update Preferences</button>
+                    </div>
+                    
+                    <div class="w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div class="w-10 h-10 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
+                                        <img src="https://readdy.ai/api/search-image?query=environmental%20company%20logo%2C%20sustainability%2C%20green%2C%20eco-friendly%2C%20leaf&width=100&height=100&seq=comp10&orientation=squarish" alt="EcoSolutions" class="w-12 h-12 object-contain">
+                                    </div>
+                                    <div class="flex items-center bg-primary/10 text-primary text-xs font-medium px-2 py-1 rounded-full">
+                                        <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                            <i class="ri-award-line"></i>
+                                        </div>
+                                        94% Match
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold text-gray-800 mb-1">Business Administration Intern</h3>
+                                <p class="text-sm text-gray-500 mb-3">EcoSolutions Group.</p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Canva</span>
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Adobe</span>
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Excel</span>
+                                </div>
+                                <div class="flex items-center text-xs text-gray-500 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-map-pin-line"></i>
+                                    </div>
+                                    Maasin City • Remote • 3 months
+                                </div>
+                                <button
+                                type="button"
+                                onclick="window.location.href='/InternHub/internship_detail.html';" 
+                                class="w-full bg-primary text-white py-2 rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div class="w-10 h-10 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
+                                        <img src="https://readdy.ai/api/search-image?query=design%20studio%20logo%2C%20creative%2C%20artistic%2C%20orange%20and%20black%2C%20modern&width=100&height=100&seq=rec2&orientation=squarish" alt="DesignHub" class="w-8 h-8 object-contain">
+                                    </div>
+                                    <div class="flex items-center bg-primary/10 text-primary text-xs font-medium px-2 py-1 rounded-full">
+                                        <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                            <i class="ri-award-line"></i>
+                                        </div>
+                                        89% Match
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold text-gray-800 mb-1">UI/UX Design Intern</h3>
+                                <p class="text-sm text-gray-500 mb-3">DesignHub Studio</p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Figma</span>
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">UI Design</span>
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Prototyping</span>
+                                </div>
+                                <div class="flex items-center text-xs text-gray-500 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-map-pin-line"></i>
+                                    </div>
+                                    Saint Bernard • Remote • 3 months
+                                </div>
+                                <button
+                                type="button"
+                                onclick="window.location.href='/InternHub/internship_detail.html';" 
+                                class="w-full bg-primary text-white py-2 rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div class="w-10 h-10 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
+                                        <img src="https://readdy.ai/api/search-image?query=creative%20marketing%20agency%20logo%2C%20colorful%2C%20modern%2C%20purple%20and%20orange%2C%20brand%20identity&width=100&height=100&seq=rec3&orientation=squarish" alt="CreativeEdge" class="w-8 h-8 object-contain">
+                                    </div>
+                                    <div class="flex items-center bg-primary/10 text-primary text-xs font-medium px-2 py-1 rounded-full">
+                                        <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                            <i class="ri-award-line"></i>
+                                        </div>
+                                        82% Match
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold text-gray-800 mb-1">Social Media Marketing Intern</h3>
+                                <p class="text-sm text-gray-500 mb-3">CreativeEdge Marketing</p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Social Media</span>
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Content</span>
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Analytics</span>
+                                </div>
+                                <div class="flex items-center text-xs text-gray-500 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-map-pin-line"></i>
+                                    </div>
+                                    Liloan • Hybrid • 4 months
+                                </div>
+                                <button 
+                                type="button"
+                                onclick="window.location.href='/InternHub/internship_detail.html';"
+                                class="w-full bg-primary text-white py-2 rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap">View Details</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-3">
+                                    <div class="w-10 h-10 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden">
+                                        <img src="https://readdy.ai/api/search-image?query=education%20company%20logo%2C%20academic%2C%20blue%20and%20red%2C%20professional%2C%20learning&width=100&height=100&seq=rec4&orientation=squarish" alt="EduSphere" class="w-8 h-8 object-contain">
+                                    </div>
+                                    <div class="flex items-center bg-primary/10 text-primary text-xs font-medium px-2 py-1 rounded-full">
+                                        <div class="w-3 h-3 flex items-center justify-center mr-1">
+                                            <i class="ri-award-line"></i>
+                                        </div>
+                                        78% Match
+                                    </div>
+                                </div>
+                                <h3 class="font-semibold text-gray-800 mb-1">Educational Content Developer</h3>
+                                <p class="text-sm text-gray-500 mb-3">EduSphere Academy</p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Content</span>
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Education</span>
+                                    <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">Writing</span>
+                                </div>
+                                <div class="flex items-center text-xs text-gray-500 mb-4">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                        <i class="ri-map-pin-line"></i>
+                                    </div>
+                                    Sogod • On-site • 6 months
+                                </div>
+                                <button
+                                 type="button"
+                                 onclick="window.location.href='/InternHub/internship_detail.html';"
+                                class="w-full bg-primary text-white py-2 rounded-button font-medium hover:bg-primary/90 transition whitespace-nowrap">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Internships Closing Soon -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold text-gray-800">Internships Closing Soon</h2>
+            </div>
+            
+            <div class="bg-white rounded-lg border border-gray-100 shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Position</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Closing Date</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mr-3">
+                                            <img src="https://readdy.ai/api/search-image?query=modern%20tech%20company%20logo%2C%20minimalist%20design%2C%20blue%20and%20white%2C%20professional%2C%20corporate%20identity&width=100&height=100&seq=close1&orientation=squarish" alt="TechVision" class="w-6 h-6 object-contain">
+                                        </div>
+                                        <span class="font-medium text-gray-800">TechVision Inc.</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Backend Developer Intern</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Maasin City, Remote</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-1 text-red-500">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        <span class="text-sm text-red-500 font-medium">2 days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    <button
+                                    type="button"
+                                    onclick="window.location.href='/InternHub/index.html';" 
+                                    class="bg-primary text-white px-3 py-1 rounded-button text-sm font-medium hover:bg-primary/90 transition whitespace-nowrap">Apply Now</button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mr-3">
+                                            <img src="https://readdy.ai/api/search-image?query=finance%20company%20logo%2C%20professional%2C%20corporate%2C%20green%20and%20gray%20colors%2C%20minimalist&width=100&height=100&seq=close2&orientation=squarish" alt="FinEdge" class="w-6 h-6 object-contain">
+                                        </div>
+                                        <span class="font-medium text-gray-800">FinEdge Solutions</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Financial Analyst Intern</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Sogod, On-site</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-1 text-red-500">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        <span class="text-sm text-red-500 font-medium">3 days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    <button
+                                     type="button"
+                                    onclick="window.location.href='/InternHub/index.html';"  
+                                    class="bg-primary text-white px-3 py-1 rounded-button text-sm font-medium hover:bg-primary/90 transition whitespace-nowrap">Apply Now</button>
+                                </td>
+                            </tr>
+                            
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center overflow-hidden mr-3">
+                                            <img src="https://readdy.ai/api/search-image?query=creative%20marketing%20agency%20logo%2C%20colorful%2C%20modern%2C%20purple%20and%20orange%2C%20brand%20identity&width=100&height=100&seq=close3&orientation=squarish" alt="CreativeEdge" class="w-6 h-6 object-contain">
+                                        </div>
+                                        <span class="font-medium text-gray-800">CreativeEdge Marketing</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Content Writer Intern</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Liloan, Hybrid</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-4 h-4 flex items-center justify-center mr-1 text-red-500">
+                                            <i class="ri-time-line"></i>
+                                        </div>
+                                        <span class="text-sm text-red-500 font-medium">4 days left</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    <button
+                                     type="button"
+                                    onclick="window.location.href='/InternHub/index.html';"  
+                                    class="bg-primary text-white px-3 py-1 rounded-button text-sm font-medium hover:bg-primary/90 transition whitespace-nowrap">Apply Now</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+<footer class="bg-gray-900 text-white pt-12 pb-8 mt-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+<div class="lg:col-span-2">
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">InternHub</a>
+<p class="text-gray-400 mb-6 max-w-md">Connecting talented students with meaningful internship opportunities across Southern Leyte and beyond. Start your career journey with us today.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-facebook-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-linkedin-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-instagram-fill ri-lg"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/browse_internships.html" class="text-gray-400 hover:text-white transition-colors">Browse Internships</a></li>
+<li><a href="/InternHub/profile.html" class="text-gray-400 hover:text-white transition-colors">Create Profile</a></li>
+<li><a href="/InternHub/track_application.html" class="text-gray-400 hover:text-white transition-colors">Application Status</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Resources</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/post_internships.html" class="text-gray-400 hover:text-white transition-colors">Post Internships</a></li>
+<li><a href="/InternHub/manage_applicant.html" class="text-gray-400 hover:text-white transition-colors">Browse Candidates</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing Plans</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Recruitment Tools</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Company</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/index.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Internship Platform. All rights reserved.</p>
+<div class="flex flex-wrap gap-4 text-sm text-gray-400">
+<a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+<a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+<a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+<a href="#" class="hover:text-white transition-colors">Accessibility</a>
+</div>
+</div>
+</div>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carousel functionality
+            const carousel = document.getElementById('carousel');
+            const prevBtn = document.getElementById('prev-slide');
+            const nextBtn = document.getElementById('next-slide');
+            const carouselItems = carousel.querySelectorAll('div.min-w-[300px]');
+            const paginationDots = document.querySelectorAll('.pagination-dot');
+            
+            let currentIndex = 0;
+            const itemsPerView = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+            const totalGroups = Math.ceil(carouselItems.length / itemsPerView);
+            
+            function updateCarousel() {
+                const itemWidth = carouselItems[0].offsetWidth;
+                const gap = 20; // This should match the gap-5 class (5 * 4px)
+                const scrollAmount = currentIndex * (itemWidth + gap) * itemsPerView;
+                carousel.scrollLeft = scrollAmount;
+                
+                // Update pagination dots
+                paginationDots.forEach((dot, index) => {
+                    if (index === Math.floor(currentIndex / itemsPerView)) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentIndex < Math.ceil(carouselItems.length / itemsPerView) - 1) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+            
+            paginationDots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+            
+            // Auto-scroll carousel
+            let autoScrollInterval = setInterval(() => {
+                if (currentIndex < Math.ceil(carouselItems.length / itemsPerView) - 1) {
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                updateCarousel();
+            }, 5000);
+            
+            // Pause auto-scroll on hover
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(autoScrollInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', () => {
+                autoScrollInterval = setInterval(() => {
+                    if (currentIndex < Math.ceil(carouselItems.length / itemsPerView) - 1) {
+                        currentIndex++;
+                    } else {
+                        currentIndex = 0;
+                    }
+                    updateCarousel();
+                }, 5000);
+            });
+            
+            // Initialize
+            updateCarousel();
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                const newItemsPerView = window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+                if (newItemsPerView !== itemsPerView) {
+                    currentIndex = 0;
+                    updateCarousel();
+                }
+            });
+            
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Posting Preview</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4f46e5',secondary:'#6366f1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Return Button -->
+    <div class="fixed top-6 left-6 z-50">
+        <a href="/InternHub/browse_internships.html" 
+        class="flex items-center px-4 py-2 bg-white shadow-md rounded-button text-gray-700 hover:text-primary transition-colors">
+            <div class="w-5 h-5 flex items-center justify-center mr-2">
+                <i class="ri-arrow-left-line"></i>
+            </div>
+            <span class="font-medium">Return to Browse</span>
+        </a>
+    </div>
+
+    <!-- Company Header -->
+    <header class="bg-white shadow-sm pt-20 md:pt-24">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">Role</h1>
+                        <div class="flex items-center mt-1">
+                            <span class="text-gray-700">Company Name.</span>
+                            <span class="mx-2 text-gray-400">•</span>
+                            <div class="flex items-center text-gray-700">
+                                <div class="w-4 h-4 flex items-center justify-center mr-1">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                Maasin City, Southern Leyte
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </header>
+
+    <!-- Quick Stats Bar -->
+    <div class="bg-gray-50 border-y border-gray-200">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex flex-wrap justify-between">
+                <div class="flex items-center mr-6 mb-2 md:mb-0">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <div class="w-5 h-5 flex items-center justify-center text-primary">
+                            <i class="ri-calendar-line"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Duration</p>
+                        <p class="font-medium text-gray-900">3 months</p>
+                    </div>
+                </div>
+                <div class="flex items-center mr-6 mb-2 md:mb-0">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <div class="w-5 h-5 flex items-center justify-center text-primary">
+                            <i class="ri-time-line"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Schedule</p>
+                        <p class="font-medium text-gray-900">Full-time</p>
+                    </div>
+                </div>
+                <div class="flex items-center mr-6 mb-2 md:mb-0">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <div class="w-5 h-5 flex items-center justify-center text-primary">
+                            <i class="ri-money-dollar-circle-line"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Compensation</p>
+                        <p class="font-medium text-gray-900">₱25/hour</p>
+                    </div>
+                </div>
+                <div class="flex items-center mb-2 md:mb-0">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
+                        <div class="w-5 h-5 flex items-center justify-center text-primary">
+                            <i class="ri-timer-line"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Application Deadline</p>
+                        <p class="font-medium text-gray-900">May 31, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Apply Button (Sticky on Mobile) -->
+            <div class="md:hidden sticky top-0 z-40 bg-white shadow-md p-4 mb-6 -mx-4">
+                <button class="w-full py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap hover:bg-primary/90 transition-colors">Apply Now</button>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Main Content Column -->
+                <div class="md:col-span-2">
+                    <!-- Company Overview -->
+                    <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Company Overview</h2>
+                        <p class="text-gray-700 mb-4">
+                            TechVision Inc. is a leading technology company specializing in innovative digital products and solutions. We are dedicated to creating intuitive, user-friendly experiences that solve real-world problems through thoughtful design and cutting-edge technology.
+                        </p>
+                        <p class="text-gray-700">
+                            Our collaborative work environment encourages creativity, experimentation, and continuous learning. We value diverse perspectives and believe that the best products come from teams with varied backgrounds and experiences. As an intern at TechVision, you'll be immersed in our vibrant culture and have the opportunity to contribute to meaningful projects from day one.(Place Holder)
+                        </p>
+                    </section>
+
+                    <!-- Role Description -->
+                    <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Role Description</h2>
+                        <p class="text-gray-700 mb-4">
+                            As a UX/UI Design Intern at TechVision, you will work closely with our product design team to create intuitive and engaging user experiences for our digital products. You'll participate in the entire design process from research and wireframing to prototyping and user testing.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            This internship offers hands-on experience in a fast-paced tech environment, providing valuable industry exposure and mentorship from experienced designers.(Place Holder)
+                        </p>
+                        <h3 class="text-lg font-semibold text-gray-900 mt-5 mb-3">Key Responsibilities:</h3>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Collaborate with product managers and developers to understand user needs and project requirements</li>
+                            <li>Create wireframes, mockups, and interactive prototypes for web and mobile applications</li>
+                            <li>Conduct user research and usability testing to validate design decisions</li>
+                            <li>Design user interface elements, components, and visual assets</li>
+                            <li>Participate in design reviews and incorporate feedback into your work</li>
+                            <li>Document design decisions and maintain design systems</li>
+                        </ul>
+                    </section>
+                    <!-- Requirements -->
+                    <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Requirements</h2>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Currently pursuing a degree in Design, Human-Computer Interaction, or related field</li>
+                            <li>Proficiency in design tools (Figma, Adobe XD)</li>
+                            <li>Basic understanding of UI/UX principles and design thinking</li>
+                            <li>Strong communication and collaboration skills</li>
+                            <li>Portfolio demonstrating creative thinking and design skills</li>
+                            <li>Ability to receive constructive feedback and iterate on designs</li>
+                            <li>Interest in technology and digital product design</li>
+                        </ul>
+                        
+                        <h3 class="text-lg font-semibold text-gray-900 mt-5 mb-3">Nice to Have:</h3>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>Experience with HTML/CSS</li>
+                            <li>Knowledge of accessibility standards</li>
+                            <li>Understanding of design systems</li>
+                            <li>Experience with animation or motion design</li>
+                        </ul>
+                    </section>
+                    <!-- Benefits -->
+                    <section class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Benefits</h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary">
+                                        <i class="ri-money-dollar-circle-line"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Competitive Pay</h3>
+                                    <p class="text-gray-700 text-sm">₱25/hour plus transportation allowance</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary">
+                                        <i class="ri-home-office-line"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Flexible Work</h3>
+                                    <p class="text-gray-700 text-sm">3 days in office, 2 days remote</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary">
+                                        <i class="ri-user-star-line"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Mentorship</h3>
+                                    <p class="text-gray-700 text-sm">Direct guidance from senior designers</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-5 h-5 flex items-center justify-center text-primary">
+                                        <i class="ri-graduation-cap-line"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900">Learning Opportunities</h3>
+                                    <p class="text-gray-700 text-sm">Professional development workshops</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <div class="flex items-start">
+                                <div class="w-5 h-5 flex items-center justify-center text-primary mr-2 mt-0.5">
+                                    <i class="ri-lightbulb-line"></i>
+                                </div>
+                                <p class="text-gray-700 text-sm">
+                                    Outstanding performers may be considered for full-time employment opportunities after the internship period.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Application Process -->
+                    <section class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4">Application Process</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">1</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Submit Application</h3>
+                                    <p class="text-gray-700 text-sm">Complete the online application form and upload required documents</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">2</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Initial Review</h3>
+                                    <p class="text-gray-700 text-sm">Our HR team will review your application and portfolio</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">3</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Design Exercise</h3>
+                                    <p class="text-gray-700 text-sm">Selected candidates will complete a small design challenge</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">4</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Interview</h3>
+                                    <p class="text-gray-700 text-sm">Virtual interview with the design team</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-medium mr-3 mt-1 flex-shrink-0">5</div>
+                                <div>
+                                    <h3 class="font-medium text-gray-900 mb-1">Final Decision</h3>
+                                    <p class="text-gray-700 text-sm">Offer extended to selected candidate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="md:col-span-1">
+                    <!-- Apply Card (Desktop) -->
+                    <div class="hidden md:block sticky top-6">
+                        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                            <h2 class="text-lg font-bold text-gray-900 mb-4">Ready to Apply?</h2>
+                            <button class="w-full py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap hover:bg-primary/90 transition-colors mb-4">Apply Now</button>
+                            <p class="text-sm text-gray-600 mb-4">Application deadline: <span class="font-medium text-gray-900">May 31, 2025</span></p>
+                            
+                            <div class="border-t border-gray-200 pt-4 mt-4">
+                                <h3 class="font-medium text-gray-900 mb-2">Required Documents</h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-center text-sm text-gray-700">
+                                        <div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+                                            <i class="ri-file-text-line"></i>
+                                        </div>
+                                        Resume/CV
+                                    </li>
+                                    <li class="flex items-center text-sm text-gray-700">
+                                        <div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+                                            <i class="ri-mail-line"></i>
+                                        </div>
+                                        Cover Letter
+                                    </li>
+                                    <li class="flex items-center text-sm text-gray-700">
+                                        <div class="w-5 h-5 flex items-center justify-center text-primary mr-2">
+                                            <i class="ri-gallery-line"></i>
+                                        </div>
+                                        Portfolio Link
+                                    </li>
+                                    <li class="flex items-center text-sm text-gray-700">
+                                        <div class="w-5 h-5 flex items-center justify-center text-gray-400 mr-2">
+                                            <i class="ri-file-list-3-line"></i>
+                                        </div>
+                                        Academic Transcript (optional)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-gray-600 text-sm">Posted on May 17, 2025 • TechVision Inc.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Fixed Apply Button (Mobile) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 z-40">
+        <button class="w-full py-3 bg-primary text-white rounded-button font-medium whitespace-nowrap hover:bg-primary/90 transition-colors">Apply Now</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const applyButtons = document.querySelectorAll('button');
+            applyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    window.location.href = "/InternHub/apply_4.html";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

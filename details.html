@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post a New Internship Opportunity - Details</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#6366F1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+}
+.step-connector {
+height: 2px;
+background-color: #e5e7eb;
+flex: 1;
+margin: 0 8px;
+}
+.step-connector.active {
+background-color: #4F46E5;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.custom-checkbox {
+appearance: none;
+width: 18px;
+height: 18px;
+border: 2px solid #d1d5db;
+border-radius: 4px;
+position: relative;
+cursor: pointer;
+transition: all 0.2s;
+}
+.custom-checkbox:checked {
+background-color: #4F46E5;
+border-color: #4F46E5;
+}
+.custom-checkbox:checked::after {
+content: '';
+position: absolute;
+top: 2px;
+left: 5px;
+width: 5px;
+height: 10px;
+border: solid white;
+border-width: 0 2px 2px 0;
+transform: rotate(45deg);
+}
+.custom-radio {
+appearance: none;
+width: 18px;
+height: 18px;
+border: 2px solid #d1d5db;
+border-radius: 50%;
+position: relative;
+cursor: pointer;
+transition: all 0.2s;
+}
+.custom-radio:checked {
+border-color: #4F46E5;
+}
+.custom-radio:checked::after {
+content: '';
+position: absolute;
+top: 3px;
+left: 3px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background-color: #4F46E5;
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 44px;
+height: 24px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #e5e7eb;
+transition: .4s;
+border-radius: 24px;
+}
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 3px;
+bottom: 3px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .slider {
+background-color: #4F46E5;
+}
+input:checked + .slider:before {
+transform: translateX(20px);
+}
+.tag {
+display: inline-flex;
+align-items: center;
+background-color: #EEF2FF;
+color: #4F46E5;
+padding: 0.25rem 0.5rem;
+border-radius: 9999px;
+margin-right: 0.5rem;
+margin-bottom: 0.5rem;
+font-size: 0.875rem;
+}
+.tag button {
+margin-left: 0.25rem;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.editor-toolbar {
+display: flex;
+background-color: #f9fafb;
+border: 1px solid #e5e7eb;
+border-bottom: none;
+border-top-left-radius: 0.375rem;
+border-top-right-radius: 0.375rem;
+padding: 0.5rem;
+}
+.editor-toolbar button {
+padding: 0.25rem 0.5rem;
+margin-right: 0.25rem;
+border-radius: 0.25rem;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.editor-toolbar button:hover {
+background-color: #f3f4f6;
+}
+.editor-content {
+border: 1px solid #e5e7eb;
+border-bottom-left-radius: 0.375rem;
+border-bottom-right-radius: 0.375rem;
+min-height: 150px;
+padding: 0.75rem;
+}
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+<!-- Header -->
+<header class="bg-white shadow-sm">
+<div class="container mx-auto px-6 py-4 flex items-center justify-between">
+<div class="flex items-center space-x-10">
+<a href="#" class="text-2xl font-['Pacifico'] text-primary">InternHub</a>
+<nav class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-8">
+<a href="/InternHub/index.html" class="text-gray-900 font-medium hover:text-primary transition-colors">Home</a>
+<a href="/InternHub/post_internships.html" class="text-primary font-medium border-b-2 border-primary pb-1">Post Internships</a>
+<a href="#" class="text-gray-900 font-medium hover:text-primary transition-colors">Applicants</a>
+<a href="#" class="text-gray-900 font-medium hover:text-primary transition-colors">Feedback</a>
+</nav>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="container mx-auto px-6 py-8 flex flex-col lg:flex-row gap-8">
+<!-- Main Form Section -->
+<div class="w-full lg:w-3/4">
+<h1 class="text-3xl font-bold text-gray-900 mb-8">Post a New Internship Opportunity</h1>
+<!-- Progress Steps -->
+<div class="flex items-center mb-10">
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center font-semibold">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-sm font-medium text-green-600 mt-2">Basic Info</span>
+</div>
+<div class="step-connector active"></div>
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-semibold">2</div>
+<span class="text-sm font-medium text-primary mt-2">Details</span>
+</div>
+<div class="step-connector"></div>
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-semibold">3</div>
+<span class="text-sm font-medium text-gray-600 mt-2">Application</span>
+</div>
+<div class="step-connector"></div>
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-semibold">4</div>
+<span class="text-sm font-medium text-gray-600 mt-2">Review</span>
+</div>
+</div>
+<!-- Form Sections -->
+<div class="bg-white shadow rounded-lg p-8 mb-8">
+<h2 class="text-xl font-semibold text-gray-900 mb-6">Duration & Schedule</h2>
+<div class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label for="duration" class="block text-sm font-medium text-gray-700 mb-1">Internship Duration*</label>
+<div class="relative">
+<select id="duration" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none pr-8">
+<option value="3">3 months</option>
+<option value="6" selected>6 months</option>
+<option value="9">9 months</option>
+<option value="12">12 months</option>
+<option value="custom">Custom duration</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-500"></i>
+</div>
+</div>
+</div>
+<div>
+<label for="start-date" class="block text-sm font-medium text-gray-700 mb-1">Start Date*</label>
+<input type="date" id="start-date" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="2025-06-15">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label for="hours" class="block text-sm font-medium text-gray-700 mb-1">Weekly Hours*</label>
+<div class="flex items-center">
+<input type="number" id="hours" class="w-full px-4 py-3 border border-gray-300 rounded-l focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="20">
+<span class="bg-gray-100 border border-gray-300 border-l-0 rounded-r px-4 py-3 text-gray-600">hours/week</span>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-1">Schedule Flexibility</label>
+<div class="flex flex-wrap gap-4">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox" checked>
+<span class="text-gray-800">Fixed schedule</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox">
+<span class="text-gray-800">Flexible hours</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white shadow rounded-lg p-8 mb-8">
+<h2 class="text-xl font-semibold text-gray-900 mb-6">Compensation Details</h2>
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-3">Compensation Type*</label>
+<div class="flex flex-wrap gap-6">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="compensation-type" class="custom-radio" checked>
+<span class="text-gray-800">Paid</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="compensation-type" class="custom-radio">
+<span class="text-gray-800">Unpaid</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="radio" name="compensation-type" class="custom-radio">
+<span class="text-gray-800">Stipend</span>
+</label>
+</div>
+</div>
+<div id="salary-range" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label for="min-salary" class="block text-sm font-medium text-gray-700 mb-1">Minimum Salary*</label>
+<div class="flex items-center">
+<span class="bg-gray-100 border border-gray-300 border-r-0 rounded-l px-4 py-3 text-gray-600">₱</span>
+<input type="number" id="min-salary" class="w-full px-4 py-3 border border-gray-300 rounded-r focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="18">
+</div>
+<p class="text-xs text-gray-500 mt-1">Per hour</p>
+</div>
+<div>
+<label for="max-salary" class="block text-sm font-medium text-gray-700 mb-1">Maximum Salary</label>
+<div class="flex items-center">
+<span class="bg-gray-100 border border-gray-300 border-r-0 rounded-l px-4 py-3 text-gray-600">₱</span>
+<input type="number" id="max-salary" class="w-full px-4 py-3 border border-gray-300 rounded-r focus:ring-2 focus:ring-primary focus:border-primary outline-none" value="25">
+</div>
+<p class="text-xs text-gray-500 mt-1">Per hour</p>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-3">Benefits (Optional)</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox" checked>
+<span class="text-gray-800">Academic credit</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox" checked>
+<span class="text-gray-800">Professional mentorship</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox">
+<span class="text-gray-800">Meal allowance</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox">
+<span class="text-gray-800">Transportation stipend</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox" checked>
+<span class="text-gray-800">Networking events</span>
+</label>
+<label class="flex items-center space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox">
+<span class="text-gray-800">Potential for full-time hire</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white shadow rounded-lg p-8 mb-8">
+<h2 class="text-xl font-semibold text-gray-900 mb-6">Required Skills & Qualifications</h2>
+<div class="space-y-6">
+<div>
+<label for="skills" class="block text-sm font-medium text-gray-700 mb-1">Skills Required*</label>
+<div class="relative">
+<input type="text" id="skills" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Add skills and press Enter">
+<button class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+<i class="ri-add-line"></i>
+</button>
+</div>
+<div class="mt-3 flex flex-wrap">
+<div class="tag">
+Basic knowledge of marketing principles
+<button type="button">
+<i class="ri-close-line text-xs"></i>
+</button>
+</div>
+<div class="tag">
+Social media management
+<button type="button">
+<i class="ri-close-line text-xs"></i>
+</button>
+</div>
+<div class="tag">
+Data analysis (Excel)
+<button type="button">
+<i class="ri-close-line text-xs"></i>
+</button>
+</div>
+<div class="tag">
+Communication and teamwork
+<button type="button">
+<i class="ri-close-line text-xs"></i>
+</button>
+</div>
+<div class="tag">
+Creativity and problem-solving
+<button type="button">
+<i class="ri-close-line text-xs"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label for="education" class="block text-sm font-medium text-gray-700 mb-1">Education Level*</label>
+<div class="relative">
+<select id="education" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none pr-8">
+<option value="high-school">High School</option>
+<option value="associates">Associate's Degree</option>
+<option value="bachelors" selected>Bachelor's Degree (in progress)</option>
+<option value="bachelors-completed">Bachelor's Degree (completed)</option>
+<option value="masters">Master's Degree</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-500"></i>
+</div>
+</div>
+</div>
+<div>
+<label for="experience" class="block text-sm font-medium text-gray-700 mb-1">Experience Level*</label>
+<div class="relative">
+<select id="experience" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none appearance-none pr-8">
+<option value="none">No experience required</option>
+<option value="beginner" selected>Beginner (0-1 year)</option>
+<option value="intermediate">Intermediate (1-2 years)</option>
+<option value="advanced">Advanced (2+ years)</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+<i class="ri-arrow-down-s-line text-gray-500"></i>
+</div>
+</div>
+</div>
+</div>
+<div>
+<label for="certifications" class="block text-sm font-medium text-gray-700 mb-1">Required Certifications (Optional)</label>
+<input type="text" id="certifications" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="e.g. Adobe Certified, Google UX Certificate">
+</div>
+</div>
+</div>
+<div class="bg-white shadow rounded-lg p-8 mb-8">
+<h2 class="text-xl font-semibold text-gray-900 mb-6">Responsibilities & Learning Outcomes</h2>
+<div class="space-y-6">
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-3">Job Description*</label>
+<div>
+<div class="editor-toolbar">
+<button type="button">
+<i class="ri-bold"></i>
+</button>
+<button type="button">
+<i class="ri-italic"></i>
+</button>
+<button type="button">
+<i class="ri-underline"></i>
+</button>
+<button type="button">
+<i class="ri-list-unordered"></i>
+</button>
+<button type="button">
+<i class="ri-list-ordered"></i>
+</button>
+<button type="button">
+<i class="ri-link"></i>
+</button>
+</div>
+<div class="editor-content" contenteditable="true">
+<p>Join our dynamic marketing team as a Marketing Intern where you will assist in the development and execution of marketing campaigns, conduct market research, and help analyze campaign performance. This internship offers hands-on experience in a fast-paced marketing environment.</p>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-gray-700 mb-3">Key Responsibilities*</label>
+<div class="space-y-3">
+<label class="flex items-start space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox mt-0.5" checked>
+<span class="text-gray-800">Assist in creating content for social media platforms</span>
+</label>
+<label class="flex items-start space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox mt-0.5" checked>
+<span class="text-gray-800">Support the team in organizing promotional events</span>
+</label>
+<label class="flex items-start space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox mt-0.5" checked>
+<span class="text-gray-800">Conduct market and competitor research</span>
+</label>
+<label class="flex items-start space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox mt-0.5" checked>
+<span class="text-gray-800">Prepare reports on campaign effectiveness</span>
+</label>
+<label class="flex items-start space-x-2 cursor-pointer">
+<input type="checkbox" class="custom-checkbox mt-0.5">
+<span class="text-gray-800">Collaborate with different departments for marketing projects</span>
+</label>
+<div class="relative">
+<input type="text" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Add another responsibility">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2">
+<i class="ri-add-line text-gray-400"></i>
+</div>
+</div>
+</div>
+</div>
+<div>
+<label for="learning" class="block text-sm font-medium text-gray-700 mb-1">Learning Objectives*</label>
+<textarea id="learning" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="What will interns learn during this experience?">Gain practical experience in user-centered design methodologies. Develop proficiency with industry-standard design tools. Learn how to effectively communicate design decisions. Understand the full product development lifecycle. Build a professional portfolio with real-world projects.</textarea>
+</div>
+<div>
+<label for="growth" class="block text-sm font-medium text-gray-700 mb-1">Growth Opportunities</label>
+<textarea id="growth" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="How can interns grow professionally in this role?">Top-performing interns may be considered for full-time positions upon graduation. Opportunity to work directly with senior designers and receive mentorship. Possibility to lead small design projects independently by the end of the internship period.</textarea>
+</div>
+</div>
+</div>
+<!-- Navigation Buttons -->
+<div class="flex justify-between">
+<a href="post_internships.html" 
+class="px-6 py-2.5 border border-gray-300 rounded text-gray-700 font-medium hover:bg-gray-50 !rounded-button whitespace-nowrap">
+Back to Basic Info
+</a>
+<a href="application.html"
+class="px-6 py-2.5 bg-primary text-white rounded font-medium hover:bg-primary/90 !rounded-button whitespace-nowrap inline-block">
+Next: Application
+</a>
+</div>
+</div>
+<!-- Sidebar -->
+<div class="w-full lg:w-1/4 space-y-6">
+<div class="bg-white shadow rounded-lg p-6">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Tips for Great Listings</h3>
+<ul class="space-y-3">
+<li class="flex items-start space-x-2">
+<div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+<i class="ri-check-line text-green-600 ri-sm"></i>
+</div>
+<span class="text-sm text-gray-700">Be specific about required skills and experience</span>
+</li>
+<li class="flex items-start space-x-2">
+<div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+<i class="ri-check-line text-green-600 ri-sm"></i>
+</div>
+<span class="text-sm text-gray-700">Include clear information about compensation</span>
+</li>
+<li class="flex items-start space-x-2">
+<div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+<i class="ri-check-line text-green-600 ri-sm"></i>
+</div>
+<span class="text-sm text-gray-700">Describe what interns will learn and accomplish</span>
+</li>
+<li class="flex items-start space-x-2">
+<div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+<i class="ri-check-line text-green-600 ri-sm"></i>
+</div>
+<span class="text-sm text-gray-700">Highlight growth opportunities and mentorship</span>
+</li>
+</ul>
+</div>
+<div class="bg-white shadow rounded-lg p-6">
+<h3 class="text-lg font-semibold text-gray-900 mb-4">Sample High-Performing Post</h3>
+<div class="border border-gray-200 rounded p-4">
+<h4 class="font-medium text-gray-900">Data Science Intern</h4>
+<p class="text-sm text-gray-600 mt-1">TechVision Analytics</p>
+<div class="flex items-center space-x-2 mt-2">
+<span class="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">Paid</span>
+<span class="text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">Remote</span>
+</div>
+<p class="text-xs text-gray-500 mt-3">This post received 145 applications in 7 days</p>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-gray-900 text-white pt-12 pb-8 mt-12">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+<div class="lg:col-span-2">
+<a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">InternHub</a>
+<p class="text-gray-400 mb-6 max-w-md">Connecting talented students with meaningful internship opportunities across Southern Leyte and beyond. Start your career journey with us today.</p>
+<div class="flex space-x-4">
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-facebook-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-twitter-x-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-linkedin-fill ri-lg"></i>
+</div>
+</a>
+<a href="#" class="text-gray-400 hover:text-white transition-colors">
+<div class="w-10 h-10 flex items-center justify-center">
+<i class="ri-instagram-fill ri-lg"></i>
+</div>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/browse_internships.html" class="text-gray-400 hover:text-white transition-colors">Browse Internships</a></li>
+<li><a href="/InternHub/profile.html" class="text-gray-400 hover:text-white transition-colors">Create Profile</a></li>
+<li><a href="/InternHub/track_application.html" class="text-gray-400 hover:text-white transition-colors">Application Status</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Resources</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">For Employers</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/post_internships.html" class="text-gray-400 hover:text-white transition-colors">Post Internships</a></li>
+<li><a href="/InternHub/manage_applicant.html" class="text-gray-400 hover:text-white transition-colors">Browse Candidates</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing Plans</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Recruitment Tools</a></li>
+<li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold mb-4">Company</h4>
+<ul class="space-y-2">
+<li><a href="/InternHub/index.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+<li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+<p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Internship Platform. All rights reserved.</p>
+<div class="flex flex-wrap gap-4 text-sm text-gray-400">
+<a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+<a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+<a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+<a href="#" class="hover:text-white transition-colors">Accessibility</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Initialize select styling
+const selects = document.querySelectorAll('select');
+selects.forEach(select => {
+select.addEventListener('focus', function() {
+this.parentElement.classList.add('ring-2', 'ring-primary');
+});
+select.addEventListener('blur', function() {
+this.parentElement.classList.remove('ring-2', 'ring-primary');
+});
+});
+// Handle compensation type change
+const compensationRadios = document.querySelectorAll('input[name="compensation-type"]');
+const salaryRangeSection = document.getElementById('salary-range');
+compensationRadios.forEach(radio => {
+radio.addEventListener('change', function() {
+if (this.checked && this.nextElementSibling.textContent.trim() === 'Paid') {
+salaryRangeSection.classList.remove('hidden');
+} else {
+salaryRangeSection.classList.add('hidden');
+}
+});
+});
+// Handle skills input
+const skillsInput = document.getElementById('skills');
+skillsInput.addEventListener('keydown', function(e) {
+if (e.key === 'Enter' && this.value.trim() !== '') {
+e.preventDefault();
+const skillsContainer = this.parentElement.nextElementSibling;
+const newSkill = document.createElement('div');
+newSkill.className = 'tag';
+newSkill.innerHTML = `
+₱{this.value.trim()}
+<button type="button">
+<i class="ri-close-line text-xs"></i>
+</button>
+`;
+skillsContainer.appendChild(newSkill);
+this.value = '';
+// Add event listener to remove button
+const removeButton = newSkill.querySelector('button');
+removeButton.addEventListener('click', function() {
+newSkill.remove();
+});
+}
+});
+// Add event listeners to existing tag remove buttons
+const tagRemoveButtons = document.querySelectorAll('.tag button');
+tagRemoveButtons.forEach(button => {
+button.addEventListener('click', function() {
+this.parentElement.remove();
+});
+});
+});
+</script>
+</body>
+</html>

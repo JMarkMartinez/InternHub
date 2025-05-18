@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review Applicant - InternHub</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#10B981'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb;
+}
+.status-pending {
+  background-color: #FEF3C7;
+  color: #92400E;
+}
+.status-accepted {
+  background-color: #D1FAE5;
+  color: #065F46;
+}
+.status-rejected {
+  background-color: #FEE2E2;
+  color: #991B1B;
+}
+input:focus {
+  outline: none;
+}
+textarea:focus {
+  outline: none;
+}
+</style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+    <div class="relative container mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center z-10">
+        <a href="#" class="text-2xl font-['Pacifico'] text-primary">
+          InternHub
+        </a>
+      </div>
+
+      <!-- Centered Navigation -->
+      <nav class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-8">
+        <a href="/InternHub/index.html" class="text-gray-600 hover:text-primary transition-colors">
+          Home
+        </a>
+        <a href="/InternHub/post_internships.html" class="text-gray-600 hover:text-primary transition-colors">
+          Post Internship
+        </a>
+        <a href="/InternHub/manage_applicant.html" class="text-primary font-medium border-b-2 border-primary pb-1">
+          Applicants
+        </a>
+        <a href="/InternHub/provide_feedback.html" class="text-gray-600 hover:text-primary transition-colors">
+          Feedback
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Icon (shown on small screens) -->
+      <div class="md:hidden">
+        <button type="button" class="text-gray-500 hover:text-gray-600">
+          <i class="ri-menu-line ri-xl"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 pt-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 class="text-2xl font-bold text-gray-900 mb-8">Review Applicant Details</h1>
+      
+      <!-- Applicant Profile Card -->
+      <div class="bg-white shadow rounded-lg overflow-hidden mb-8">
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center">
+              <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
+                <i class="ri-user-fill text-gray-500 ri-2x"></i>
+              </div>
+              <div class="ml-4">
+                <h2 class="text-xl font-semibold text-gray-900">Sarah Johnson</h2>
+                <p class="text-gray-600">Business Administration Intern</p>
+              </div>
+            </div>
+            <div>
+              <span class="status-pending px-3 py-1 text-sm font-medium rounded-full">Pending</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-2">School/Institution</h3>
+              <p class="text-gray-800">SLSU-TO</p>
+            </div>
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-2">Application Date</h3>
+              <p class="text-gray-800">May 12, 2025</p>
+            </div>
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-2">Email</h3>
+              <p class="text-gray-800">sarah.johnson@example.com</p>
+            </div>
+            <div>
+              <h3 class="text-sm font-medium text-gray-500 mb-2">Phone</h3>
+              <p class="text-gray-800">(+63) 123-4567</p>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="text-sm font-medium text-gray-500 mb-2">Skills</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded">Market Research & Analysis</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded">Canva</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded">Adobe XD</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded">Branding</span>
+              <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded">Advertising</span>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="text-sm font-medium text-gray-500 mb-3">About</h3>
+            <p class="text-gray-700">
+              Business Administration student with a strong interest in marketing, branding, and digital content creation. Skilled in tools like Canva and Adobe XD, with experience in conducting market research and developing advertising strategies. Eager to contribute to meaningful projects in a dynamic organization where I can apply my business knowledge and creative skills.
+            </p>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="text-sm font-medium text-gray-500 mb-3">Documents</h3>
+            <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+              <div class="w-10 h-10 flex items-center justify-center bg-red-100 rounded-lg">
+                <i class="ri-file-pdf-line text-red-500 ri-lg"></i>
+              </div>
+              <div class="ml-3 flex-1">
+                <h4 class="text-sm font-medium text-gray-900">Sarah_Johnson_Resume.pdf</h4>
+                <p class="text-xs text-gray-500">1.2 MB</p>
+              </div>
+              <a href="#" class="text-primary hover:text-primary/80 font-medium text-sm flex items-center">
+                <i class="ri-download-line mr-1"></i>
+                Download
+              </a>
+            </div>
+          </div>
+
+          <!-- Notes Field -->
+          <div class="mb-6">
+            <h3 class="text-sm font-medium text-gray-500 mb-3">Notes</h3>
+            <textarea id="applicantNotes" class="w-full p-3 border border-gray-300 rounded-lg text-gray-700 focus:border-primary transition-colors" rows="4" placeholder="Add your notes about this applicant..."></textarea>
+          </div>
+
+          <div class="flex flex-wrap gap-4 justify-end mt-8">
+            <button type="button" class="px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-button hover:bg-gray-200 transition-colors flex items-center">
+              <i class="ri-file-info-line mr-2"></i>
+              Request More Info
+            </button>
+            <button type="button" id="rejectBtn" class="px-4 py-2 bg-red-100 text-red-700 font-medium rounded-button hover:bg-red-200 transition-colors flex items-center">
+              <i class="ri-close-circle-line mr-2"></i>
+              Reject Applicant
+            </button>
+            <button type="button" id="acceptBtn" class="px-4 py-2 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-colors flex items-center">
+              <i class="ri-check-line mr-2"></i>
+              Accept Applicant
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Accept Confirmation Modal -->
+  <div id="acceptModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+      <div class="p-6">
+        <div class="mb-4 text-center">
+          <div class="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+            <i class="ri-check-line text-green-600 ri-2x"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900">Accept Applicant</h3>
+          <p class="text-gray-600 mt-2">Are you sure you want to accept this applicant?</p>
+        </div>
+        <div class="mt-4">
+          <label for="acceptNotes" class="block text-sm font-medium text-gray-700 mb-1">Notes (optional)</label>
+          <textarea id="acceptNotes" class="w-full p-3 border border-gray-300 rounded-lg text-gray-700 focus:border-primary transition-colors" rows="3" placeholder="Add any notes about accepting this applicant..."></textarea>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button id="cancelAcceptBtn" class="flex-1 px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-button hover:bg-gray-200 transition-colors">
+            Cancel
+          </button>
+          <button id="confirmAcceptBtn" class="flex-1 px-4 py-2 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-colors">
+            Yes, Accept
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reject Confirmation Modal -->
+  <div id="rejectModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+      <div class="p-6">
+        <div class="mb-4 text-center">
+          <div class="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <i class="ri-close-circle-line text-red-600 ri-2x"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900">Reject Applicant</h3>
+          <p class="text-gray-600 mt-2">Are you sure you want to reject this applicant?</p>
+        </div>
+        <div class="mt-4">
+          <label for="rejectNotes" class="block text-sm font-medium text-gray-700 mb-1">Notes (optional)</label>
+          <textarea id="rejectNotes" class="w-full p-3 border border-gray-300 rounded-lg text-gray-700 focus:border-primary transition-colors" rows="3" placeholder="Add any reasons for rejecting this applicant..."></textarea>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button id="cancelRejectBtn" class="flex-1 px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-button hover:bg-gray-200 transition-colors">
+            Cancel
+          </button>
+          <button id="confirmRejectBtn" class="flex-1 px-4 py-2 bg-red-600 text-white font-medium rounded-button hover:bg-red-700 transition-colors">
+            Yes, Reject
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white pt-12 pb-8 mt-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div class="lg:col-span-2">
+          <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">InternHub</a>
+          <p class="text-gray-400 mb-6 max-w-md">Connecting talented students with meaningful internship opportunities across Southern Leyte and beyond. Start your career journey with us today.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <div class="w-10 h-10 flex items-center justify-center">
+                <i class="ri-facebook-fill ri-lg"></i>
+              </div>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <div class="w-10 h-10 flex items-center justify-center">
+                <i class="ri-twitter-x-fill ri-lg"></i>
+              </div>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <div class="w-10 h-10 flex items-center justify-center">
+                <i class="ri-linkedin-fill ri-lg"></i>
+              </div>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <div class="w-10 h-10 flex items-center justify-center">
+                <i class="ri-instagram-fill ri-lg"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">For Students</h4>
+          <ul class="space-y-2">
+            <li><a href="/InternHub/browse_internships.html" class="text-gray-400 hover:text-white transition-colors">Browse Internships</a></li>
+            <li><a href="/InternHub/profile.html" class="text-gray-400 hover:text-white transition-colors">Create Profile</a></li>
+            <li><a href="/InternHub/track_application.html" class="text-gray-400 hover:text-white transition-colors">Application Status</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Resources</a></li>
+            <li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+            </ul>
+            </div>
+            <div>
+            <h4 class="text-lg font-semibold mb-4">For Employers</h4>
+            <ul class="space-y-2">
+            <li><a href="/InternHub/post_internships.html" class="text-gray-400 hover:text-white transition-colors">Post Internships</a></li>
+            <li><a href="/InternHub/manage_applicant.html" class="text-gray-400 hover:text-white transition-colors">Browse Candidates</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing Plans</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Recruitment Tools</a></li>
+            <li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+            </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="/InternHub/index.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 InternHub. All rights reserved.</p>
+        <div class="flex flex-wrap gap-4 text-sm text-gray-400">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Modal Functionality -->
+  <script>
+    // Get modal elements
+    const acceptModal = document.getElementById('acceptModal');
+    const rejectModal = document.getElementById('rejectModal');
+    const acceptBtn = document.getElementById('acceptBtn');
+    const rejectBtn = document.getElementById('rejectBtn');
+    const cancelAcceptBtn = document.getElementById('cancelAcceptBtn');
+    const cancelRejectBtn = document.getElementById('cancelRejectBtn');
+    const confirmAcceptBtn = document.getElementById('confirmAcceptBtn');
+    const confirmRejectBtn = document.getElementById('confirmRejectBtn');
+    const applicantNotesField = document.getElementById('applicantNotes');
+    const acceptNotesField = document.getElementById('acceptNotes');
+    const rejectNotesField = document.getElementById('rejectNotes');
+    
+    // Show accept modal when Accept button is clicked
+    acceptBtn.addEventListener('click', () => {
+      // Transfer any notes from the main notes field to the modal's notes field
+      acceptNotesField.value = applicantNotesField.value;
+      acceptModal.classList.remove('hidden');
+    });
+    
+    // Show reject modal when Reject button is clicked
+    rejectBtn.addEventListener('click', () => {
+      // Transfer any notes from the main notes field to the modal's notes field
+      rejectNotesField.value = applicantNotesField.value;
+      rejectModal.classList.remove('hidden');
+    });
+    
+    // Hide accept modal when Cancel button is clicked
+    cancelAcceptBtn.addEventListener('click', () => {
+      acceptModal.classList.add('hidden');
+    });
+    
+    // Hide reject modal when Cancel button is clicked
+    cancelRejectBtn.addEventListener('click', () => {
+      rejectModal.classList.add('hidden');
+    });
+    
+    // Handle accept confirmation
+    confirmAcceptBtn.addEventListener('click', () => {
+      // Save the notes from the modal back to the main notes field
+      applicantNotesField.value = acceptNotesField.value;
+      
+      // Update the application status
+      const statusBadge = document.querySelector('.status-pending');
+      statusBadge.classList.remove('status-pending');
+      statusBadge.classList.add('status-accepted');
+      statusBadge.textContent = 'Accepted';
+      
+      // Here you would typically send the status update and notes to the server
+      console.log('Applicant accepted with notes:', acceptNotesField.value);
+      
+      // Hide the modal
+      acceptModal.classList.add('hidden');
+    });
+    
+    // Handle reject confirmation
+    confirmRejectBtn.addEventListener('click', () => {
+      // Save the notes from the modal back to the main notes field
+      applicantNotesField.value = rejectNotesField.value;
+      
+      // Update the application status
+      const statusBadge = document.querySelector('.status-pending');
+      statusBadge.classList.remove('status-pending');
+      statusBadge.classList.add('status-rejected');
+      statusBadge.textContent = 'Rejected';
+      
+      // Here you would typically send the status update and notes to the server
+      console.log('Applicant rejected with notes:', rejectNotesField.value);
+      
+      // Hide the modal
+      rejectModal.classList.add('hidden');
+    });
+    
+    // Close modals if clicked outside
+    acceptModal.addEventListener('click', (e) => {
+      if (e.target === acceptModal) {
+        acceptModal.classList.add('hidden');
+      }
+    });
+    
+    rejectModal.addEventListener('click', (e) => {
+      if (e.target === rejectModal) {
+        rejectModal.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>

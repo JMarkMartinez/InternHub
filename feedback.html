@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#818CF8'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+        .star-rating input {
+            display: none;
+        }
+        .star-rating label {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .custom-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+        }
+        textarea:focus, input:focus, select:focus {
+            outline: none;
+            border-color: #4F46E5;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="relative container mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center z-10">
+                <a href="#" class="text-2xl font-['Pacifico'] text-primary">
+                    InternHub
+                </a>
+            </div>
+
+            <!-- Centered Navigation -->
+            <nav class="absolute left-1/2 transform -translate-x-1/2 hidden md:flex space-x-8">
+                <a href="/InternHub/index.html" class="text-gray-600 hover:text-primary transition-colors">
+                    Home
+                </a>
+                <a href="/InternHub/find_internships.html" class="text-gray-600 hover:text-primary transition-colors">
+                    Find Internships
+                </a>
+                <a href="/InternHub/track_application.html" class="text-gray-900 font-medium hover:text-primary transition-colors">
+                    Applications
+                </a>
+                <a href="/InternHub/feedback.html" class="text-primary font-medium border-b-2 border-primary pb-1">
+                    Feedbacks
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="min-h-screen max-w-3xl mx-auto px-4 py-8 mt-16">
+        <!-- Header Section -->
+        <header class="mb-8">
+            <p class="text-center text-gray-600 mb-6">Share your thoughts and help us improve our platform. Your feedback matters!</p>
+        </header>
+
+        <!-- Feedback Form -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <form id="feedbackForm">
+                <div class="mb-6">
+                    <label for="internshipTitle" class="block text-sm font-medium text-gray-700 mb-2">Internship Title</label>
+                    <div class="relative">
+                        <select id="internshipTitle" class="custom-select w-full px-4 py-3 bg-white border border-gray-300 rounded text-gray-700 focus:border-primary transition-colors">
+                            <option value="" disabled selected>Select an internship</option>
+                            <option value="business-operations">Business Operations Intern</option>
+                            <option value="marketing-assistant">Marketing Assistant Intern</option>
+                            <option value="accounting-clerk">Accounting Clerk Intern</option>
+                            <option value="hr-assistant">HR Assistant Intern</option>
+                            <option value="inventory-management">Inventory Management Intern</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="companyName" class="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
+                    <input type="text" id="companyName" value="Acme Corporation" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded text-gray-700" readonly>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                    <div class="star-rating flex gap-2">
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5" class="text-gray-300 text-3xl hover:text-yellow-400 peer-checked:text-yellow-400">★</label>
+                        
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4" class="text-gray-300 text-3xl hover:text-yellow-400 peer-checked:text-yellow-400">★</label>
+                        
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3" class="text-gray-300 text-3xl hover:text-yellow-400 peer-checked:text-yellow-400">★</label>
+                        
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2" class="text-gray-300 text-3xl hover:text-yellow-400 peer-checked:text-yellow-400">★</label>
+                        
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1" class="text-gray-300 text-3xl hover:text-yellow-400 peer-checked:text-yellow-400">★</label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="feedbackType" class="block text-sm font-medium text-gray-700 mb-2">Feedback Type</label>
+                    <div class="relative">
+                        <select id="feedbackType" class="custom-select w-full px-4 py-3 bg-white border border-gray-300 rounded text-gray-700 focus:border-primary transition-colors">
+                            <option value="" disabled selected>Select feedback type</option>
+                            <option value="overall-satisfaction">Overall Satisfaction</option>
+                            <option value="suggestion">Suggestion</option>
+                            <option value="internship-review">Internship Review</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="feedbackMessage" class="block text-sm font-medium text-gray-700 mb-2">Your Feedback</label>
+                    <textarea id="feedbackMessage" rows="5" class="w-full px-4 py-3 bg-white border border-gray-300 rounded text-gray-700 focus:border-primary transition-colors" placeholder="Tell us more about your experience..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-button transition-colors whitespace-nowrap">Submit Feedback</button>
+            </form>
+        </div>
+
+        <!-- Previous Feedback Section -->
+        <div class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-xl font-semibold text-gray-900 mb-4">Your Previous Feedback</h2>
+            
+            <div class="space-y-5">
+                <div class="border-b border-gray-200 pb-5">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex text-yellow-400 text-lg">
+                            <span>★★★★★</span>
+                        </div>
+                        <span class="text-sm text-gray-500">Business Operations Intern</span>
+                        <span class="text-sm text-gray-500">May 12, 2025</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">Internship Review</span>
+                    </div>
+                    <p class="text-gray-700">I gained hands-on experience with office tasks and workflow coordination. It improved my time management and communication skills.</p>
+                </div>
+
+                <div class="border-b border-gray-200 pb-5">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex text-yellow-400 text-lg">
+                            <span>★★★★☆</span>
+                        </div>
+                        <span class="text-sm text-gray-500">Marketing Assistant Intern</span>
+                        <span class="text-sm text-gray-500">April 28, 2025</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Suggestion</span>
+                    </div>
+                    <p class="text-gray-700">It would be helpful to include more real campaign examples or allow interns to try creating ads using actual platforms like Meta Ads Manager.</p>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex text-yellow-400 text-lg">
+                            <span>★★★☆☆</span>
+                        </div>
+                        <span class="text-sm text-gray-500">HR Assistant Intern</span>
+                        <span class="text-sm text-gray-500">March 15, 2025</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded">Overall Satisfaction</span>
+                    </div>
+                    <p class="text-gray-700">The internship was a positive experience. I learned practical HR tasks like assisting in recruitment and organizing employee files. The team was approachable and supportive.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-12 pb-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-2">
+                    <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">InternHub</a>
+                    <p class="text-gray-400 mb-6 max-w-md">Connecting talented students with meaningful internship opportunities across Southern Leyte and beyond. Start your career journey with us today.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center">
+                                <i class="ri-facebook-fill ri-lg"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center">
+                                <i class="ri-twitter-x-fill ri-lg"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center">
+                                <i class="ri-linkedin-fill ri-lg"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <div class="w-10 h-10 flex items-center justify-center">
+                                <i class="ri-instagram-fill ri-lg"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">For Students</h4>
+                    <ul class="space-y-2">
+                        <li><a href="/InternHub/browse_internships.html" class="text-gray-400 hover:text-white transition-colors">Browse Internships</a></li>
+                        <li><a href="/InternHub/profile.html" class="text-gray-400 hover:text-white transition-colors">Create Profile</a></li>
+                        <li><a href="/InternHub/track_application.html" class="text-gray-400 hover:text-white transition-colors">Application Status</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Career Resources</a></li>
+                        <li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+                        </ul>
+                        </div>
+                        <div>
+                        <h4 class="text-lg font-semibold mb-4">For Employers</h4>
+                        <ul class="space-y-2">
+                        <li><a href="/InternHub/post_internships.html" class="text-gray-400 hover:text-white transition-colors">Post Internships</a></li>
+                        <li><a href="/InternHub/manage_applicant.html" class="text-gray-400 hover:text-white transition-colors">Browse Candidates</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Pricing Plans</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Recruitment Tools</a></li>
+                        <li><a href="InternHub/index.html#section1" class="text-gray-400 hover:text-white transition-colors">Success Stories</a></li>
+                        </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2">
+                       <li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+<li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">Our Team</a></li>
+<li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+<li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+<li><a href="/InternHub/index.html#section4" class="text-gray-400 hover:text-white transition-colors">Co
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 InternHub. All rights reserved.</p>
+                <div class="flex flex-wrap gap-4 text-sm text-gray-400">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const starLabels = document.querySelectorAll('.star-rating label');
+            
+            starLabels.forEach((label, index) => {
+                label.addEventListener('click', () => {
+                    // Reset all stars
+                    starLabels.forEach(star => {
+                        star.classList.remove('text-yellow-400');
+                        star.classList.add('text-gray-300');
+                    });
+                    
+                    // Fill stars up to the clicked one
+                    for (let i = 0; i <= index; i++) {
+                        starLabels[i].classList.remove('text-gray-300');
+                        starLabels[i].classList.add('text-yellow-400');
+                    }
+                });
+            });
+
+            const feedbackForm = document.getElementById('feedbackForm');
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const internshipTitle = document.getElementById('internshipTitle').value;
+                const companyName = document.getElementById('companyName').value;
+                const rating = document.querySelector('input[name="rating"]:checked')?.value || '';
+                const feedbackType = document.getElementById('feedbackType').value;
+                const feedbackMessage = document.getElementById('feedbackMessage').value;
+                
+                // Validate form
+                if (!internshipTitle || !rating || !feedbackType || !feedbackMessage) {
+                    alert('Please fill out all fields');
+                    return;
+                }
+                
+                // Here you would normally send the data to your server
+                console.log({
+                    internshipTitle,
+                    companyName,
+                    rating,
+                    feedbackType,
+                    feedbackMessage
+                });
+                
+                // Reset form
+                feedbackForm.reset();
+                starLabels.forEach(star => {
+                    star.classList.remove('text-yellow-400');
+                    star.classList.add('text-gray-300');
+                });
+                
+                alert('Thank you for your feedback!');
+            });
+        });
+    </script>
+</body>
+</html>
